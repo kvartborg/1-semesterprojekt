@@ -1,10 +1,13 @@
-public class Game {
+import worldofzuul.Game;
+
+public class Bootstrap {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("You won!");
+        Game game = new Game();
+        game.play();
     }
 
 }
