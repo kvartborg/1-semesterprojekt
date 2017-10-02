@@ -37,28 +37,43 @@ public class Game {
     * 
     */ 
     private void createRooms() {
-        Room outside, theatre, pub, lab, office;
+        Room ovalOffice, lobby1, lobby2, kitchen, diningRoom, cleaningRoom, pressBriefingRoom, secretServiceRoom; 
+        
+        ovalOffice = new Room("in the oval office");
+        lobby1 = new Room("in the first lobby"); 
+        lobby2 = new Room("in the second lobby");
+        kitchen = new Room("in the kitchen");
+        diningRoom = new Room("in the dining room");
+        cleaningRoom = new Room("in the cleaning room");
+        pressBriefingRoom = new Room("in the press briefing room");
+        secretServiceRoom = new Room("in the secret service room"); 
+        
+        ovalOffice.setExit("north", lobby1);
+        
+        lobby1.setExit("north", lobby2);
+        lobby1.setExit("east", secretServiceRoom);
+        lobby1.setExit("south", ovalOffice);
+        lobby1.setExit("west", diningRoom); 
+        
+        diningRoom.setExit("north", kitchen);
+        diningRoom.setExit("east", lobby1); 
+        
+        secretServiceRoom.setExit("west", lobby1); 
+        
+        lobby2.setExit("north", cleaningRoom);
+        lobby2.setExit("east", pressBriefingRoom);
+        lobby2.setExit("south", lobby1);
+        lobby2.setExit("west", kitchen); 
+        
+        kitchen.setExit("west", lobby2);
+        kitchen.setExit("south", diningRoom);
+        
+        pressBriefingRoom.setExit("west", lobby2); 
+        
+        cleaningRoom.setExit("south", lobby2); 
+        
 
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-
-        theatre.setExit("west", outside);
-
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        currentRoom = outside;
+        currentRoom = pressBriefingRoom;
     }
     /** 
     * This method called play is what decides when the game is done.
@@ -88,8 +103,8 @@ public class Game {
     */
     private void printWelcome() {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to the game: Unseat President Trump");
+        System.out.println("Unseat President Trump is an amazing new game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
