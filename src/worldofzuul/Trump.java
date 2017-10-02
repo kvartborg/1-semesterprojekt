@@ -13,10 +13,6 @@ public class Trump extends Character {
     /**
      * The name of the character
      */
-    private String name;
-    
-    public Trump(){
-        this.name = "Donald Trump";
-    }
+    private String name = "Donald Trump";
     
 }
