@@ -5,10 +5,6 @@ package worldofzuul;
  * @version 2006.03.30
  */
 
-/**
- * 
- * @author ander
- */
 public class Game {
     private Parser parser;
     private Room currentRoom;
