@@ -18,10 +18,10 @@ public class CommandWords {
      * Storing if its valid
      */
     public CommandWords() {
-        validCommands = new HashMap<String, CommandWord>(); 
-        for(CommandWord command : CommandWord.values()) {   
-            if(command != CommandWord.UNKNOWN) {            
-                validCommands.put(command.toString(), command); 
+        validCommands = new HashMap<String, CommandWord>();
+        for(CommandWord command : CommandWord.values()) { 
+            if(command != CommandWord.UNKNOWN) {   
+                validCommands.put(command.toString(), command);
             }
         }
     }
