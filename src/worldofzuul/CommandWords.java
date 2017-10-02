@@ -9,6 +9,9 @@ import java.util.HashMap;
 
 
 public class CommandWords {
+    /**
+     * A list of valid commands
+     */
     private HashMap<String, CommandWord> validCommands;
     
     /**
