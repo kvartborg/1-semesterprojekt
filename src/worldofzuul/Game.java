@@ -6,9 +6,17 @@ package worldofzuul;
  */
 
 public class Game {
+    /** 
+     * There is two attributes, parser and currentRoom.
+     * 
+     * The two attributes parser and currentRoom are instances from the classes
+     * Parser and Room. The currentRoom variable is what room the player is 
+     * in at the current moment. 
+     * 
+     */
     private Parser parser;
     private Room currentRoom;
-
+    
     public Game() {
         createRooms();
         parser = new Parser();
