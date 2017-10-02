@@ -32,7 +32,7 @@ public class CommandWords {
      * @return if command != null return command otherwise return unknown 
      */
     public CommandWord getCommandWord(String commandWord) {
-        CommandWord command = validCommands.get(commandWord); 
+        CommandWord command = validCommands.get(commandWord);
         if(command != null) {
             return command;
         } else {
