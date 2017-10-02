@@ -18,6 +18,9 @@ public class Game {
     private Room currentRoom;
     
     public Game() {
+        /**
+         * This constructor method creates rooms that can be accessed in game.
+         */
         createRooms();
         parser = new Parser();
     }
