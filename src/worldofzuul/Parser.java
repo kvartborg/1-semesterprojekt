@@ -1,21 +1,34 @@
 package worldofzuul;
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
+
 
 /**
- * @author  Michael Kolling and David J. Barnes
- * @version 2006.03.30
+ * 
+ * @author ViktoriaNadarajah
  */
 public class Parser {
+    /**
+     * It is a list of CommandWords
+     */
     private CommandWords commands;
+    /**
+     * The Scanner reads the commands
+     */
     private Scanner reader;
 
+    /**
+     * The reader reads new commands if any
+     */
     public Parser() {
         commands = new CommandWords();
         reader = new Scanner(System.in);
     }
-
+    /**
+    * It reads word1 and makes a new Scanner to make a inputLine. 
+    * Tokenizer is a instance variable of the type Scanner. It returns new commands
+    * @return command object
+    */
     public Command getCommand() {
         String inputLine;
         String word1 = null;
@@ -24,7 +37,8 @@ public class Parser {
         System.out.print("> ");
 
         inputLine = reader.nextLine();
-
+        
+        
         Scanner tokenizer = new Scanner(inputLine);
         if(tokenizer.hasNext()) {
             word1 = tokenizer.next();
@@ -35,7 +49,9 @@ public class Parser {
 
         return new Command(commands.getCommandWord(word1), word2);
     }
-
+    /**
+    * Shows all the commands
+    */
     public void showCommands() {
         commands.showAll();
     }
