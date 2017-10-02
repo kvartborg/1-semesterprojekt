@@ -6,7 +6,9 @@ import java.util.Scanner;
 /**
  * 
  * @author ViktoriaNadarajah
- * It is a list of CommandWords
+ * It is a list of CommandWords.
+ * The Scanner reads the commands.
+ * The reader reads new commands if any.
  */
 public class Parser {
     private CommandWords commands;
