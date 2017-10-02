@@ -17,8 +17,9 @@ public class Parser {
         reader = new Scanner(System.in);
     }
     /**
-    * @return
-    * It reads word1 and makes a new Scanner to make a inputLine
+    * It reads word1 and makes a new Scanner to make a inputLine. 
+    * Tokenizer is a instance variable of the type Scanner. It returns new commands
+    * @return command object
     */
     public Command getCommand() {
         String inputLine;
@@ -29,9 +30,7 @@ public class Parser {
 
         inputLine = reader.nextLine();
         
-        /**
-        * Tokenizer is a instance variable of the type Scanner. It returns new commands.
-        */
+        
         Scanner tokenizer = new Scanner(inputLine);
         if(tokenizer.hasNext()) {
             word1 = tokenizer.next();
