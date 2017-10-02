@@ -10,12 +10,23 @@ package worldofzuul;
  * @author Kasper
  */
 public class Character {
+    /**
+     * The name of the character
+     */
     private String name;
     
+    /**
+     * A constructor for a character
+     * @param name The name of the character
+     */
     public Character(String name){
         this.name = name;
     }
-    
-    
+    /**
+     * A no arguments constructor
+     */
+    Character(){
+        
+    }
     
 }
