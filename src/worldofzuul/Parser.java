@@ -6,14 +6,20 @@ import java.util.Scanner;
 /**
  * 
  * @author ViktoriaNadarajah
- * It is a list of CommandWords.
- * The Scanner reads the commands.
- * The reader reads new commands if any.
  */
 public class Parser {
+    /**
+     * It is a list of CommandWords
+     */
     private CommandWords commands;
+    /**
+     * The Scanner reads the commands
+     */
     private Scanner reader;
 
+    /**
+     * The reader reads new commands if any
+     */
     public Parser() {
         commands = new CommandWords();
         reader = new Scanner(System.in);
