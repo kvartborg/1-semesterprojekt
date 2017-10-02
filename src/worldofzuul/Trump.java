@@ -10,7 +10,10 @@ package worldofzuul;
  * @author Kasper
  */
 public class Trump extends Character {
-    String name;
+    /**
+     * The name of the character
+     */
+    private String name;
     
     public Trump(){
         this.name = "Donald Trump";
