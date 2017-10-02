@@ -9,6 +9,7 @@ package worldofzuul;
  *
  * @author Kasper
  */
-public class Player {
+public class Player extends Character{
+    
     
 }
