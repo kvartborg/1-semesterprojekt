@@ -13,9 +13,11 @@ public class Room {
 
     /**
      * The String "description" is used when describing the room generated with the constructor
-     * The HashMap is a list of existing rooms
      */
     private String description;
+    /**
+     * The HashMap is a list of existing rooms
+     */
     private HashMap<String, Room> exits;
 
     /**
