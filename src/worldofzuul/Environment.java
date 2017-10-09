@@ -12,12 +12,27 @@ import java.util.HashMap;
  * @author ViktoriaNadarajah
  */
 public class Environment {
+    /**
+     * HashMap attribute for rooms and their names
+     */
     private HashMap<String, Room> rooms;
-
+    
+    /**
+     * This method is a getter method
+     * @param name
+     * @return returns name of room
+     */
     public Room getRoom(String name) {
         return rooms.get(name);
     }
     
+    /**
+     * This method create the different rooms in our game.
+     * 
+     * We create the rooms in our game and sets an exit for each room.
+     * We put our room into a HashMap. The method returns the rooms
+     * into our HashMap.
+     */
     private void createRooms() {
         Room ovalOffice, lobby1, lobby2, kitchen, diningRoom, cleaningRoom, pressBriefingRoom, secretServiceRoom;
         
