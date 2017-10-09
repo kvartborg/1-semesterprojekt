@@ -33,12 +33,7 @@ public class Character {
     public Character(String name){
         this.name = name;
     }
-    /**
-     * A no arguments constructor
-     */
-    Character(){
-        
-    }
+    
     
      /**
      * This method checks if the command has a second word. 
