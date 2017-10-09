@@ -10,13 +10,7 @@ public class Game {
      * parser attribute, an instance from the Parser class. 
      */
     private Parser parser;
-    /**
-     * currentRoom attribute, an instance from the Room class. 
-     * 
-     * The currentRoom variable is what room the player is in at the moment
-     * in game. 
-     */
-    private Room currentRoom;
+   
     
     public Game() {
         /**
@@ -153,33 +147,7 @@ public class Game {
         System.out.println("Your command words are:");
         parser.showCommands();
     }
-    /**
-     * This method checks if the command has a second word. 
-     * 
-     * The method firstly checks if the "go" command has a second word or not.
-     * if it doesnt then it tells the user to use a second word. 
-     * It also changes the currentroom to the the next room the user wants
-     * to access. 
-     * @param command 
-     */
-
-    private void goRoom(Command command) {
-        if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
-            return;
-        }
-
-        String direction = command.getSecondWord();
-
-        Room nextRoom = currentRoom.getExit(direction);
-
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        } else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-        }
-    }
+    
     /**
     * This method quits the game.
     * 
