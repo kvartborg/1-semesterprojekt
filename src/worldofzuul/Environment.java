@@ -62,7 +62,7 @@ public class Environment {
         lobby2.setExit("south", lobby1);
         lobby2.setExit("west", kitchen); 
         
-        kitchen.setExit("west", lobby2);
+        kitchen.setExit("east", lobby2);
         kitchen.setExit("south", diningRoom);
         
         pressBriefingRoom.setExit("west", lobby2); 
