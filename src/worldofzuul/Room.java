@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,7 +11,12 @@ import java.util.Iterator;
  * @version 2006.03.30
  */
 public class Room {
-
+    
+    /**
+     * The rooms name
+     */
+    private String name; 
+    
     /**
      * The String "description" is used when describing the room generated with the constructor
      */
@@ -20,6 +26,16 @@ public class Room {
      */
     private HashMap<String, Room> exits;
 
+    /**
+     * The ArrayList keeps the items
+     */
+    private ArrayList<Item> items;
+    
+    /**
+     * Boolean for if the room is locked or not
+     */
+    private Boolean locked = false;
+    
     /**
      * A constructor for new rooms
      * @param description is the description of the new room
@@ -53,17 +69,17 @@ public class Room {
     public String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
     }
-        /**
-         * Gets the exit for the current room
-         * @return the exits from the room 
-         */
-	private String getExitString() {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
+    /**
+     * Gets the exit for the current room
+     * @return the exits from the room 
+     */
+    private String getExitString() {
+    String returnString = "Exits:";
+    Set<String> keys = exits.keySet();
+    for(String exit : keys) {
+        returnString += " " + exit;
+    }
+    return returnString;
     }
     
     /**
@@ -73,5 +89,31 @@ public class Room {
      */    
     public Room getExit(String direction) {
         return exits.get(direction);
+    }
+    
+    /**
+     * This method is a getter method for the items
+     * @return returns the item
+     */
+    public Item getItems() {
+       return item; 
+    }
+    
+    /**
+     * This method adds items to our ArrayList
+     * @param items
+     * @return returns an item into our ArrayList
+     */
+    public boolean addItems(ArrayList items) {
+       return items.add(item);
+    }
+    
+    /**
+     * This method checks if the room is locked or not
+     * @param key
+     * @return returns if the key fits to the room
+     */
+    public boolean unlock(Key key) {
+        return (key.getRoom() == this);
     }
 }
