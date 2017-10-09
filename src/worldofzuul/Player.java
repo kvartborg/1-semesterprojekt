@@ -39,13 +39,7 @@ public class Player extends Character{
      */
     private boolean isInventoryFull() {
         
-        if (items.length() > 1) {
-            
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (items.length() > 1);
     }
     
 }
