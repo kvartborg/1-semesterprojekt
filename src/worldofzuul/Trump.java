@@ -13,7 +13,9 @@ public class Trump extends Character {
     /**
      * The name of the character
      */
-    private String name = "Donald Trump";
+    public Trump() {
+        super("Donald Trump");
+    }
     /**
      * The method sets Trumps route to the steak item.
      * @param cleaningRoom is the room with the steak.

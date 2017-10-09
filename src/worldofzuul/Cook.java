@@ -14,16 +14,12 @@ public class Cook extends Character {
     /**
      * Names the character "Cook".
      */
-   private String name = "Cook";
+   public Cook() {
+       super("Cook");
+   }
 
    /**
-    * The method gets a steak.
+    * getSteak method mising
     */
-   public void getSteak() {
-   
-       
-       
-}
    
 }
-

@@ -11,7 +11,12 @@ package worldofzuul;
  */
 public class Character {
     
-    
+    /**
+     * currentRoom attribute, an instance from the Room class. 
+     * 
+     * The currentRoom variable is what room the player is in at the moment
+     * in game. 
+     */
     private Room currentRoom;
     
     

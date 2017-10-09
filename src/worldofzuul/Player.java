@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * @author Kasper
  */
 public class Player extends Character{
- /**
-  * The arraylist stores the items, that the player picks up. 
-  */
+    /**
+     * The arraylist stores the items, that the player picks up. 
+     */
     private ArrayList<Item> items = new ArrayList<Item>();
     
     /**
@@ -24,9 +24,9 @@ public class Player extends Character{
     public void addItems(ArrayList items){
         
     }
-     /**
-      * The method displays the items currently held.
-      */
+    /**
+     * The method displays the items currently held.
+     */
     public void getItems() {
         for (String item : items) {
             System.out.println(item);
