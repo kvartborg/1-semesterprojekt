@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul;
+package worldofzuul.character;
 
 /**
  *
  * @author Rasmus
  */
 public class Cook extends Character {
-    
+
     /**
      * Names the character "Cook".
      */
@@ -21,5 +21,5 @@ public class Cook extends Character {
    /**
     * getSteak method mising
     */
-   
+
 }

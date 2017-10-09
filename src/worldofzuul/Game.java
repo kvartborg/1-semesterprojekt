@@ -1,10 +1,13 @@
 package worldofzuul;
 
+import worldofzuul.character.Cook;
+import worldofzuul.character.Trump;
+import worldofzuul.character.Player;
+
 /**
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-
 public class Game {
     /**
      * parser attribute, an instance from the Parser class.

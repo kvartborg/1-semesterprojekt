@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul;
+package worldofzuul.character;
+
+import worldofzuul.Room;
+import worldofzuul.Command;
+import worldofzuul.item.Item;
 
 /**
  *
  * @author Kasper
  */
-public class Character {
+public abstract class Character {
 
     /**
      * currentRoom attribute, an instance from the Room class.
