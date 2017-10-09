@@ -9,6 +9,12 @@ package worldofzuul;
  *
  * @author mikkellarsen
  */
-public class Ketchup {
-    
+public class Ketchup extends Item {
+    /**
+     * Creating a constructor of the class Ketchup
+     * Extending the class Item
+     */
+    public Ketchup() {
+        super("Ketchup");
+    }
 }
