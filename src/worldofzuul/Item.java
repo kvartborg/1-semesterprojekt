@@ -11,11 +11,12 @@ package worldofzuul;
  */
 public class Item {
     /**
-     * Creating private variables 
      * String which sets the name
-     * Boolean expression which is true by default
      */
     private String name;
+    /**
+     * Creating a private boolean expression which by default is true
+     */
     private boolean moveable = true;
     
     /**
