@@ -18,6 +18,13 @@ public class Player extends Character{
     private ArrayList<Item> items = new ArrayList<Item>();
     
     /**
+     * A constructor for the player class
+     */
+    public Player(){
+        super("Fake news Reporter");
+    }
+    
+    /**
      * The method adds items to the arraylist.
      * @param items the item which is added to the inventory.
      */
