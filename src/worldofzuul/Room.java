@@ -27,9 +27,9 @@ public class Room {
     private HashMap<String, Room> exits;
 
     /**
-     * The ArrayList keeps the items
+     * The array keeps the items
      */
-    private ArrayList<Item> items;
+    private Item[] items;
     
     /**
      * Boolean for if the room is locked or not
@@ -74,12 +74,12 @@ public class Room {
      * @return the exits from the room 
      */
     private String getExitString() {
-    String returnString = "Exits:";
-    Set<String> keys = exits.keySet();
-    for(String exit : keys) {
-        returnString += " " + exit;
-    }
-    return returnString;
+        String returnString = "Exits:";
+        Set<String> keys = exits.keySet();
+        for(String exit : keys) {
+            returnString += " " + exit;
+        }
+        return returnString;
     }
     
     /**
@@ -100,12 +100,12 @@ public class Room {
     }
     
     /**
-     * This method adds items to our ArrayList
+     * This method adds items to our array
      * @param items
-     * @return returns an item into our ArrayList
+     * @return returns an item into our array
      */
-    public boolean addItems(ArrayList items) {
-       return items.add(item);
+    public void addItems(Item[] items) {
+       this.items = items;
     }
     
     /**
