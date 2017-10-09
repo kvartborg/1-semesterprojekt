@@ -31,5 +31,6 @@ public class Computer extends Item {
     public void tweet(){
         Random random = new Random();
         int randomIndex = random.nextInt(tweets.length - 0 + 1) + 0;
+        System.out.println(tweets[randomIndex]);
     }
 }
