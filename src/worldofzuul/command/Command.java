@@ -1,4 +1,4 @@
-package worldofzuul;
+package worldofzuul.command;
 
 /**
  * @author  Michael Kolling and David J. Barnes

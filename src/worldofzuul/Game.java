@@ -4,6 +4,9 @@ import worldofzuul.environment.Environment;
 import worldofzuul.character.Cook;
 import worldofzuul.character.Trump;
 import worldofzuul.character.Player;
+import worldofzuul.command.Parser;
+import worldofzuul.command.Command;
+import worldofzuul.command.CommandWord;
 
 /**
  * @author  Michael Kolling and David J. Barnes

@@ -5,7 +5,7 @@
  */
 package worldofzuul.character;
 
-import worldofzuul.Command;
+import worldofzuul.command.Command;
 import worldofzuul.item.Item;
 import worldofzuul.environment.Room;
 
