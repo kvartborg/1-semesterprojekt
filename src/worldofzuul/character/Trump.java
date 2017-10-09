@@ -5,7 +5,7 @@
  */
 package worldofzuul.character;
 
-import worldofzuul.Room;
+import worldofzuul.environment.Room;
 
 /**
  *

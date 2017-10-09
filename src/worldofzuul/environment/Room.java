@@ -1,4 +1,4 @@
-package worldofzuul;
+package worldofzuul.environment;
 
 import java.util.ArrayList;
 import java.util.Set;
