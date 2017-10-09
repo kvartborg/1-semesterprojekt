@@ -27,9 +27,24 @@ public class Game {
     private Trump trump;
 
     /**
-     * Trump
+     * Cook
      */
     private Cook cook;
+
+    /**
+     * Steps
+     */
+    private int steps = 0;
+
+    /**
+     * Start Time
+     */
+    private Long startTime = System.currentTimeMillis() / 1000L;
+
+    /**
+     * End time
+     */
+    private Long endTime;
 
 
     /**
