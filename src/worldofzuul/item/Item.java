@@ -10,7 +10,7 @@ package worldofzuul.item;
  *
  * @author mikkellarsen
  */
-public class Item {
+public abstract class Item {
     /**
      * String which sets the name
      */
