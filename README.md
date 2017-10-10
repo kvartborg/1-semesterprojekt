@@ -10,7 +10,7 @@ git clone https://github.com/kvartborg/1-semesterprojekt
 ```
 Open the cloned repository in your NetBeans IDE and everything should be
 working out of the box.
-If you dont use NetBeans you can compile the project with [nbcompile](https://github.com/kvartborg/nbcompile)
+If you dont use NetBeans you can compile the project with [`nbcompile`](https://github.com/kvartborg/nbcompile)
 directly from the terminal.
 
 # Authors
