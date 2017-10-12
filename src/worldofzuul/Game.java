@@ -133,7 +133,8 @@ public class Game {
         if (commandWord == CommandWord.HELP) {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
-            step(command);
+            player.goRoom(command);
+            step();
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.PICKUP) {
@@ -142,6 +143,7 @@ public class Game {
             player.dropItems(command);
         } else if (commandWord == CommandWord.LIST) {
             printItems(player.getCurrentRoom());
+            step();
         }
         
         return wantToQuit;
@@ -151,13 +153,15 @@ public class Game {
      * Trump moves to a new random location.
      * @param command 
      */
-    private void step(Command command) {
+    private void step() {
 
-         player.goRoom(command);
-
+         randomizeTrump();
+         
          steps++;
-         System.out.println(steps + " steps taken");
-
+         System.out.println(steps + " step(s) taken");
+    }
+    private void randomizeTrump() {
+    
          String[] possibleDirections = {"east", "west", "north", "south"};
 
          String direction = possibleDirections[(int) Math.floor(Math.random()  * 3)];
