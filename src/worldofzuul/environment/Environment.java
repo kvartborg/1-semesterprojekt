@@ -6,6 +6,7 @@
 package worldofzuul.environment;
 
 import java.util.HashMap;
+import worldofzuul.item.*;
 
 /**
  *
@@ -31,6 +32,9 @@ public class Environment {
      */
     public Environment() {
         this.createRooms();
+        this.placeItemsInOvalOffice();
+        this.placeItemsInDiningRoom();
+        this.placeItemsInSecretServiceRoom();
     }
 
     /**
@@ -85,4 +89,37 @@ public class Environment {
         rooms.put("Press briefing room", pressBriefingRoom);
         rooms.put("Cleaning room", cleaningRoom);
     }
+    
+    /**
+     * Places the computer in the oval office
+     */
+    public void placeItemsInOvalOffice(){
+        Item[] items = {
+            new Computer()
+        };
+        rooms.get("Oval office").addItems(items);
+    }
+    
+    /**
+     * Places the ketchup in the dining room
+     */
+    public void placeItemsInDiningRoom(){
+        Item[] items = {
+            new Ketchup()
+        };
+        rooms.get("Dining room").addItems(items);
+    }
+    
+    /**
+     * PLaces the key in the Secret service room
+     */
+    public void placeItemsInSecretServiceRoom(){
+        Item[] items = {
+            new Key(rooms.get("Oval office"))
+        };
+        rooms.get("Secret service room").addItems(items);
+    }
+    
+
+    
 }

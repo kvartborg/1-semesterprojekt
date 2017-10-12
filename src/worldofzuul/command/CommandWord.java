@@ -8,7 +8,8 @@ public enum CommandWord {
     /**
      * Available commands
      */
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), PICKUP("pickup"), DROP("drop");
+    GO("go"), QUIT("quit"), HELP("help"), LIST("list"), PICKUP("pickup"), DROP("drop"), UNKNOWN("?");
+
 
     /**
      * The entered command
