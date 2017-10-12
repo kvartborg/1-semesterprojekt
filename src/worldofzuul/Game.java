@@ -130,6 +130,10 @@ public class Game {
             player.goRoom(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
+        } else if (commandWord == CommandWord.PICKUP) {
+            player.pickupItems(command); 
+        } else if (commandWord == CommandWord.DROP) {
+            player.dropItems(command);
         }
 
         return wantToQuit;
