@@ -43,6 +43,14 @@ public class Trump extends Character {
         if (nextRoom != null) {
            setCurrentRoom(nextRoom);
         }
-        System.out.println("Trump is currently in: " + getCurrentRoom().getShortDescription()); 
+        System.out.println(whereIsTrump()); 
+        
+    }
+    /**
+     * Method shows which room the Trump character is in.
+     * @return the current room for Trump character.
+     */
+    public String whereIsTrump() {
+        return "Trump is currently in the " + getCurrentRoom().getShortDescription();
     }
 }
