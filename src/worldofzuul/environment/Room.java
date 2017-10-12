@@ -106,7 +106,6 @@ public class Room {
      * This method adds items to our array and turns the array into 
      * an arraylist. 
      * @param items
-     * @return returns an item into our array
      */
     public void addItems(Item[] items) {
        this.items = new ArrayList<>(Arrays.asList(items));
@@ -120,4 +119,20 @@ public class Room {
     public boolean unlock(Key key) {
         return (key.getRoom() == this);
     }
+    
+    /**
+     * Prints the items in the room
+     */
+    public void printItems(){
+        if (items.isEmpty()) {
+            System.out.println("The room is empty");
+        }
+        else{
+            System.out.println("The room contains: ");
+            for(Item item : items){
+                System.out.print(item.getName()+" ");
+            }
+            System.out.println("");   
+        }
+    }    
 }
