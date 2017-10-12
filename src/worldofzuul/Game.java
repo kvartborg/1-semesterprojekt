@@ -106,6 +106,7 @@ public class Game {
         System.out.println("Unseat President Trump is an amazing new game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
+        System.out.println(trump.whereIsTrump());
         System.out.println(player.getCurrentRoom().getLongDescription());
     }
     /**
