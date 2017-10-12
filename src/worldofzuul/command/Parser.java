@@ -50,6 +50,15 @@ public class Parser {
         return new Command(commands.getCommandWord(word1), word2);
     }
     /**
+     * Creates a command.
+     * @param word1 is the command.
+     * @param word2 is the argument.
+     * @return instance of command.
+     */
+    public Command createCommand(String word1, String word2) {
+        return new Command(commands.getCommandWord(word1), word2);
+    }
+    /**
     * Shows all the commands
     */
     public void showCommands() {

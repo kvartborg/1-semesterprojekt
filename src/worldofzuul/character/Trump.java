@@ -5,6 +5,7 @@
  */
 package worldofzuul.character;
 
+import worldofzuul.command.Command;
 import worldofzuul.environment.Room;
 
 /**
@@ -25,5 +26,23 @@ public class Trump extends Character {
     public void findSteak(Room cleaningRoom) {
 
 
+    }
+    /**
+     * Simplified method for the character Trumps movement.
+     * @param command 
+     */
+    @Override
+    public void goRoom(Command command) {
+        if(!command.hasSecondWord()) {
+            return;
+        }
+
+        String direction = command.getSecondWord();
+        Room nextRoom = getCurrentRoom().getExit(direction);
+
+        if (nextRoom != null) {
+           setCurrentRoom(nextRoom);
+        }
+        System.out.println("Trump is currently in: " + getCurrentRoom().getShortDescription()); 
     }
 }

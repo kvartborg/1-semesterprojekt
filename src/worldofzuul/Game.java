@@ -7,6 +7,7 @@ import worldofzuul.character.Player;
 import worldofzuul.command.Parser;
 import worldofzuul.command.Command;
 import worldofzuul.command.CommandWord;
+import worldofzuul.environment.Room;
 
 /**
  * @author  Michael Kolling and David J. Barnes
@@ -127,12 +128,31 @@ public class Game {
         if (commandWord == CommandWord.HELP) {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
-            player.goRoom(command);
+            step(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
-
+        
         return wantToQuit;
+    }
+    /**
+     * Every time Player makes a move, the counter "steps" increments, and
+     * Trump moves to a new random location.
+     * @param command 
+     */
+    private void step(Command command) {
+
+         player.goRoom(command);
+
+         steps++;
+         System.out.println(steps + " steps taken");
+
+         String[] possibleDirections = {"east", "west", "north", "south"};
+
+         String direction = possibleDirections[(int) Math.floor(Math.random()  * 3)];
+
+         trump.goRoom(parser.createCommand("go", direction));
+
     }
     /**
     * This method prints a strings to help the user.
@@ -142,7 +162,7 @@ public class Game {
     */
     private void printHelp() {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("around at The White House.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
