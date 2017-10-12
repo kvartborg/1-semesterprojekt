@@ -111,7 +111,7 @@ public class Environment {
     }
     
     /**
-     * PLaces the key in the Secret service room
+     * Places the key in the Secret service room
      */
     public void placeItemsInSecretServiceRoom(){
         Item[] items = {

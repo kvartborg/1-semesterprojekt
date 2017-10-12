@@ -92,5 +92,21 @@ public class Player extends Character{
 
         return (this.items.size() > 1);
     }
+    
+        /**
+     * Prints the items in the players inventory
+     */
+    public void printInventory(){
+        if (getItems().isEmpty()) {
+            System.out.println("Your inventory is empty.");
+        }
+        else{
+            System.out.println("Your inventory contains: ");
+            for(Item item : getItems()){
+                System.out.println(item.getName());
+            }
+            System.out.println("");   
+        }
+    }
 
 }

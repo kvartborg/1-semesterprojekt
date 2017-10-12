@@ -120,16 +120,19 @@ public class Room {
         return (key.getRoom() == this);
     }
     
+    /**
+     * Prints the items in the room
+     */
     public void printItems(){
-            if (items.isEmpty()) {
-                System.out.println("The room is empty");
+        if (items.isEmpty()) {
+            System.out.println("The room is empty");
+        }
+        else{
+            System.out.println("The room contains: ");
+            for(Item item : items){
+                System.out.print(item.getName()+" ");
             }
-            else{
-                System.out.println("The room contains: ");
-                for(Item item : items){
-                    System.out.print(item.getName()+" ");
-                }
-                System.out.println("");   
-            }
+            System.out.println("");   
+        }
     }    
 }

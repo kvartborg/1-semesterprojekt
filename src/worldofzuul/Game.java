@@ -142,7 +142,7 @@ public class Game {
         } else if (commandWord == CommandWord.LIST) {
             player.getCurrentRoom().printItems();
         } else if (commandWord == CommandWord.INVENTORY) {
-            printInventory();
+            player.printInventory();
         }
         
         return wantToQuit;
@@ -198,23 +198,5 @@ public class Game {
         } else {
             return true;
         }
-    }
-    
-    /**
-     * Prints the items in the players currentroom
-     */
-
-    
-    public void printInventory(){
-        if (player.getItems().isEmpty()) {
-                System.out.println("Your inventory is empty.");
-            }
-            else{
-                System.out.println("Your inventory contains: ");
-                for(Item item : player.getItems()){
-                    System.out.println(item.getName());
-                }
-                System.out.println("");   
-            }
     }
 }
