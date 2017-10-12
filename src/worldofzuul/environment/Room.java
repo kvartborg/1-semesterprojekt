@@ -1,6 +1,7 @@
 package worldofzuul.environment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -31,7 +32,7 @@ public class Room {
     /**
      * The array keeps the items
      */
-    private Item[] items;
+    private ArrayList<Item> items = new ArrayList<Item>();
 
     /**
      * Boolean for if the room is locked or not
@@ -97,17 +98,18 @@ public class Room {
      * This method is a getter method for the items
      * @return returns the item
      */
-    public Item[] getItems() {
+    public ArrayList<Item> getItems() {
        return this.items;
     }
 
     /**
-     * This method adds items to our array
+     * This method adds items to our array and turns the array into 
+     * an arraylist. 
      * @param items
      * @return returns an item into our array
      */
     public void addItems(Item[] items) {
-       this.items = items;
+       this.items = new ArrayList<>(Arrays.asList(items));
     }
 
     /**

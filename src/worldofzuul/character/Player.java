@@ -6,6 +6,7 @@
 package worldofzuul.character;
 
 import java.util.ArrayList;
+import worldofzuul.command.Command;
 import worldofzuul.item.Item;
 
 /**
@@ -27,18 +28,60 @@ public class Player extends Character{
 
     /**
      * The method adds items to the arraylist.
-     * @param items the item which is added to the inventory.
+     * 
+     * The method checks if the item that you want to add is in the 
+     * room that the player is in. If it is and you write it correct
+     * then it adds an item to the ArrayList.
+     * 
+     * @param command 
+     * @return returns either false or true if the item is added.
      */
-    public void addItems(ArrayList items){
-
+    public Boolean pickupItems(Command command){
+        if(!command.hasSecondWord()) {
+            System.out.println("Pickup what?");
+            return false;
+        }   
+        for (Item item : getCurrentRoom().getItems()) {
+            if (item.getName().equals(command.getSecondWord())) {
+                return items.add(item); 
+            } 
+        } 
+        System.out.println("There is no item in this room with that name.");
+        return false; 
+            
+    }
+    /**
+     * This method drops items from the arraylist. 
+     * 
+     * The method checks if the item you want to drop is in the ArrayList
+     * if it is then it addxs the item into the rooms ArrayList and removes
+     * it from the players ArrayList. 
+     * 
+     * @param command
+     * @return returns either false or true if the item is dropped. 
+     */
+    public Boolean dropItems(Command command) {
+        if(!command.hasSecondWord()) {
+            System.out.println("Drop what?");
+            return false;
+        }   
+        for (Item item : getItems()) {
+            if (item.getName().equals(command.hasSecondWord())) {
+                getCurrentRoom().getItems().add(item); 
+                return items.remove(item);
+            } 
+            
+        }
+        System.out.println("You have no item with that name.");
+        return false; 
+      
     }
     /**
      * The method displays the items currently held.
+     * @return
      */
-    public void getItems() {
-        for (Item item : items) {
-            System.out.println(item);
-        }
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     /**

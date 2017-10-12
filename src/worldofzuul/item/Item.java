@@ -36,13 +36,13 @@ public abstract class Item {
         this.name = name;
         this.moveable = moveable;
     }
-    
+
     /**
-     * Getter for the name of the item
-     * @return the name of the item
+     * This method returns the Items name.
+     * @return returns the items name. 
      */
-    public String getName(){
-        this.name = name;
+    public String getName() {
         return name;
     }
+
 }
