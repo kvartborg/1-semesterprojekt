@@ -125,6 +125,7 @@ public class Room {
                 System.out.println("The room is empty");
             }
             else{
+                System.out.println("The room contains: ");
                 for(Item item : items){
                     System.out.print(item.getName()+" ");
                 }

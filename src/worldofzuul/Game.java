@@ -210,8 +210,9 @@ public class Game {
                 System.out.println("Your inventory is empty.");
             }
             else{
+                System.out.println("Your inventory contains: ");
                 for(Item item : player.getItems()){
-                    System.out.print(item.getName()+" ");
+                    System.out.println(item.getName());
                 }
                 System.out.println("");   
             }
