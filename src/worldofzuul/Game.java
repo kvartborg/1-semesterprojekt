@@ -7,6 +7,11 @@ import worldofzuul.character.Player;
 import worldofzuul.command.Parser;
 import worldofzuul.command.Command;
 import worldofzuul.command.CommandWord;
+import worldofzuul.environment.Room;
+import worldofzuul.item.Item;
+
+//TODO
+//Add steak to cook??
 
 /**
  * @author  Michael Kolling and David J. Barnes
@@ -130,6 +135,8 @@ public class Game {
             player.goRoom(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
+        } else if (commandWord == CommandWord.LIST) {
+            printItems(player.getCurrentRoom());
         }
 
         return wantToQuit;
@@ -166,5 +173,21 @@ public class Game {
         } else {
             return true;
         }
+    }
+    
+    /**
+     * Prints the items in the players currentroom
+     * @param room the room the player is in
+     */
+    public void printItems(Room room){
+            if (room.getItems()==null) {
+                System.out.println("The room is empty");
+            }
+            else{
+                for(Item item : room.getItems()){
+                    System.out.print(item.getName()+" ");
+                }
+                System.out.println("");   
+            }
     }
 }
