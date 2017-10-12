@@ -18,6 +18,7 @@ public class Player extends Character{
      * The arraylist stores the items, that the player picks up.
      */
     private ArrayList<Item> items = new ArrayList<Item>();
+    private final int MAX_ITEMS = 2; 
 
     /**
      * A constructor for the player class
@@ -36,13 +37,20 @@ public class Player extends Character{
      * @param command 
      * @return returns either false or true if the item is added.
      */
-    public Boolean pickupItems(Command command){
+    public boolean pickupItems(Command command){
+        if (isInventoryFull()) {
+            System.out.println("Your inventory is full. ");
+            return false;
+        }
+        
         if(!command.hasSecondWord()) {
             System.out.println("Pickup what?");
             return false;
         }   
         for (Item item : getCurrentRoom().getItems()) {
-            if (item.getName().equals(command.getSecondWord())) {
+            if (item.getName().equalsIgnoreCase(command.getSecondWord())) {
+                System.out.println("You picked up: " + item.getName());
+                getCurrentRoom().getItems().remove(item); 
                 return items.add(item); 
             } 
         } 
@@ -60,13 +68,14 @@ public class Player extends Character{
      * @param command
      * @return returns either false or true if the item is dropped. 
      */
-    public Boolean dropItems(Command command) {
+    public boolean dropItems(Command command) {
         if(!command.hasSecondWord()) {
             System.out.println("Drop what?");
             return false;
         }   
         for (Item item : getItems()) {
-            if (item.getName().equals(command.hasSecondWord())) {
+            if (item.getName().equalsIgnoreCase(command.getSecondWord())) {
+                System.out.println("You dropped: " + item.getName());
                 getCurrentRoom().getItems().add(item); 
                 return items.remove(item);
             } 
@@ -89,8 +98,7 @@ public class Player extends Character{
      * @return returns a "true" or "false" value depending on how many items held.
      */
     private boolean isInventoryFull() {
-
-        return (this.items.size() > 1);
+        return (this.items.size() >= MAX_ITEMS);
     }
 
 }
