@@ -1,10 +1,10 @@
-package worldofzuul;
+package worldofzuul.command;
 
 import java.util.Scanner;
 
 
 /**
- * 
+ *
  * @author ViktoriaNadarajah
  */
 public class Parser {
@@ -25,7 +25,7 @@ public class Parser {
         reader = new Scanner(System.in);
     }
     /**
-    * It reads word1 and makes a new Scanner to make a inputLine. 
+    * It reads word1 and makes a new Scanner to make a inputLine.
     * Tokenizer is a instance variable of the type Scanner. It returns new commands
     * @return command object
     */
@@ -37,8 +37,8 @@ public class Parser {
         System.out.print("> ");
 
         inputLine = reader.nextLine();
-        
-        
+
+
         Scanner tokenizer = new Scanner(inputLine);
         if(tokenizer.hasNext()) {
             word1 = tokenizer.next();

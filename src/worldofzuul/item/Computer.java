@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul;
+package worldofzuul.item;
 import java.util.Random;
 /**
  *
@@ -16,7 +16,7 @@ public class Computer extends Item {
     private final String[] tweets = {
         "I loved beating these two terrible human beings. I would never recommend that anyone use her lawyer, he is a total loser!",
         "There is no longer a Bernie Sanders \"political revolution.\" He is turning out to be a weak and somewhat pathetic figure,wants it all to end!",
-        "A dishonest slob of a reporter, who doesn't understand my sarcasm when talking about him or his wife, wrote a foolish & boring Trump \"hit\""    
+        "A dishonest slob of a reporter, who doesn't understand my sarcasm when talking about him or his wife, wrote a foolish & boring Trump \"hit\""
     };
     /**
      * Constructor creating an instance of the class Computer

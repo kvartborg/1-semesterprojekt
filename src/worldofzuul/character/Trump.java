@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul;
+package worldofzuul.character;
+
+import worldofzuul.environment.Room;
 
 /**
  *
@@ -21,7 +23,7 @@ public class Trump extends Character {
      * @param cleaningRoom is the room with the steak.
      */
     public void findSteak(Room cleaningRoom) {
-        
-        
+
+
     }
 }

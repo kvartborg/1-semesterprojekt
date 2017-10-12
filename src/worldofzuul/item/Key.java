@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul;
+package worldofzuul.item;
+
+import worldofzuul.environment.Room;
+import worldofzuul.item.Key;
 
 /**
  *
@@ -17,7 +20,7 @@ public class Key extends Item {
 
     /**
      * Creating a constructor of the class Key
-     * @param room 
+     * @param room
      */
     public Key(Room room){
         super("Key");
@@ -32,12 +35,12 @@ public class Key extends Item {
     }
     /**
      * Creating a method to set the room
-     * @param room 
+     * @param room
      */
     public void setRoom(Room room) {
         this.room = room;
     }
-    
-   
-    
+
+
+
 }

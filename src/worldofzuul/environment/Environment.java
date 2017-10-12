@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul;
+package worldofzuul.environment;
 
 import java.util.HashMap;
 
@@ -67,8 +67,8 @@ public class Environment {
         lobby2.setExit("north", cleaningRoom);
         lobby2.setExit("east", pressBriefingRoom);
         lobby2.setExit("south", lobby1);
-        lobby2.setExit("west", kitchen); 
-        
+        lobby2.setExit("west", kitchen);
+
         kitchen.setExit("east", lobby2);
         kitchen.setExit("south", diningRoom);
 

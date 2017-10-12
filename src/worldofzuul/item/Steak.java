@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul;
+package worldofzuul.item;
 
 /**
  *
@@ -14,9 +14,9 @@ public class Steak extends Item {
      * Creating a variable of the type Ketchup
      */
     private Ketchup ketchup;
-    
+
     /**
-     * Creating a constructor with only the name 
+     * Creating a constructor with only the name
      */
     public Steak(){
         super("Steak");
@@ -30,7 +30,7 @@ public class Steak extends Item {
     }
     /**
      * Creating a method to add Ketchup to the steak
-     * @param ketchup 
+     * @param ketchup
      */
     public void addKetchup(Ketchup ketchup){
         this.ketchup = ketchup;
