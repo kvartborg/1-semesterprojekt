@@ -44,5 +44,14 @@ public abstract class Item {
     public String getName() {
         return name;
     }
+    
+    /**
+     *This method makes it possible to tell if the item is moveable or not
+     * @return returns a boolean
+     */
+    public boolean isMoveable() {
+        return moveable;
+    
+    }
 
 }

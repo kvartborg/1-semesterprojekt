@@ -9,6 +9,7 @@ import worldofzuul.command.Command;
 import worldofzuul.command.CommandWord;
 import worldofzuul.environment.Room;
 import worldofzuul.item.Item;
+import worldofzuul.command.CommandWord;
 
 //TODO
 //Add steak to cook??
@@ -112,7 +113,7 @@ public class Game {
     /**
     * This method process the different comamnds and decide what they do.
     *
-    * The method is a multi if /else depending on what command the user
+    * The method is a swtich depending on what command the user
     * has chosen to use. It gives different options on what will happen
     * if the user uses an unknown command or if the user uses a known command.
     *
@@ -125,31 +126,45 @@ public class Game {
 
         CommandWord commandWord = command.getCommandWord();
 
-        if(commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
-
-        if (commandWord == CommandWord.HELP) {
-            printHelp();
-        } else if (commandWord == CommandWord.GO) {
-            player.goRoom(command);
-            step();
-        } else if (commandWord == CommandWord.QUIT) {
-            wantToQuit = quit(command);
-        } else if (commandWord == CommandWord.PICKUP) {
-            player.pickupItems(command); 
-        } else if (commandWord == CommandWord.DROP) {
-            player.dropItems(command);
-        } else if (commandWord == CommandWord.LIST) {
-            player.getCurrentRoom().printItems();
-            step();
-        } else if (commandWord == CommandWord.INVENTORY) {
-            player.printInventory();
+        switch (commandWord) {
+            case UNKNOWN:
+                System.out.println("I don't know what you mean...");
+                return false;
+           
+            case HELP:
+                 printHelp();
+                 break;
+            
+            case GO:
+                player.goRoom(command);
+                step();
+                break;
+                
+            case QUIT:
+                wantToQuit = quit(command);
+                break;
+                
+            case PICKUP:
+                player.pickupItems(command); 
+                break;
+                
+            case DROP:
+                player.dropItems(command);
+                break;
+                
+            case LIST:
+                player.getCurrentRoom().printItems();
+                step();
+                break;
+                
+            case INVENTORY:
+                player.printInventory();
+                break;
         }
         
         return wantToQuit;
     }
+      
     /**
      * Every time Player makes a move, the counter "steps" increments, and
      * Trump moves to a new random location.
