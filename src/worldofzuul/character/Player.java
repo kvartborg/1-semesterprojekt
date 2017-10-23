@@ -46,13 +46,19 @@ public class Player extends Character{
         if(!command.hasSecondWord()) {
             System.out.println("Pickup what?");
             return false;
-        }   
+        }
         for (Item item : getCurrentRoom().getItems()) {
-            if (item.getName().equalsIgnoreCase(command.getSecondWord())) {
+            if(item.getName().equalsIgnoreCase(command.getSecondWord())) {
+                if(item.isMoveable() == true) {
                 System.out.println("You picked up: " + item.getName());
                 getCurrentRoom().getItems().remove(item); 
                 return items.add(item); 
-            } 
+            }
+                else {
+                    System.out.println("This item can not be picked up");
+                    return false;
+                }
+            }
         } 
         System.out.println("There is no item in this room with that name.");
         return false; 
