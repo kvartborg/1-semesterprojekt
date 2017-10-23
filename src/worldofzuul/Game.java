@@ -146,6 +146,8 @@ public class Game {
             step();
         } else if (commandWord == CommandWord.INVENTORY) {
             player.printInventory();
+        } else if (commandWord == CommandWord.USE) {
+            player.useItem(command);
         }
         
         return wantToQuit;

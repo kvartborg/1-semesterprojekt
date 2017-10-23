@@ -57,7 +57,7 @@ public abstract class Character {
         String direction = command.getSecondWord();
 
         Room nextRoom = currentRoom.getExit(direction);
-
+        
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {

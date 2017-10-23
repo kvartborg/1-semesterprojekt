@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package worldofzuul.item;
+import worldofzuul.character.Player;
 
 
 /**
@@ -44,5 +45,7 @@ public abstract class Item {
     public String getName() {
         return name;
     }
-
+    
+    public void use(Player player) {    
+    }
 }

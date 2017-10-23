@@ -116,5 +116,19 @@ public class Player extends Character{
             System.out.println("");   
         }
     }
+    public void useItem(Command command) {
+        if(!command.hasSecondWord()) {
+            System.out.println("What do you want to use?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        
+        for(Item item : this.items) {
+            if(item.getName().equalsIgnoreCase(itemName)){
+                item.use(this);
+                break;
+            }
+        }
+    }
 
 }
