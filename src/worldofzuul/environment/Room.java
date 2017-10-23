@@ -110,6 +110,14 @@ public class Room {
     public void addItems(Item[] items) {
        this.items = new ArrayList<>(Arrays.asList(items));
     }
+    
+    /**
+     * 
+     * @param items 
+     */
+    public void addItem(Item items) {
+        this.items.add(items);
+    }
 
     /**
      * This method checks if the room is locked or not
@@ -130,7 +138,7 @@ public class Room {
         else{
             System.out.println("The room contains: ");
             for(Item item : items){
-                System.out.print(item.getName()+" ");
+                System.out.print(item.getName()+", ");
             }
             System.out.println("");   
         }

@@ -6,6 +6,8 @@
 package worldofzuul.environment;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import worldofzuul.item.*;
 
 /**
@@ -18,6 +20,11 @@ public class Environment {
      */
     private HashMap<String, Room> rooms = new HashMap<>();
 
+    /**
+     * This Set keeps all dummy items.
+     */
+    private Set<DummyItem> dummyItems = new HashSet<>();
+    
     /**
      * This method is a getter method
      * @param name
@@ -35,6 +42,7 @@ public class Environment {
         this.placeItemsInOvalOffice();
         this.placeItemsInDiningRoom();
         this.placeItemsInSecretServiceRoom();
+        this.createDummyItems();
     }
 
     /**
@@ -120,6 +128,22 @@ public class Environment {
         rooms.get("Secret service room").addItems(items);
     }
     
-
-    
+    /**
+     * This method creates dummy items and places them into random rooms.
+     */
+    private void createDummyItems() {
+       dummyItems.add(new DummyItem("Egg"));
+       dummyItems.add(new DummyItem("Nuclear football"));
+       dummyItems.add(new DummyItem("Putin picture book"));
+       dummyItems.add(new DummyItem("Hillary Clinton's phone"));
+       dummyItems.add(new DummyItem("Wig"));
+       dummyItems.add(new DummyItem("Mayo"));
+       dummyItems.add(new DummyItem("Ivanka Trump's sunglasses"));
+       for (DummyItem dummyItem : dummyItems ) {
+           String[] availableRooms = this.rooms.keySet().toArray(new String[this.rooms.size()]);
+           
+           String randomRoom = availableRooms[(int) Math.floor(Math.random() * 7)];
+           rooms.get(randomRoom).addItem(dummyItem);
+       }
+    }
 }
