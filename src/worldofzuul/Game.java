@@ -103,8 +103,11 @@ public class Game {
     */
     private void printWelcome() {
         System.out.println();
-        System.out.println("Welcome to the game: Unseat President Trump");
-        System.out.println("Unseat President Trump is an amazing new game.");
+        System.out.println("Welcome and thank you for playing Make America Great Again.");
+        System.out.println("The goal is to impeach Donald Trump.");
+        System.out.println("On your mission, you'll be able to carry two items at a time.");
+        System.out.println("If you encounter Trump, the game is over!");
+        System.out.println("Enjoy!");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(trump.whereIsTrump());
@@ -136,8 +139,8 @@ public class Game {
                  break;
             
             case GO:
-                player.goRoom(command);
                 step();
+                player.goRoom(command);
                 break;
                 
             case QUIT:
@@ -153,8 +156,8 @@ public class Game {
                 break;
                 
             case LIST:
-                player.getCurrentRoom().printItems();
                 step();
+                player.getCurrentRoom().printItems();
                 break;
                 
             case INVENTORY:
