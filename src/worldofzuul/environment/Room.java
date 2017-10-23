@@ -120,14 +120,35 @@ public class Room {
     }
 
     /**
+     * Check if a room is locked
+     * @return boolean
+     */
+    public boolean isLocked () {
+        return this.locked;
+    }
+
+    /**
+     * Lock room
+     * @return
+     */
+    public void lock() {
+        this.locked = true;
+    }
+
+    /**
      * This method checks if the room is locked or not
      * @param key
      * @return returns if the key fits to the room
      */
     public boolean unlock(Key key) {
-        return (key.getRoom() == this);
+        if (key.getRoom() == this) {
+            this.locked = false;
+            return true;
+        }
+
+        return false;
     }
-    
+
     /**
      * Prints the items in the room
      */
