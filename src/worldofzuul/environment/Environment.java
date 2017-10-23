@@ -42,6 +42,7 @@ public class Environment {
         this.placeItemsInOvalOffice();
         this.placeItemsInDiningRoom();
         this.placeItemsInSecretServiceRoom();
+        this.placeItemsInKitchen();
         this.createDummyItems();
     }
 
@@ -127,6 +128,13 @@ public class Environment {
             new Key(rooms.get("Oval office"))
         };
         rooms.get("Secret service room").addItems(items);
+    }
+    
+    public void placeItemsInKitchen() {
+        Item[] items = {
+            new Steak()
+        };
+        rooms.get("Kitchen").addItems(items);
     }
     
     /**

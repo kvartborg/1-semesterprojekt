@@ -47,7 +47,8 @@ public abstract class Item {
     }
     
 
-    public void use(Player player) {    
+    public void use(Player player) {  
+        System.out.println("There is no way to use this item.");
     }
     /**
      *This method makes it possible to tell if the item is moveable or not

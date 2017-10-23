@@ -136,6 +136,12 @@ public class Player extends Character{
                 break;
             }
         }
+          for(Item item : this.getCurrentRoom().getItems()) {
+            if(item.getName().equalsIgnoreCase(itemName)){
+                item.use(this);
+                break;
+            }
+        }
     }
 
 }

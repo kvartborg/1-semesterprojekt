@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package worldofzuul.item;
-
+import worldofzuul.character.Player;
 /**
  *
  * @author mikkellarsen
@@ -13,7 +13,7 @@ public class Steak extends Item {
     /**
      * Creating a variable of the type Ketchup
      */
-    private Ketchup ketchup;
+    private boolean ketchup = false;
 
     /**
      * Creating a constructor with only the name
@@ -26,13 +26,22 @@ public class Steak extends Item {
      * @return null if the Steak does not have ketchup
      */
     public boolean hasKetchup(){
-        return this.ketchup != null;
+        return this.ketchup;
     }
-    /**
-     * Creating a method to add Ketchup to the steak
-     * @param ketchup
-     */
-    public void addKetchup(Ketchup ketchup){
-        this.ketchup = ketchup;
+    
+    public void addKetchup(){
+        this.ketchup = true;
+    }
+    
+    @Override
+    public void use(Player player) {
+        for(Item item : player.getItems()) {
+            if(item.getName().equals("Ketchup")){
+                this.ketchup = true;
+                System.out.println("The steak now has ketchup on it.");
+                return;
+            } 
+        }
+        System.out.println("You need ketchup to use the steak.");
     }
 }

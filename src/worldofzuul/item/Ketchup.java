@@ -5,6 +5,8 @@
  */
 package worldofzuul.item;
 
+import worldofzuul.character.Player;
+
 /**
  *
  * @author mikkellarsen
@@ -16,5 +18,15 @@ public class Ketchup extends Item {
      */
     public Ketchup() {
         super("Ketchup");
+    }
+    @Override
+    public void use(Player player) {
+        for(Item item : player.getItems()) {
+            if(item.getName().equals("Steak")){
+                item.use(player);
+                return;
+            } 
+        }
+        System.out.println("You need a steak to put ketchup on.");
     }
 }

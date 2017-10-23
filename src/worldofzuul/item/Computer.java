@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package worldofzuul.item;
+import worldofzuul.character.Player;
 import java.util.Random;
+import java.util.Scanner;
 /**
  *
  * @author mikkellarsen
@@ -30,7 +32,19 @@ public class Computer extends Item {
      */
     public void tweet(){
         Random random = new Random();
-        int randomIndex = random.nextInt(tweets.length - 0 + 1) + 0;
+        int randomIndex = random.nextInt(tweets.length - 1);
         System.out.println(tweets[randomIndex]);
+    }
+    @Override
+    public void use(Player player){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Welcome to twitter, write a tweet President Trump: ");
+        String tweet = input.nextLine();
+        
+        if(tweet.length() > 0){
+            System.out.println("\n" + tweet);
+        } else {
+            this.tweet();
+        }
     }
 }
