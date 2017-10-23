@@ -57,6 +57,7 @@ public class Environment {
         secretServiceRoom = new Room("in the secret service room");
 
         ovalOffice.setExit("north", lobby1);
+        ovalOffice.lock();
 
         lobby1.setExit("north", lobby2);
         lobby1.setExit("east", secretServiceRoom);
