@@ -57,7 +57,12 @@ public abstract class Character {
         String direction = command.getSecondWord();
 
         Room nextRoom = currentRoom.getExit(direction);
-        
+
+        if (nextRoom.isLocked()) {
+            System.out.println("The door is locked!");
+            return;
+        }
+
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {

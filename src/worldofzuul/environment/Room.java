@@ -116,6 +116,30 @@ public class Room {
     public void addItems(Item[] items) {
        this.items = new ArrayList<>(Arrays.asList(items));
     }
+    
+    /**
+     * This method adds items (used for dummy items).
+     * @param items 
+     */
+    public void addItem(Item items) {
+        this.items.add(items);
+    }
+
+    /**
+     * Check if a room is locked
+     * @return boolean
+     */
+    public boolean isLocked () {
+        return this.locked;
+    }
+
+    /**
+     * Lock room
+     * @return
+     */
+    public void lock() {
+        this.locked = true;
+    }
 
     /**
      * This method checks if the room is locked or not
@@ -123,9 +147,14 @@ public class Room {
      * @return returns if the key fits to the room
      */
     public boolean unlock(Key key) {
-        return (key.getRoom() == this);
+        if (key.getRoom() == this) {
+            this.locked = false;
+            return true;
+        }
+
+        return false;
     }
-    
+
     /**
      * Prints the items in the room
      */
@@ -136,9 +165,8 @@ public class Room {
         else{
             System.out.println("The room contains: ");
             for(Item item : items){
-                System.out.print(item.getName()+" ");
+                System.out.println(item.getName());
             }
-            System.out.println("");   
         }
     }    
 }
