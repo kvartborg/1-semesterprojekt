@@ -112,7 +112,7 @@ public class Room {
     }
     
     /**
-     * 
+     * This method adds items (used for dummy items).
      * @param items 
      */
     public void addItem(Item items) {
@@ -138,9 +138,8 @@ public class Room {
         else{
             System.out.println("The room contains: ");
             for(Item item : items){
-                System.out.print(item.getName()+", ");
+                System.out.println(item.getName());
             }
-            System.out.println("");   
         }
     }    
 }

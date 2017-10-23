@@ -11,6 +11,11 @@ package worldofzuul.item;
  */
 public class DummyItem extends Item {
     
+    /**
+     * Creating a constructor of the class DummyItem
+     * Extending the class Item
+     * @param name 
+     */
     public DummyItem(String name) {
         super(name);
     }
