@@ -14,6 +14,7 @@ import maga.item.Computer;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import maga.item.NuclearFootball;
 
 /**
  *
@@ -137,7 +138,8 @@ public final class Environment {
     
     public void placeItemsInKitchen() {
         Item[] items = {
-            new Steak()
+            new Steak(),
+            new NuclearFootball()
         };
         rooms.get("Kitchen").addItems(items);
     }
@@ -147,7 +149,6 @@ public final class Environment {
      */
     private void createDummyItems() {
        dummyItems.add(new DummyItem("Egg"));
-       dummyItems.add(new DummyItem("Nuclear-football"));
        dummyItems.add(new DummyItem("Putin-picture-book"));
        dummyItems.add(new DummyItem("Hillary-Clintons-phone"));
        dummyItems.add(new DummyItem("Wig"));
