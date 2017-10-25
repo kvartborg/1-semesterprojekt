@@ -41,11 +41,13 @@ public class Room {
 
     /**
      * A constructor for new rooms
+     * @param name is the name of the new room
      * @param description is the description of the new room
      */
-    public Room(String description) {
+    public Room(String name, String description) {
+        this.name = name;
         this.description = description;
-        exits = new HashMap<String, Room>();
+        exits = new HashMap<>();
     }
 
     /**
@@ -93,7 +95,11 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-
+    
+    public String getName() {
+        return this.name;
+    }
+    
     /**
      * This method is a getter method for the items
      * @return returns the item

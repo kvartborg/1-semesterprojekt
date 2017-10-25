@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package worldofzuul.item;
+import worldofzuul.character.Player;
 
 
 /**
@@ -46,6 +47,14 @@ public abstract class Item {
     }
     
     /**
+     * Creates a "use" method for items, and prints a message if
+     * the item can't be used.
+     * @param player 
+     */
+    public void use(Player player) {  
+        System.out.println("There is no way to use this item.");
+    }
+    /**
      *This method makes it possible to tell if the item is moveable or not
      * @return returns a boolean
      */
@@ -53,5 +62,4 @@ public abstract class Item {
         return moveable;
     
     }
-
 }

@@ -7,7 +7,7 @@ import worldofzuul.character.Player;
 import worldofzuul.command.Parser;
 import worldofzuul.command.Command;
 import worldofzuul.command.CommandWord;
-import java.util.StringJoiner;
+import worldofzuul.util.Console;
 
 //TODO
 //Add steak to cook??
@@ -90,7 +90,7 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing. Good bye.");
+        Console.print("Thank you for playing. Goodbye.");
     }
     /**
     * This method prints strings when the game is started.
@@ -100,19 +100,18 @@ public class Game {
     * line it also prints a description of the room you start in.
     */
     private void printWelcome() {
-        StringJoiner message = new StringJoiner("\n")
-            .add("")
-            .add("Welcome and thank you for playing Make America Great Again.")
-            .add("The goal is to impeach Donald Trump.")
-            .add("On your mission, you'll be able to carry two items at a time.")
-            .add("If you encounter Trump, the game is over!")
-            .add("Enjoy!")
-            .add("Type '" + CommandWord.HELP + "' if you need help.")
-            .add("")
-            .add(trump.whereIsTrump())
-            .add(player.getCurrentRoom().getLongDescription());
-
-        System.out.println(message);
+        Console.print(
+            "",
+            "Welcome and thank you for playing Make America Great Again. 🇺🇸",
+            "The goal is to impeach Donald Trump.",
+            "On your mission, you'll be able to carry two items at a time.",
+            "If you encounter Trump, the game is over!",
+            "Enjoy!",
+            "Type '" + CommandWord.HELP + "' if you need help.",
+            "",
+            trump.whereIsTrump(),
+            player.getCurrentRoom().getLongDescription()
+        );
     }
     /**
     * This method process the different commands and decide what they do.
@@ -129,63 +128,67 @@ public class Game {
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
-       
+
         switch (commandWord) {
             case UNKNOWN:
-                System.out.println("I don't know what you mean...");
+                Console.print("I don't know what you mean...");
                 return false;
-           
+
             case HELP:
                  printHelp();
                  break;
-            
+
             case GO:
                 step();
                 player.goRoom(command);
                 break;
-                
+
             case QUIT:
                 wantToQuit = quit(command);
                 break;
-                
+
             case PICKUP:
-                player.pickupItems(command); 
+                player.pickupItems(command);
                 break;
-                
+
             case DROP:
                 player.dropItems(command);
                 break;
-                
+
             case LIST:
                 step();
                 player.getCurrentRoom().printItems();
                 break;
-                
+
             case INVENTORY:
                 player.printInventory();
                 break;
+            
+            case USE:
+                player.useItem(command);
+                break;
         }
         if (youLose()) {
-           return true; 
+           return true;
         }
-        
+
         return wantToQuit;
     }
-      
+
     /**
      * Every time Player makes a move, the counter "steps" increments, and
      * Trump moves to a new random location.
-     * @param command 
+     * @param command
      */
     private void step() {
 
          randomizeTrump();
-         
+
          steps++;
-         System.out.println(steps + " step(s) taken");
+         Console.print(steps + " step(s) taken");
     }
     private void randomizeTrump() {
-    
+
          String[] possibleDirections = {"east", "west", "north", "south"};
 
          String direction = possibleDirections[(int) Math.floor(Math.random()  * 3)];
@@ -200,10 +203,12 @@ public class Game {
     * what different commands the user has if the user uses the command help.
     */
     private void printHelp() {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at The White House.");
-        System.out.println();
-        System.out.println("Your command words are:");
+        Console.print(
+            "You are lost. You are alone. You wander",
+            "around at The White House.",
+            "",
+            "Your command words are:"
+        );
         parser.showCommands();
     }
 
@@ -220,23 +225,23 @@ public class Game {
     */
     private boolean quit(Command command) {
         if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
+            Console.print("Quit what?");
             return false;
         } else {
             return true;
         }
     }
-    
+
     /**
      * This method checks if the player is in the same room as Trump.
-     * If you are then the game is lost. 
+     * If you are then the game is lost.
      * @return returns true or false
      */
     private boolean youLose(){
         if (player.getCurrentRoom() != trump.getCurrentRoom()) {
-           return false;   
+           return false;
         }
-        System.out.println("You entered the same room as Trump, game lost.");
-        return true; 
+        Console.print("You entered the same room as Trump, game lost.");
+        return true;
     }
 }
