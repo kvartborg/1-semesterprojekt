@@ -103,8 +103,11 @@ public class Game {
         Console.print(
             "",
             "Welcome and thank you for playing Make America Great Again. 🇺🇸",
-            "The goal is to impeach Donald Trump.",
+            "The goal is to un-\"fake\" the news as Donald Trump.",
             "On your mission, you'll be able to carry two items at a time.",
+            "You must lure Trump away, "
+                + "send a tweet of redemption from Trumps PC, "
+                    + "\nand escape to the Press Briefing Room.",
             "If you encounter Trump, the game is over!",
             "Enjoy!",
             "Type '" + CommandWord.HELP + "' if you need help.",
