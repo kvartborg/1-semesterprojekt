@@ -18,6 +18,5 @@ public class DummyItem extends Item {
      */
     public DummyItem(String name) {
         super(name);
-    }
-    
+    } 
 }

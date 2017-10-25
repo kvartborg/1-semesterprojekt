@@ -58,7 +58,7 @@ public abstract class Character {
 
         Room nextRoom = currentRoom.getExit(direction);
 
-        if (nextRoom.isLocked()) {
+        if (nextRoom != null && nextRoom.isLocked()) {
             System.out.println("The door is locked!");
             return;
         }

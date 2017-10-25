@@ -168,6 +168,10 @@ public class Game {
             case INVENTORY:
                 player.printInventory();
                 break;
+            
+            case USE:
+                player.useItem(command);
+                break;
         }
         if (youLose()) {
            return true; 

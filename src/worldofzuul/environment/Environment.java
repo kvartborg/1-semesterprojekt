@@ -42,6 +42,7 @@ public class Environment {
         this.placeItemsInOvalOffice();
         this.placeItemsInDiningRoom();
         this.placeItemsInSecretServiceRoom();
+        this.placeItemsInKitchen();
         this.createDummyItems();
     }
 
@@ -55,14 +56,14 @@ public class Environment {
     private void createRooms() {
         Room ovalOffice, lobby1, lobby2, kitchen, diningRoom, cleaningRoom, pressBriefingRoom, secretServiceRoom;
 
-        ovalOffice = new Room("in the oval office");
-        lobby1 = new Room("in the first lobby");
-        lobby2 = new Room("in the second lobby");
-        kitchen = new Room("in the kitchen");
-        diningRoom = new Room("in the dining room");
-        cleaningRoom = new Room("in the cleaning room");
-        pressBriefingRoom = new Room("in the press briefing room");
-        secretServiceRoom = new Room("in the secret service room");
+        ovalOffice = new Room("Oval office", "in the oval office");
+        lobby1 = new Room("Lobby1", "in the first lobby");
+        lobby2 = new Room("Lobby2", "in the second lobby");
+        kitchen = new Room("Kitchen", "in the kitchen");
+        diningRoom = new Room("Dining room", "in the dining room");
+        cleaningRoom = new Room("Cleaning room", "in the cleaning room");
+        pressBriefingRoom = new Room("Press briefing room", "in the press briefing room");
+        secretServiceRoom = new Room("Secret service room", "in the secret service room");
 
         ovalOffice.setExit("north", lobby1);
         ovalOffice.lock();
@@ -89,14 +90,14 @@ public class Environment {
 
         cleaningRoom.setExit("south", lobby2);
 
-        rooms.put("Oval office", ovalOffice);
-        rooms.put("Lobby1", lobby1);
-        rooms.put("Lobby2", lobby2);
-        rooms.put("Dining room", diningRoom);
-        rooms.put("Secret service room", secretServiceRoom);
-        rooms.put("Kitchen", kitchen);
-        rooms.put("Press briefing room", pressBriefingRoom);
-        rooms.put("Cleaning room", cleaningRoom);
+        rooms.put(ovalOffice.getName(), ovalOffice);
+        rooms.put(lobby1.getName(), lobby1);
+        rooms.put(lobby2.getName(), lobby2);
+        rooms.put(diningRoom.getName(), diningRoom);
+        rooms.put(secretServiceRoom.getName(), secretServiceRoom);
+        rooms.put(kitchen.getName(), kitchen);
+        rooms.put(pressBriefingRoom.getName(), pressBriefingRoom);
+        rooms.put(cleaningRoom.getName(), cleaningRoom);
     }
     
     /**
@@ -127,6 +128,13 @@ public class Environment {
             new Key(rooms.get("Oval office"))
         };
         rooms.get("Secret service room").addItems(items);
+    }
+    
+    public void placeItemsInKitchen() {
+        Item[] items = {
+            new Steak()
+        };
+        rooms.get("Kitchen").addItems(items);
     }
     
     /**
