@@ -92,7 +92,7 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Thank you for playing. Good bye.");
     }
     /**
     * This method prints strings when the game is started.
@@ -116,7 +116,7 @@ public class Game {
     * The method is a swtich depending on what command the user
     * has chosen to use. It gives different options on what will happen
     * if the user uses an unknown command or if the user uses a known command.
-    *
+    * If youLose is true then the game is over.
     *
     * @param command
     * @return boolean (wantToQuit, false or true)
@@ -125,7 +125,7 @@ public class Game {
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
-
+       
         switch (commandWord) {
             case UNKNOWN:
                 System.out.println("I don't know what you mean...");
@@ -160,6 +160,9 @@ public class Game {
             case INVENTORY:
                 player.printInventory();
                 break;
+        }
+        if (youLose()) {
+           return true; 
         }
         
         return wantToQuit;
@@ -218,5 +221,18 @@ public class Game {
         } else {
             return true;
         }
+    }
+    
+    /**
+     * This method checks if the player is in the same room as Trump.
+     * If you are then the game is lost. 
+     * @return returns true or false
+     */
+    private boolean youLose(){
+        if (player.getCurrentRoom() != trump.getCurrentRoom()) {
+           return false;   
+        }
+        System.out.println("You entered the same room as Trump, game lost.");
+        return true; 
     }
 }
