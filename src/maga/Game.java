@@ -187,6 +187,11 @@ public class Game {
          steps++;
          Console.print(steps + " step(s) taken");
     }
+    
+    /**
+     * Method to randomize the movement of the "Trump" character. 
+     * The method uses "Math" to choose a random direction.
+     */
     private void randomizeTrump() {
 
          String[] possibleDirections = {"east", "west", "north", "south"};
