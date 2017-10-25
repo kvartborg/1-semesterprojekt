@@ -1,5 +1,6 @@
 package worldofzuul;
 
+import java.util.List;
 import worldofzuul.environment.Environment;
 import worldofzuul.character.Cook;
 import worldofzuul.character.Trump;
@@ -10,6 +11,7 @@ import worldofzuul.command.CommandWord;
 import worldofzuul.environment.Room;
 import worldofzuul.item.Item;
 import worldofzuul.command.CommandWord;
+import java.util.StringJoiner;
 
 //TODO
 //Add steak to cook??
@@ -102,16 +104,19 @@ public class Game {
     * line it also prints a description of the room you start in.
     */
     private void printWelcome() {
-        System.out.println();
-        System.out.println("Welcome and thank you for playing Make America Great Again.");
-        System.out.println("The goal is to impeach Donald Trump.");
-        System.out.println("On your mission, you'll be able to carry two items at a time.");
-        System.out.println("If you encounter Trump, the game is over!");
-        System.out.println("Enjoy!");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
-        System.out.println();
-        System.out.println(trump.whereIsTrump());
-        System.out.println(player.getCurrentRoom().getLongDescription());
+        StringJoiner message = new StringJoiner("\n")
+            .add("")
+            .add("Welcome and thank you for playing Make America Great Again.")
+            .add("The goal is to impeach Donald Trump.")
+            .add("On your mission, you'll be able to carry two items at a time.")
+            .add("If you encounter Trump, the game is over!")
+            .add("Enjoy!")
+            .add("Type '" + CommandWord.HELP + "' if you need help.")
+            .add("")
+            .add(trump.whereIsTrump())
+            .add(player.getCurrentRoom().getLongDescription());
+
+        System.out.println(message);
     }
     /**
     * This method process the different comamnds and decide what they do.
