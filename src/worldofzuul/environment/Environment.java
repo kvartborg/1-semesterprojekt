@@ -14,16 +14,16 @@ import worldofzuul.item.*;
  *
  * @author ViktoriaNadarajah
  */
-public class Environment {
+public final class Environment {
     /**
      * HashMap attribute for rooms and their names
      */
-    private HashMap<String, Room> rooms = new HashMap<>();
+    private final HashMap<String, Room> rooms = new HashMap<>();
 
     /**
      * This Set keeps all dummy items.
      */
-    private Set<DummyItem> dummyItems = new HashSet<>();
+    private final Set<DummyItem> dummyItems = new HashSet<>();
     
     /**
      * This method is a getter method

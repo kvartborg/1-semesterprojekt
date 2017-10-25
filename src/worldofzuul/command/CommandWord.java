@@ -14,7 +14,7 @@ public enum CommandWord {
     /**
      * The entered command
      */
-    private String commandString;
+    private final String commandString;
 
     /**
      * Create a new instance of a CommandWord
@@ -29,6 +29,7 @@ public enum CommandWord {
      * If the CommandWord instance is used in a string context
      * @return the commandString
      */
+    @Override
     public String toString() {
         return commandString;
     }

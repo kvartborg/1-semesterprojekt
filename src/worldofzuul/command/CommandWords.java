@@ -12,7 +12,7 @@ public class CommandWords {
     /**
      * A list of valid commands
      */
-    private HashMap<String, CommandWord> validCommands;
+    private final HashMap<String, CommandWord> validCommands;
 
     /**
      * Creating an instance of CommandWords

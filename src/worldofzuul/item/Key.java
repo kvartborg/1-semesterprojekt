@@ -6,8 +6,6 @@
 package worldofzuul.item;
 
 import worldofzuul.environment.Room;
-import worldofzuul.item.Key;
-import worldofzuul.character.Player;
 
 /**
  *

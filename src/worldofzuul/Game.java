@@ -1,6 +1,5 @@
 package worldofzuul;
 
-import java.util.List;
 import worldofzuul.environment.Environment;
 import worldofzuul.character.Cook;
 import worldofzuul.character.Trump;
@@ -8,11 +7,7 @@ import worldofzuul.character.Player;
 import worldofzuul.command.Parser;
 import worldofzuul.command.Command;
 import worldofzuul.command.CommandWord;
-import worldofzuul.environment.Room;
-import worldofzuul.item.Item;
-import worldofzuul.command.CommandWord;
 import worldofzuul.util.Console;
-import java.util.StringJoiner;
 
 //TODO
 //Add steak to cook??
@@ -119,9 +114,9 @@ public class Game {
         );
     }
     /**
-    * This method process the different comamnds and decide what they do.
+    * This method process the different commands and decide what they do.
     *
-    * The method is a swtich depending on what command the user
+    * The method is a switch depending on what command the user
     * has chosen to use. It gives different options on what will happen
     * if the user uses an unknown command or if the user uses a known command.
     * If youLose is true then the game is over.
@@ -221,7 +216,7 @@ public class Game {
     * This method quits the game.
     *
     * The method decides what happens when the user uses the quit command.
-    * It first checks if the uses posted a second word when quitting, returns
+    * It first checks if the user posted a second word when quitting, returns
     * false if it has. If the user doesnt have a second word after quit, then
     * its true and therefore quits the game.
     *

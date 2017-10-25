@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 import worldofzuul.item.Item;
 import worldofzuul.item.Key;
 
@@ -21,13 +20,14 @@ public class Room {
     private String name;
 
     /**
-     * The String "description" is used when describing the room generated with the constructor
+     * The String "description" is used when
+     * describing the room generated with the constructor
      */
-    private String description;
+    private final String description;
     /**
      * The HashMap is a list of existing rooms
      */
-    private HashMap<String, Room> exits;
+    private final HashMap<String, Room> exits;
 
     /**
      * The array keeps the items

@@ -8,18 +8,17 @@ public class Command {
     /**
      * The command to execute
      */
-    private CommandWord commandWord;
+    private final CommandWord commandWord;
 
     /**
      * The argument for the command
      */
-    private String secondWord;
+    private final String secondWord;
 
     /**
      * Create a new instance of a command
      * @param  commandWord the command
      * @param  secondWord  the argument for the command
-     * @return             a new instance of a Command
      */
     public Command(CommandWord commandWord, String secondWord) {
         this.commandWord = commandWord;
