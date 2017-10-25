@@ -95,7 +95,7 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        Console.print("Thank you for playing. Good bye.");
+        Console.print("Thank you for playing. Goodbye.");
     }
     /**
     * This method prints strings when the game is started.
