@@ -29,10 +29,11 @@ public class Steak extends Item {
         return this.ketchup;
     }
     
-    public void addKetchup(){
-        this.ketchup = true;
-    }
-    
+    /**
+     * Creates a "use" method for the "Steak" item. The method searches for
+     * a "Ketchup" item, and cant be used if there isn't one in the inventory.
+     * @param player 
+     */
     @Override
     public void use(Player player) {
         for(Item item : player.getItems()) {
