@@ -134,12 +134,12 @@ public class Environment {
      */
     private void createDummyItems() {
        dummyItems.add(new DummyItem("Egg"));
-       dummyItems.add(new DummyItem("Nuclear football"));
-       dummyItems.add(new DummyItem("Putin picture book"));
-       dummyItems.add(new DummyItem("Hillary Clinton's phone"));
+       dummyItems.add(new DummyItem("Nuclear-football"));
+       dummyItems.add(new DummyItem("Putin-picture-book"));
+       dummyItems.add(new DummyItem("Hillary-Clintons-phone"));
        dummyItems.add(new DummyItem("Wig"));
        dummyItems.add(new DummyItem("Mayo"));
-       dummyItems.add(new DummyItem("Ivanka Trump's sunglasses"));
+       dummyItems.add(new DummyItem("Ivanka-Trumps-sunglasses"));
        for (DummyItem dummyItem : dummyItems ) {
            String[] availableRooms = this.rooms.keySet().toArray(new String[this.rooms.size()]);
            
