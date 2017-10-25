@@ -1,4 +1,4 @@
-package worldofzuul.command;
+package maga.command;
 
 import java.util.HashMap;
 

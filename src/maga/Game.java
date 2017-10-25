@@ -1,13 +1,13 @@
-package worldofzuul;
+package maga;
 
-import worldofzuul.environment.Environment;
-import worldofzuul.character.Cook;
-import worldofzuul.character.Trump;
-import worldofzuul.character.Player;
-import worldofzuul.command.Parser;
-import worldofzuul.command.Command;
-import worldofzuul.command.CommandWord;
-import worldofzuul.util.Console;
+import maga.environment.Environment;
+import maga.character.Cook;
+import maga.character.Trump;
+import maga.character.Player;
+import maga.command.Parser;
+import maga.command.Command;
+import maga.command.CommandWord;
+import maga.util.Console;
 
 //TODO
 //Add steak to cook??
@@ -190,6 +190,11 @@ public class Game {
          steps++;
          Console.print(steps + " step(s) taken");
     }
+    
+    /**
+     * Method to randomize the movement of the "Trump" character. 
+     * The method uses "Math" to choose a random direction.
+     */
     private void randomizeTrump() {
 
          String[] possibleDirections = {"east", "west", "north", "south"};
