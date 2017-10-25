@@ -111,7 +111,8 @@ public final class Environment {
      */
     public void placeItemsInOvalOffice(){
         Item[] items = {
-            new Computer()
+            new Computer(),
+            new NuclearFootball()
         };
         rooms.get("Oval office").addItems(items);
     }
@@ -138,8 +139,7 @@ public final class Environment {
     
     public void placeItemsInKitchen() {
         Item[] items = {
-            new Steak(),
-            new NuclearFootball()
+            new Steak()
         };
         rooms.get("Kitchen").addItems(items);
     }
