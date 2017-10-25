@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul.environment;
+package maga.environment;
 
+import maga.item.Item;
+import maga.item.DummyItem;
+import maga.item.Steak;
+import maga.item.Key;
+import maga.item.Ketchup;
+import maga.item.Computer;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import worldofzuul.item.*;
 
 /**
  *

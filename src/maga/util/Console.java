@@ -1,4 +1,4 @@
-package worldofzuul.util;
+package maga.util;
 
 public class Console {
     public static void print (String ...messages) {
