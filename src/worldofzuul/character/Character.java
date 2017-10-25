@@ -6,7 +6,6 @@
 package worldofzuul.character;
 
 import worldofzuul.command.Command;
-import worldofzuul.item.Item;
 import worldofzuul.environment.Room;
 
 /**
@@ -70,7 +69,11 @@ public abstract class Character {
             System.out.println(currentRoom.getLongDescription());
         }
     }
-
+    
+    /**
+     * Sets the current room
+     * @param room 
+     */
     public void setCurrentRoom(Room room) {
         this.currentRoom = room;
     }

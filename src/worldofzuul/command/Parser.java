@@ -11,11 +11,11 @@ public class Parser {
     /**
      * It is a list of CommandWords
      */
-    private CommandWords commands;
+    private final CommandWords commands;
     /**
      * The Scanner reads the commands
      */
-    private Scanner reader;
+    private final Scanner reader;
 
     /**
      * The reader reads new commands if any

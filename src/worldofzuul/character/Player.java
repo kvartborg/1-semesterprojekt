@@ -108,7 +108,7 @@ public class Player extends Character{
         return (this.items.size() >= MAX_ITEMS);
     }
     
-        /**
+    /**
      * Prints the items in the players inventory
      */
     public void printInventory(){
