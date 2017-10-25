@@ -114,8 +114,7 @@ public class Player extends Character{
     public void printInventory(){
         if (getItems().isEmpty()) {
             System.out.println("Your inventory is empty.");
-        }
-        else{
+        } else{
             System.out.println("Your inventory contains: ");
             for(Item item : getItems()){
                 System.out.println(item.getName());
@@ -123,6 +122,12 @@ public class Player extends Character{
             System.out.println("");   
         }
     }
+    
+    /**
+     * Creates a "use" method that requires a second word, and 
+     * looks for the item to be used in the inventory. 
+     * @param command 
+     */
     public void useItem(Command command) {
         if(!command.hasSecondWord()) {
             System.out.println("What do you want to use?");
@@ -136,7 +141,7 @@ public class Player extends Character{
                 break;
             }
         }
-          for(Item item : this.getCurrentRoom().getItems()) {
+        for(Item item : this.getCurrentRoom().getItems()) {
             if(item.getName().equalsIgnoreCase(itemName)){
                 item.use(this);
                 break;
