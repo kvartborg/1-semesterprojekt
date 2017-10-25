@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul.character;
+package maga.character;
 
 import java.util.ArrayList;
-import worldofzuul.command.Command;
-import worldofzuul.item.Item;
+import maga.command.Command;
+import maga.item.Item;
 
 /**
  *

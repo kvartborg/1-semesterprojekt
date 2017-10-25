@@ -1,11 +1,11 @@
-package worldofzuul.environment;
+package maga.environment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.HashMap;
-import worldofzuul.item.Item;
-import worldofzuul.item.Key;
+import maga.item.Item;
+import maga.item.Key;
 
 
 /**

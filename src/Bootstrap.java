@@ -1,4 +1,4 @@
-import worldofzuul.Game;
+import maga.Game;
 
 public class Bootstrap {
 

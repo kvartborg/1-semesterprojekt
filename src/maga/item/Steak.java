@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul.item;
-import worldofzuul.character.Player;
+package maga.item;
+import maga.character.Player;
 /**
  *
  * @author mikkellarsen

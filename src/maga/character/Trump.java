@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package worldofzuul.character;
+package maga.character;
 
-import worldofzuul.command.Command;
-import worldofzuul.environment.Room;
+import maga.command.Command;
+import maga.environment.Room;
 
 /**
  *
