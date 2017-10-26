@@ -154,17 +154,17 @@ public final class Environment {
      * This method creates dummy items and places them into random rooms.
      */
     private void createDummyItems() {
-       dummyItems.add(new DummyItem("Egg"));
-       dummyItems.add(new DummyItem("Putin-picture-book"));
-       dummyItems.add(new DummyItem("Hillary-Clintons-phone"));
-       dummyItems.add(new DummyItem("Wig"));
-       dummyItems.add(new DummyItem("Mayo"));
-       dummyItems.add(new DummyItem("Ivanka-Trumps-sunglasses"));
-       for (DummyItem dummyItem : dummyItems ) {
-           String[] availableRooms = this.rooms.keySet().toArray(new String[this.rooms.size()]);
-           String randomRoom = availableRooms[(int) Math.floor(Math.random() * 7)];
-           rooms.get(randomRoom).addItem(dummyItem);
-       }
+        dummyItems.add(new DummyItem("Egg"));
+        dummyItems.add(new DummyItem("Putin-picture-book"));
+        dummyItems.add(new DummyItem("Hillary-Clintons-phone"));
+        dummyItems.add(new DummyItem("Wig"));
+        dummyItems.add(new DummyItem("Mayo"));
+        dummyItems.add(new DummyItem("Ivanka-Trumps-sunglasses"));
+        for (DummyItem dummyItem : dummyItems ) {
+            String[] availableRooms = this.rooms.keySet().toArray(new String[this.rooms.size()]);
+            String randomRoom = availableRooms[(int) Math.floor(Math.random() * 7)];
+            rooms.get(randomRoom).addItem(dummyItem);
+        }
     }
 
     public Scene createScene (Pane ...panes) {

@@ -9,6 +9,10 @@ import maga.command.Parser;
 import maga.command.Command;
 import maga.command.CommandWord;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.Font;
 import maga.util.Console;
 
 //TODO
@@ -50,6 +54,7 @@ public class Game {
      * Steps
      */
     private int steps = 0;
+    private Text stepLabel;
 
     /**
      * Start Time
@@ -194,6 +199,7 @@ public class Game {
          randomizeTrump();
 
          steps++;
+         this.stepLabel.setText("Steps: " + steps);
          Console.print(steps + " step(s) taken");
     }
 
@@ -259,10 +265,22 @@ public class Game {
         return true;
     }
 
+    private Pane renderSteps () {
+        Pane pane = new Pane();
+        this.stepLabel = new Text("Steps: " + steps);
+        this.stepLabel.setX(10);
+        this.stepLabel.setY(40);
+        this.stepLabel.setFont(new Font("Verdana", 20));
+        GridPane.setConstraints(this.stepLabel, 0, 0);
+        pane.getChildren().add(this.stepLabel);
+        return pane;
+    }
+
     private void render () {
         Scene scene = this.environment.createScene(
             this.player,
-            this.trump
+            this.trump,
+            this.renderSteps()
         );
 
         scene.setOnKeyPressed(e -> {
