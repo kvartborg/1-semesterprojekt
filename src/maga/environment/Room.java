@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.HashMap;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.Color;
 import maga.item.Item;
 import maga.item.Key;
 
@@ -12,7 +18,10 @@ import maga.item.Key;
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room {
+public class Room extends Pane {
+
+    private int x = 0;
+    private int y = 0;
 
     /**
      * The rooms name
@@ -44,10 +53,46 @@ public class Room {
      * @param name is the name of the new room
      * @param description is the description of the new room
      */
-    public Room(String name, String description) {
+    public Room(String name, String description, int x, int y) {
+        super();
+        super.setPrefSize(200, 200);
+        GridPane.setConstraints(this, x, y);
         this.name = name;
+        this.x = x;
+        this.y = y;
         this.description = description;
-        exits = new HashMap<>();
+        this.exits = new HashMap<>();
+        this.renderBorder();
+        this.renderLabel();
+    }
+
+    private void renderLabel () {
+        Text text = new Text(this.name);
+        text.setX(10);
+        text.setY(20);
+        this.getChildren().add(text);
+    }
+
+    private void renderBorder () {
+        Rectangle rect = new Rectangle(0, 0, 200, 200);
+        rect.setFill(Color.TRANSPARENT);
+        rect.setStroke(Color.BLACK);
+        this.getChildren().add(rect);
+    }
+
+    private void renderDoors (String direction) {
+        HashMap<String, int[]> doors = new HashMap<>();
+        doors.put("north", new int[] { 85, -5, 30, 5 });
+        doors.put("east", new int[] { 200, 85, 5, 30 });
+        doors.put("south", new int[] { 85, 200, 30, 5 });
+        doors.put("west", new int[] { -5, 85, 5, 30 });
+
+        int[] door = doors.get(direction);
+
+        Rectangle rect = new Rectangle(door[0], door[1], door[2], door[3]);
+
+        rect.setFill(Color.BLACK);
+        this.getChildren().add(rect);
     }
 
     /**
@@ -57,6 +102,7 @@ public class Room {
      */
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
+        this.renderDoors(direction);
     }
 
     /**
@@ -95,11 +141,11 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-    
+
     public String getName() {
         return this.name;
     }
-    
+
     /**
      * This method is a getter method for the items
      * @return returns the item
@@ -109,17 +155,17 @@ public class Room {
     }
 
     /**
-     * This method adds items to our array and turns the array into 
-     * an arraylist. 
+     * This method adds items to our array and turns the array into
+     * an arraylist.
      * @param items
      */
     public void addItems(Item[] items) {
        this.items = new ArrayList<>(Arrays.asList(items));
     }
-    
+
     /**
      * This method adds items (used for dummy items).
-     * @param items 
+     * @param items
      */
     public void addItem(Item items) {
         this.items.add(items);
@@ -168,5 +214,13 @@ public class Room {
                 System.out.println(item.getName());
             }
         }
-    }    
+    }
+
+    public int getCenterX() {
+        return ((this.x + 1) * 210) - 105 + 10;
+    }
+
+    public int getCenterY() {
+        return ((this.y + 1) * 210) - 105 + 10;
+    }
 }

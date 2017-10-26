@@ -15,12 +15,22 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import maga.item.NuclearFootball;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Shape;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Pane;
 
 /**
  *
  * @author ViktoriaNadarajah
  */
 public final class Environment {
+
+    private static final int SCENE_WIDTH = 640;
+    private static final int SCENE_HEIGHT = 850;
+
     /**
      * HashMap attribute for rooms and their names
      */
@@ -62,14 +72,14 @@ public final class Environment {
     private void createRooms() {
         Room ovalOffice, lobby1, lobby2, kitchen, diningRoom, cleaningRoom, pressBriefingRoom, secretServiceRoom;
 
-        ovalOffice = new Room("Oval office", "in the oval office");
-        lobby1 = new Room("Lobby1", "in the first lobby");
-        lobby2 = new Room("Lobby2", "in the second lobby");
-        kitchen = new Room("Kitchen", "in the kitchen");
-        diningRoom = new Room("Dining room", "in the dining room");
-        cleaningRoom = new Room("Cleaning room", "in the cleaning room");
-        pressBriefingRoom = new Room("Press briefing room", "in the press briefing room");
-        secretServiceRoom = new Room("Secret service room", "in the secret service room");
+        ovalOffice = new Room("Oval office", "in the oval office", 1, 3);
+        lobby1 = new Room("Lobby1", "in the first lobby", 1, 2);
+        lobby2 = new Room("Lobby2", "in the second lobby", 1, 1);
+        kitchen = new Room("Kitchen", "in the kitchen", 0, 1);
+        diningRoom = new Room("Dining room", "in the dining room", 0, 2);
+        cleaningRoom = new Room("Cleaning room", "in the cleaning room", 1, 0);
+        pressBriefingRoom = new Room("Press briefing room", "in the press briefing room", 2, 1);
+        secretServiceRoom = new Room("Secret service room", "in the secret service room", 2, 2);
 
         ovalOffice.setExit("north", lobby1);
         ovalOffice.lock();
@@ -155,5 +165,30 @@ public final class Environment {
            String randomRoom = availableRooms[(int) Math.floor(Math.random() * 7)];
            rooms.get(randomRoom).addItem(dummyItem);
        }
+    }
+
+    public Scene createScene (Pane ...panes) {
+        StackPane rootPane = new StackPane();
+
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(10);
+        grid.setHgap(10);
+
+        for (Room room : this.rooms.values()) {
+            grid.getChildren().add(room);
+        }
+
+        rootPane.getChildren().add(grid);
+
+        for (Pane pane : panes) {
+            rootPane.getChildren().add(pane);
+        }
+
+        return new Scene(
+            rootPane,
+            Environment.SCENE_WIDTH,
+            Environment.SCENE_HEIGHT
+        );
     }
 }
