@@ -1,5 +1,6 @@
 package maga;
 
+import javafx.stage.Stage;
 import maga.environment.Environment;
 import maga.character.Cook;
 import maga.character.Trump;
@@ -7,6 +8,11 @@ import maga.character.Player;
 import maga.command.Parser;
 import maga.command.Command;
 import maga.command.CommandWord;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.Font;
 import maga.util.Console;
 
 //TODO
@@ -17,6 +23,8 @@ import maga.util.Console;
  * @version 2006.03.30
  */
 public class Game {
+    private Stage stage;
+
     /**
      * parser attribute, an instance from the Parser class.
      */
@@ -46,6 +54,7 @@ public class Game {
      * Steps
      */
     private int steps = 0;
+    private Text stepLabel;
 
     /**
      * Start Time
@@ -61,12 +70,13 @@ public class Game {
     /**
      * Create new instance of game
      */
-    public Game() {
+    public Game(Stage stage) {
         environment = new Environment();
         player = new Player();
         trump = new Trump();
         cook = new Cook();
         parser = new Parser();
+        this.stage = stage;
 
         player.setCurrentRoom(environment.getRoom("Press briefing room"));
         trump.setCurrentRoom(environment.getRoom("Oval office"));
@@ -83,14 +93,14 @@ public class Game {
     * it jumps out the while loop and prints a string.
     */
     public void play() {
-        printWelcome();
-
-        boolean finished = false;
-        while (! finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
-        Console.print("Thank you for playing. Goodbye.");
+        this.render();
+        // printWelcome();
+        // boolean finished = false;
+        // while (! finished) {
+        //     Command command = parser.getCommand();
+        //     finished = processCommand(command);
+        // }
+        // Console.print("Thank you for playing. Goodbye.");
     }
     /**
     * This method prints strings when the game is started.
@@ -166,11 +176,12 @@ public class Game {
             case INVENTORY:
                 player.printInventory();
                 break;
-            
+
             case USE:
                 player.useItem(command);
                 break;
         }
+
         if (youLose()) {
            return true;
         }
@@ -188,18 +199,19 @@ public class Game {
          randomizeTrump();
 
          steps++;
+         this.stepLabel.setText("Steps: " + steps);
          Console.print(steps + " step(s) taken");
     }
-    
+
     /**
-     * Method to randomize the movement of the "Trump" character. 
+     * Method to randomize the movement of the "Trump" character.
      * The method uses "Math" to choose a random direction.
      */
     private void randomizeTrump() {
 
-         String[] possibleDirections = {"east", "west", "north", "south"};
+         String[] possibleDirections = {"north", "east", "south", "west"};
 
-         String direction = possibleDirections[(int) Math.floor(Math.random()  * 3)];
+         String direction = possibleDirections[(int) Math.floor(Math.random()  * 4)];
 
          trump.goRoom(parser.createCommand("go", direction));
 
@@ -251,5 +263,46 @@ public class Game {
         }
         Console.print("You entered the same room as Trump, game lost.");
         return true;
+    }
+
+    private Pane renderSteps () {
+        Pane pane = new Pane();
+        this.stepLabel = new Text("Steps: " + steps);
+        this.stepLabel.setX(10);
+        this.stepLabel.setY(40);
+        this.stepLabel.setFont(new Font("Verdana", 20));
+        GridPane.setConstraints(this.stepLabel, 0, 0);
+        pane.getChildren().add(this.stepLabel);
+        return pane;
+    }
+
+    private void render () {
+        Scene scene = this.environment.createScene(
+            this.player,
+            this.trump,
+            this.renderSteps()
+        );
+
+        scene.setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case UP:
+                    this.processCommand(this.parser.createCommand("go", "north"));
+                    break;
+                case RIGHT:
+                    this.processCommand(this.parser.createCommand("go", "east"));
+                    break;
+                case DOWN:
+                    this.processCommand(this.parser.createCommand("go", "south"));
+                    break;
+                case LEFT:
+                    this.processCommand(this.parser.createCommand("go", "west"));
+                    break;
+            }
+        });
+
+        this.stage.setTitle("Make America Great Again! 🇺🇸");
+        this.stage.setResizable(false);
+        this.stage.setScene(scene);
+        this.stage.show();
     }
 }

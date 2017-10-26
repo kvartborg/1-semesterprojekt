@@ -5,6 +5,7 @@
  */
 package maga.character;
 
+import javafx.scene.paint.Color;
 import maga.command.Command;
 import maga.environment.Room;
 
@@ -18,6 +19,7 @@ public class Trump extends Character {
      */
     public Trump() {
         super("Donald Trump");
+        super.getCircle().setFill(Color.RED);
     }
     /**
      * The method sets Trumps route to the steak item.
@@ -29,7 +31,7 @@ public class Trump extends Character {
     }
     /**
      * Simplified method for the character Trumps movement.
-     * @param command 
+     * @param command
      */
     @Override
     public void goRoom(Command command) {
@@ -43,8 +45,9 @@ public class Trump extends Character {
         if (nextRoom != null) {
            setCurrentRoom(nextRoom);
         }
-        System.out.println(whereIsTrump()); 
-        
+
+        System.out.println(whereIsTrump());
+
     }
     /**
      * Method shows which room the Trump character is in.

@@ -12,7 +12,7 @@ import maga.character.Player;
  * @author ander
  */
 public class NuclearFootball extends Item{
-    
+
     /**
      * Creating a constructor of the class NuclearFootball extending Item
      */
@@ -21,12 +21,12 @@ public class NuclearFootball extends Item{
     }
     /**
      * This method uses the NuclearFootball item and exits the game when used.
-     * @param player 
+     * @param player
      */
     @Override
     public void use(Player player) {
         System.out.println("You used the Nuclear Football, and hereby "
                 + "bombed North Korea, thus starting WW3. Game lost.");
-        System.exit(0); 
+        System.exit(0);
     }
 }
