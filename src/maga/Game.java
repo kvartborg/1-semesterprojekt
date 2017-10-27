@@ -257,10 +257,12 @@ public class Game {
      */
     private boolean youWin(){
         if(
-            player.getCurrentRoom() == environment.getRoom("Press briefing room") && 
-            player.hasTweeted() == true
+            player.getCurrentRoom() != environment.getRoom("Press briefing room") || 
+            !player.hasTweeted()
         ){
-            long endTime = System.currentTimeMillis() / 1000L;
+            return false;    
+        }
+        long endTime = System.currentTimeMillis() / 1000L;
             long elapsedTime = endTime - startTime;
             long finalScore = 2000 - (elapsedTime * steps);
             Console.print(
@@ -273,7 +275,5 @@ public class Game {
                 "---------------------------------------"
             );
             return true;
-        }
-        return false;
     }
 }
