@@ -51,6 +51,11 @@ public class Game {
      * Start Time
      */
     private Long startTime = System.currentTimeMillis() / 1000L;
+    
+    /**
+     * Integer that sets the point the player starts with.
+     */
+    private int points = 5000;
 
     /**
      * Create new instance of game
@@ -152,7 +157,7 @@ public class Game {
                 player.dropItems(command);
                 break;
 
-            case LIST:
+            case SEARCH:
                 step();
                 player.getCurrentRoom().printItems();
                 break;
@@ -170,7 +175,7 @@ public class Game {
                 break;
 
             case CALLTRUMP:
-                trump.findSteak(environment.getRoom("Cleaning room"), player);
+                points += trump.findSteak(environment.getRoom("Cleaning room"), player);
                 break;
             
         }
@@ -273,7 +278,7 @@ public class Game {
         }
         long endTime = System.currentTimeMillis() / 1000L;
         long elapsedTime = endTime - startTime;
-        long finalScore = 2000 - (elapsedTime * steps);
+        long finalScore = points - (elapsedTime * steps);
         Console.print(
             "",
             "Congratulations, you won the game!",
