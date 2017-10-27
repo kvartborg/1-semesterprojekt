@@ -170,6 +170,10 @@ public class Game {
             case USE:
                 player.useItem(command);
                 break;
+                
+            case CALLTRUMP:
+                trump.findSteak(environment.getRoom("Cleaning room"), player);
+                break;
         }
         if (youLose()) {
            return true;
@@ -199,7 +203,7 @@ public class Game {
 
          String[] possibleDirections = {"east", "west", "north", "south"};
 
-         String direction = possibleDirections[(int) Math.floor(Math.random()  * 3)];
+         String direction = possibleDirections[(int) Math.floor(Math.random()  * 4)];
 
          trump.goRoom(parser.createCommand("go", direction));
 
