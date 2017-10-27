@@ -160,7 +160,7 @@ public class Player extends Character{
      */
     public boolean hasTweeted() {
         return this.tweeted;
-        }
+    }
     /**
      * When used changes the state of tweeted to true.
      */
