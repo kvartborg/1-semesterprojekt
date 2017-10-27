@@ -47,6 +47,14 @@ public abstract class Item {
     }
     
     /**
+     * Setter for the name of the steak item
+     * @param name The new name of the steak item
+     */
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    /**
      * Creates a "use" method for items, and prints a message if
      * the item can't be used.
      * @param player 

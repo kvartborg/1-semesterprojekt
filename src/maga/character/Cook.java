@@ -5,6 +5,10 @@
  */
 package maga.character;
 
+import maga.command.Command;
+import maga.command.CommandWord;
+import maga.item.Steak;
+
 /**
  *
  * @author Rasmus
@@ -21,5 +25,16 @@ public class Cook extends Character {
    /**
     * getSteak method mising
     */
+   
+   /**
+    * Override method for the talk method
+    * What's printed when the player uses the talk command
+    */
+   @Override
+   public void talk(Character character){
+        System.out.println("Hello, here's a steak for you!");
+        character.getCurrentRoom().addItem(new Steak());
+        character.pickupItems(new Command(CommandWord.PICKUP, "Steak"));
+   }
 
 }

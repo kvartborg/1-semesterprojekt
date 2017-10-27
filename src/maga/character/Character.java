@@ -85,4 +85,15 @@ public abstract class Character {
     public Room getCurrentRoom () {
         return this.currentRoom;
     }
+    
+    /**
+     * Standard method for talking with other characters, that isn't the cook
+     */
+    public void talk(Character character){
+        System.out.println("I don't want to talk with you.");
+    }
+    
+    public boolean pickupItems(Command command){
+        return false;
+    }
 }

@@ -170,6 +170,10 @@ public class Game {
             case USE:
                 player.useItem(command);
                 break;
+                
+            case TALK:
+                player.talk(cook);
+                break;
         }
         if (youLose()) {
            return true;

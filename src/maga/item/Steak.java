@@ -39,6 +39,7 @@ public class Steak extends Item {
         for(Item item : player.getItems()) {
             if(item.getName().equals("Ketchup")){
                 this.ketchup = true;
+                this.setName("Steak-with-ketchup");
                 System.out.println("The steak now has ketchup on it.");
                 return;
             } 
