@@ -262,13 +262,16 @@ public class Game {
         ){
             long endTime = System.currentTimeMillis() / 1000L;
             long elapsedTime = endTime - startTime;
-            long finalScore = 5000 - (elapsedTime * steps);
-            System.out.println("\nCongratulations, you won the game!");
-            System.out.println("\n---------------------------------------");
-            System.out.println("You made it in " + steps + " steps, in " + elapsedTime + " seconds!");
-            System.out.println("You scored: " + finalScore);
-            System.out.println("---------------------------------------");
-            
+            long finalScore = 2000 - (elapsedTime * steps);
+            Console.print(
+            "",
+            "Congratulations, you won the game!",
+            "",
+            "---------------------------------------",
+            "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
+            "You scored: " + finalScore,
+            "---------------------------------------"
+            );
             return true;
         }
         return false;
