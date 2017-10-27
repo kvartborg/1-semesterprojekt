@@ -9,7 +9,7 @@ public enum CommandWord {
      * Available commands
      */
 
-    GO("go"), QUIT("quit"), HELP("help"), LIST("list"), PICKUP("pickup"), DROP("drop"), INVENTORY("inventory"), UNKNOWN("?"), USE("use"), CALLTRUMP("call"), TALK("talk");
+    GO("go"), QUIT("quit"), HELP("help"), SEARCH("search"), PICKUP("pickup"), DROP("drop"), INVENTORY("inventory"), UNKNOWN("?"), USE("use"), CALLTRUMP("call"), TALK("talk");
 
     /**
      * The entered command

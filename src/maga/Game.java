@@ -152,7 +152,7 @@ public class Game {
                 player.dropItems(command);
                 break;
 
-            case LIST:
+            case SEARCH:
                 step();
                 player.getCurrentRoom().printItems();
                 break;
