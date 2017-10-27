@@ -93,6 +93,11 @@ public abstract class Character {
         System.out.println("I don't want to talk with you.");
     }
     
+    /**
+     * Default pickupItems method
+     * @param command 
+     * @return
+     */
     public boolean pickupItems(Command command){
         return false;
     }

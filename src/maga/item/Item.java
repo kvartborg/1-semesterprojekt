@@ -47,7 +47,7 @@ public abstract class Item {
     }
     
     /**
-     * Setter for the name of the steak item
+     * Setter for the name of an item
      * @param name The new name of the steak item
      */
     public void setName(String name){
