@@ -203,7 +203,7 @@ public class Game {
 
          String[] possibleDirections = {"east", "west", "north", "south"};
 
-         String direction = possibleDirections[(int) Math.floor(Math.random()  * 3)];
+         String direction = possibleDirections[(int) Math.floor(Math.random()  * 4)];
 
          trump.goRoom(parser.createCommand("go", direction));
 
