@@ -53,12 +53,6 @@ public class Game {
     private Long startTime = System.currentTimeMillis() / 1000L;
 
     /**
-     * End time
-     */
-    private Long endTime;
-
-
-    /**
      * Create new instance of game
      */
     public Game() {
@@ -258,6 +252,7 @@ public class Game {
     /**
      * This method checks if the player has reached the press briefing room
      * after tweeting in order to win.
+     * If the player wins it prints out the score, steps taken and the time used.
      * @return true or false.
      */
     private boolean youWin(){
@@ -265,7 +260,15 @@ public class Game {
             player.getCurrentRoom() == environment.getRoom("Press briefing room") && 
             player.hasTweeted() == true
         ){
-            System.out.println("Congratulations, you won the game!");
+            long endTime = System.currentTimeMillis() / 1000L;
+            long elapsedTime = endTime - startTime;
+            long finalScore = 5000 - (elapsedTime * steps);
+            System.out.println("\nCongratulations, you won the game!");
+            System.out.println("\n---------------------------------------");
+            System.out.println("You made it in " + steps + " steps, in " + elapsedTime + " seconds!");
+            System.out.println("You scored: " + finalScore);
+            System.out.println("---------------------------------------");
+            
             return true;
         }
         return false;
