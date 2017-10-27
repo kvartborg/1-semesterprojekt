@@ -17,7 +17,7 @@ public class Trump extends Character {
     /**
      * Integer that sets how many rounds Trump should wait.
      */
-    private int roundsToWait=0;
+    private int roundsToWait = 0;
     /**
      * The name of the character
      */
@@ -44,21 +44,23 @@ public class Trump extends Character {
      * The method sets Trumps route to the steak item.
      * @param cleaningRoom is the room with the steak.
      * @param player
+     * @return returns an integer with points
      */
-    public void findSteak(Room cleaningRoom, Player player) { 
+    public int findSteak(Room cleaningRoom, Player player) { 
         if (player.getCurrentRoom() != cleaningRoom) {
             System.out.println("You have to be in the cleaning room to use this method.");
-            return; 
+            return 0; 
         }
         if (!player.hasItem("steak-with-ketchup")) {
             System.out.println("You can't call trump without a steak with ketchup");
-            return;
+            return 0;
         }
         this.setCurrentRoom(cleaningRoom);
         roundsToWait = 3; 
         player.dropItems(new Command(CommandWord.DROP, "steak-with-ketchup"));
         player.goRoom(new Command(CommandWord.GO, "south"));
         System.out.println("You called Trump to the cleaning room.");
+        return 5000;
     }
     /**
      * Simplified method for the character Trumps movement.
