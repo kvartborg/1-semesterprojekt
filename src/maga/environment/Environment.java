@@ -133,7 +133,9 @@ public final class Environment {
             new Key(rooms.get("Oval office"))
         });
     }
-
+    /**
+     * This method places the steak in the kitchen.
+     */
     private void placeItemsInKitchen() {
         rooms.get("Kitchen").addItems(new Item[] {
             new Steak()

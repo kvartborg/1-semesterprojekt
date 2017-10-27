@@ -170,6 +170,10 @@ public class Game {
             case USE:
                 player.useItem(command);
                 break;
+                
+            case CALLTRUMP:
+                trump.findSteak(environment.getRoom("Cleaning room"), player);
+                break;
         }
         if (youLose()) {
            return true;

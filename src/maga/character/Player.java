@@ -148,5 +148,28 @@ public class Player extends Character{
             }
         }
     }
+    
+    /**
+     * This method checks if the player has the item.
+     * @param name
+     * @return 
+     */
+    public boolean hasItem(String name) {
+        return getItem(name) != null; 
+    }
+    
+    /**
+     * This method is a getter method for our items.
+     * @param name
+     * @return return item or null
+     */
+    public Item getItem(String name) {
+        for (Item item : getItems()) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                return item;
+            }
+        }
+        return null;
+    }
 
 }
