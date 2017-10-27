@@ -20,8 +20,14 @@ public class Player extends Character{
      * The arraylist stores the items, that the player picks up.
      */
     private ArrayList<Item> items = new ArrayList<Item>();
-    private final int MAX_ITEMS = 2; 
-
+    /**
+     * Creating an attribute that sets the maximum items a player can carry.
+     */
+    private final int MAX_ITEMS = 2;
+    /**
+     * Creating an attribute to check if the player has tweeted.
+     */
+    private boolean tweeted = false;
     /**
      * A constructor for the player class
      */
@@ -164,6 +170,43 @@ public class Player extends Character{
         }
         character.talk(this);
         
+    }
+
+    /**
+     * Returns the state of tweeted.
+     * @return true of false.
+     */
+    public boolean hasTweeted() {
+        return this.tweeted;
+    }
+    /**
+     * When used changes the state of tweeted to true.
+     */
+    public void tweeted() {
+        this.tweeted = true;
+    }
+    
+    /**
+     * This method checks if the player has the item.
+     * @param name
+     * @return 
+     */
+    public boolean hasItem(String name) {
+        return getItem(name) != null; 
+    }
+    
+    /**
+     * This method is a getter method for our items.
+     * @param name
+     * @return return item or null
+     */
+    public Item getItem(String name) {
+        for (Item item : getItems()) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                return item;
+            }
+        }
+        return null;
     }
 
 }
