@@ -8,6 +8,8 @@ package maga.character;
 import java.util.ArrayList;
 import maga.command.Command;
 import maga.item.Item;
+import maga.item.Steak;
+import maga.command.CommandWord;
 
 /**
  *
@@ -43,6 +45,7 @@ public class Player extends Character{
      * @param command 
      * @return returns either false or true if the item is added.
      */
+    @Override
     public boolean pickupItems(Command command){
         if (isInventoryFull()) {
             System.out.println("Your inventory is full. ");
@@ -153,6 +156,20 @@ public class Player extends Character{
                 break;
             }
         }
+    }
+    
+    /**
+     * Interaction between the player and the cook
+     * @param character the cook the player interacts with
+     */
+    @Override
+    public void talk(Character character){
+        if (this.getCurrentRoom() != character.getCurrentRoom()) {
+            System.out.println("There's no one in the room.");
+            return;
+        }
+        character.talk(this);
+        
     }
 
     /**

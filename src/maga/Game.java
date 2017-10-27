@@ -165,9 +165,14 @@ public class Game {
                 player.useItem(command);
                 break;
                 
+            case TALK:
+                player.talk(cook);
+                break;
+
             case CALLTRUMP:
                 trump.findSteak(environment.getRoom("Cleaning room"), player);
                 break;
+            
         }
         if (youLose()) {
            return true;
