@@ -175,7 +175,7 @@ public class Game {
                 break;
 
             case CALLTRUMP:
-                trump.findSteak(environment.getRoom("Cleaning room"), player);
+                points += trump.findSteak(environment.getRoom("Cleaning room"), player);
                 break;
             
         }
