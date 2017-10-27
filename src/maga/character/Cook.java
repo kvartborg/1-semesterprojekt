@@ -21,10 +21,6 @@ public class Cook extends Character {
    public Cook() {
        super("Cook");
    }
-
-   /**
-    * getSteak method mising
-    */
    
    /**
     * Override method for the talk method
