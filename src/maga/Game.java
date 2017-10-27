@@ -264,13 +264,13 @@ public class Game {
             long elapsedTime = endTime - startTime;
             long finalScore = 2000 - (elapsedTime * steps);
             Console.print(
-            "",
-            "Congratulations, you won the game!",
-            "",
-            "---------------------------------------",
-            "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
-            "You scored: " + finalScore,
-            "---------------------------------------"
+                "",
+                "Congratulations, you won the game!",
+                "",
+                "---------------------------------------",
+                "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
+                "You scored: " + finalScore,
+                "---------------------------------------"
             );
             return true;
         }
