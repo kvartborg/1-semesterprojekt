@@ -17,7 +17,7 @@ public class Trump extends Character {
     /**
      * Integer that sets how many rounds Trump should wait.
      */
-    private int roundsToWait;
+    private int roundsToWait=0;
     /**
      * The name of the character
      */
@@ -50,13 +50,15 @@ public class Trump extends Character {
             System.out.println("You have to be in the cleaning room to use this method.");
             return; 
         }
-        if (player.hasItem("steak-with-ketchup")) {
-            this.setCurrentRoom(cleaningRoom);
-            roundsToWait = 3; 
-            player.dropItems(new Command(CommandWord.DROP, "steak-with-ketchup"));
-            player.goRoom(new Command(CommandWord.GO, "south"));
-            System.out.println("You called Trump to the cleaning room.");
+        if (!player.hasItem("steak-with-ketchup")) {
+            System.out.println("You can't call trump without a steak with ketchup");
+            return;
         }
+        this.setCurrentRoom(cleaningRoom);
+        roundsToWait = 3; 
+        player.dropItems(new Command(CommandWord.DROP, "steak-with-ketchup"));
+        player.goRoom(new Command(CommandWord.GO, "south"));
+        System.out.println("You called Trump to the cleaning room.");
     }
     /**
      * Simplified method for the character Trumps movement.
