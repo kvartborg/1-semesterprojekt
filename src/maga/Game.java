@@ -273,7 +273,7 @@ public class Game {
         }
         long endTime = System.currentTimeMillis() / 1000L;
         long elapsedTime = endTime - startTime;
-        long finalScore = 2000 - (elapsedTime * steps);
+        long finalScore = 5000 - (elapsedTime * steps);
         Console.print(
             "",
             "Congratulations, you won the game!",
