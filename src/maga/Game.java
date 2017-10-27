@@ -174,6 +174,9 @@ public class Game {
         if (youLose()) {
            return true;
         }
+        if (youWin()) {
+            return true;
+        }
 
         return wantToQuit;
     }
@@ -251,5 +254,20 @@ public class Game {
         }
         Console.print("You entered the same room as Trump, game lost.");
         return true;
+    }
+    /**
+     * This method checks if the player has reached the press briefing room
+     * after tweeting in order to win.
+     * @return true or false.
+     */
+    private boolean youWin(){
+        if(
+            player.getCurrentRoom() == environment.getRoom("Press briefing room") && 
+            player.hasTweeted() == true
+        ){
+            System.out.println("Congratulations, you won the game!");
+            return true;
+        }
+        return false;
     }
 }

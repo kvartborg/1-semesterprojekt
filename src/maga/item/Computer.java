@@ -43,10 +43,12 @@ public class Computer extends Item {
     /**
      * A "use" method for the item "computer", allows player to tweet a message,
      * and generate a random message if nothing is entered.
+     * After tweeting it changes the state of tweeted to true.
      * @param player 
      */
     @Override
     public void use(Player player){
+        player.tweeted();
         Scanner input = new Scanner(System.in);
         String[] twitterPage = {
             "",
