@@ -53,12 +53,6 @@ public class Game {
     private Long startTime = System.currentTimeMillis() / 1000L;
 
     /**
-     * End time
-     */
-    private Long endTime;
-
-
-    /**
      * Create new instance of game
      */
     public Game() {
@@ -178,6 +172,9 @@ public class Game {
         if (youLose()) {
            return true;
         }
+        if (youWin()) {
+            return true;
+        }
 
         return wantToQuit;
     }
@@ -254,6 +251,33 @@ public class Game {
            return false;
         }
         Console.print("You entered the same room as Trump, game lost.");
+        return true;
+    }
+    /**
+     * This method checks if the player has reached the press briefing room
+     * after tweeting in order to win.
+     * If the player wins it prints out the score, steps taken and the time used.
+     * @return true or false.
+     */
+    private boolean youWin(){
+        if(
+            player.getCurrentRoom() != environment.getRoom("Press briefing room") || 
+            !player.hasTweeted()
+        ){
+            return false;    
+        }
+        long endTime = System.currentTimeMillis() / 1000L;
+        long elapsedTime = endTime - startTime;
+        long finalScore = 2000 - (elapsedTime * steps);
+        Console.print(
+            "",
+            "Congratulations, you won the game!",
+            "",
+            "---------------------------------------",
+            "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
+            "You scored: " + finalScore,
+            "---------------------------------------"
+        );
         return true;
     }
 }
