@@ -204,7 +204,8 @@ public class Game {
     }
     
     /**
-     * 
+     * This method checks if the player and cook is in the same room
+     * and if they are they will interact with eachother.
      */
     private void interact() {
         if(player.getCurrentRoom() == cook.getCurrentRoom()) {
