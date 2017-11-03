@@ -184,6 +184,11 @@ public class Game {
                 points += trump.findSteak(environment.getRoom("Cleaning room"), player);
                 bonusTime += points/333;  
                 break;
+                
+            case WAIT:
+                System.out.println("You wait in the room.");
+                step();
+                break;
             
         }
         if (youLose()) {
