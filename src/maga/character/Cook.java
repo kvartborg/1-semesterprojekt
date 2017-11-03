@@ -5,6 +5,7 @@
  */
 package maga.character;
 
+import java.util.Scanner;
 import maga.command.Command;
 import maga.command.CommandWord;
 import maga.item.Steak;
@@ -24,13 +25,21 @@ public class Cook extends Character {
    
    /**
     * Override method for the talk method
-    * What's printed when the player uses the talk command
+    * This method interacts with the player.
     */
    @Override
    public void talk(Character character){
-        System.out.println("Hello, here's a steak for you!");
-        character.getCurrentRoom().addItem(new Steak());
-        character.pickupItems(new Command(CommandWord.PICKUP, "Steak"));
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Hello, do you want a steak?");
+        String answer = scanner.nextLine();
+        if("Yes".equalsIgnoreCase(answer)) {
+            System.out.println("Here you go");
+            character.getCurrentRoom().addItem(new Steak());
+            character.pickupItems(new Command(CommandWord.PICKUP, "Steak"));
+        }
+        else{
+            System.out.println("Well okay. Bye");
+        }
    }
 
 }

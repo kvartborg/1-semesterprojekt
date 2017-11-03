@@ -143,6 +143,7 @@ public class Game {
             case GO:
                 step();
                 player.goRoom(command);
+                interact();
                 break;
 
             case QUIT:
@@ -200,6 +201,15 @@ public class Game {
 
          steps++;
          Console.print(steps + " step(s) taken");
+    }
+    
+    /**
+     * 
+     */
+    private void interact() {
+        if(player.getCurrentRoom() == cook.getCurrentRoom()) {
+            cook.talk(player);
+        }
     }
     
     /**
