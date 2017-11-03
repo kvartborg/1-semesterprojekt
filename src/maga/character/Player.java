@@ -113,7 +113,7 @@ public class Player extends Character{
      * The method checks if the inventory is full.
      * @return returns a "true" or "false" value depending on how many items held.
      */
-    private boolean isInventoryFull() {
+    public boolean isInventoryFull() {
         return (this.items.size() >= MAX_ITEMS);
     }
     

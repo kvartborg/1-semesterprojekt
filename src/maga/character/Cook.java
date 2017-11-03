@@ -29,7 +29,12 @@ public class Cook extends Character {
     */
    @Override
    public void talk(Character character){
-        Scanner scanner = new Scanner(System.in);
+       Player player = (Player)character;
+       if(player.isInventoryFull()) {
+           System.out.println("Sorry mate, your inventory is full");
+           return;
+       } 
+       Scanner scanner = new Scanner(System.in);
         System.out.println("Hello, do you want a steak?");
         String answer = scanner.nextLine();
         if("Yes".equalsIgnoreCase(answer)) {
