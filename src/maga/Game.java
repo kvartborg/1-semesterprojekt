@@ -53,6 +53,11 @@ public class Game {
     private Long startTime = System.currentTimeMillis() / 1000L;
     
     /**
+     * Bonus time
+     */
+    private Long bonusTime = 0L; 
+    
+    /**
      * Integer that sets the point the player starts with.
      */
     private int points = 5000;
@@ -176,6 +181,7 @@ public class Game {
 
             case CALLTRUMP:
                 points += trump.findSteak(environment.getRoom("Cleaning room"), player);
+                bonusTime += points/333;  
                 break;
             
         }
@@ -279,7 +285,8 @@ public class Game {
         long endTime = System.currentTimeMillis() / 1000L;
         long elapsedTime = endTime - startTime;
         long finalScore = points - (elapsedTime * steps);
-        Console.print(
+        if (bonusTime == 0) {
+            Console.print(
             "",
             "Congratulations, you won the game!",
             "",
@@ -288,6 +295,20 @@ public class Game {
             "You scored: " + finalScore,
             "---------------------------------------"
         );
+        } else {
+            finalScore = points - ((elapsedTime - bonusTime) * steps);
+        Console.print(
+            "",
+            "Congratulations, you won the game!",
+            "",
+            "---------------------------------------",
+            "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
+            "You received a time bonus " + bonusTime + " seconds, for calling Trump!",
+            "Your time after receiving the bonus is: " + (elapsedTime-bonusTime) + " seconds!",
+            "You scored: " + finalScore,
+            "---------------------------------------"
+        );
+        }
         return true;
     }
 }
