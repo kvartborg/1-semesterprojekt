@@ -284,31 +284,19 @@ public class Game {
         }
         long endTime = System.currentTimeMillis() / 1000L;
         long elapsedTime = endTime - startTime;
-        long finalScore = points - (elapsedTime * steps);
-        if (bonusTime == 0) {
-            Console.print(
-            "",
-            "Congratulations, you won the game!",
-            "",
-            "---------------------------------------",
-            "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
-            "You scored: " + finalScore,
-            "---------------------------------------"
-        );
-        } else {
-            finalScore = points - ((elapsedTime - bonusTime) * steps);
+        long finalScore = points - ((elapsedTime - bonusTime) * steps);
         Console.print(
             "",
             "Congratulations, you won the game!",
             "",
             "---------------------------------------",
             "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
-            "You received a time bonus " + bonusTime + " seconds, for calling Trump!",
-            "Your time after receiving the bonus is: " + (elapsedTime-bonusTime) + " seconds!",
+            bonusTime > 0 ? "You received a time bonus: " + bonusTime + " seconds, for calling Trump!" : null,
+            bonusTime > 0 ? "Your time after receiving the bonus is: " + (elapsedTime-bonusTime) + " seconds!" : null,
             "You scored: " + finalScore,
             "---------------------------------------"
+             
         );
-        }
         return true;
     }
 }
