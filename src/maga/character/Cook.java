@@ -33,7 +33,7 @@ public class Cook extends Character {
         if(player.isInventoryFull()) {
            System.out.println("Sorry mate, your inventory is full");
            return;
-        } 
+        }
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello, do you want a steak?");
         String answer = scanner.nextLine();
