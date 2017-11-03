@@ -28,7 +28,12 @@ public class Cook extends Character {
     * This method interacts with the player.
     */
    @Override
-   public void talk(Character character){
+   public void talk(Character character) {
+        Player player = (Player)character;
+        if(player.isInventoryFull()) {
+           System.out.println("Sorry mate, your inventory is full");
+           return;
+        }
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello, do you want a steak?");
         String answer = scanner.nextLine();
@@ -36,8 +41,7 @@ public class Cook extends Character {
             System.out.println("Here you go");
             character.getCurrentRoom().addItem(new Steak());
             character.pickupItems(new Command(CommandWord.PICKUP, "Steak"));
-        }
-        else{
+        } else {
             System.out.println("Well okay. Bye");
         }
    }

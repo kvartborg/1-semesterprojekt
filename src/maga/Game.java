@@ -219,7 +219,7 @@ public class Game {
      * and if they are they will interact with eachother.
      */
     private void interact() {
-        if(player.getCurrentRoom() == cook.getCurrentRoom()) {
+        if(player.getCurrentRoom() == cook.getCurrentRoom() && !player.hasItem("Steak")) {
             cook.talk(player);
         }
     }
