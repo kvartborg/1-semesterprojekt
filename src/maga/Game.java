@@ -1,5 +1,6 @@
 package maga;
 
+import java.util.Arrays;
 import maga.environment.Environment;
 import maga.character.Cook;
 import maga.character.Trump;
@@ -8,6 +9,7 @@ import maga.command.Parser;
 import maga.command.Command;
 import maga.command.CommandWord;
 import maga.util.Console;
+import maga.highscore.HighScore;
 
 //TODO
 //Add steak to cook??
@@ -119,6 +121,11 @@ public class Game {
             trump.whereIsTrump(),
             player.getCurrentRoom().getLongDescription()
         );
+        HighScore highScore = new HighScore(); 
+        highScore.add("Rasmus", 5000);
+        highScore.add("Viktoria", -5000);
+        highScore.add("Anders", 10000); 
+        highScore.toXml();
     }
     /**
     * This method process the different commands and decide what they do.
