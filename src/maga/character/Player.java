@@ -8,8 +8,6 @@ package maga.character;
 import java.util.ArrayList;
 import maga.command.Command;
 import maga.item.Item;
-import maga.item.Steak;
-import maga.command.CommandWord;
 
 /**
  *

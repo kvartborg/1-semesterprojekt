@@ -8,9 +8,7 @@ import maga.command.Parser;
 import maga.command.Command;
 import maga.command.CommandWord;
 import maga.util.Console;
-
-//TODO
-//Add steak to cook??
+import maga.util.GameState;
 
 /**
  * @author  Michael Kolling and David J. Barnes
@@ -50,12 +48,12 @@ public class Game {
     /**
      * Start Time
      */
-    private Long startTime = System.currentTimeMillis() / 1000L;
+    private long startTime = System.currentTimeMillis() / 1000L;
     
     /**
      * Bonus time
      */
-    private Long bonusTime = 0L; 
+    private long bonusTime = 0L; 
     
     /**
      * Integer that sets the point the player starts with.
@@ -314,5 +312,17 @@ public class Game {
              
         );
         return true;
+    }
+    public void save(){
+        GameState.save(
+            steps, 
+            startTime, 
+            bonusTime, 
+            points, 
+            player, 
+            trump, 
+            cook, 
+            environment
+        );
     }
 }
