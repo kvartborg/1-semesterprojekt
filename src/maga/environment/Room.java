@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.HashMap;
 import maga.item.Item;
 import maga.item.Key;
+import maga.inventory.Inventory;
 
 
 /**
@@ -32,7 +33,7 @@ public class Room {
     /**
      * The array keeps the items
      */
-    private ArrayList<Item> items = new ArrayList<Item>();
+    private Inventory inventory = new Inventory();
 
     /**
      * Boolean for if the room is locked or not
@@ -95,34 +96,40 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-    
-    public String getName() {
-        return this.name;
-    }
-    
+
     /**
-     * This method is a getter method for the items
-     * @return returns the item
+     * Getter for the inventory instance
+     * @return inventory instance
      */
-    public ArrayList<Item> getItems() {
-       return this.items;
+    public Inventory getInventory () {
+        return this.inventory;
     }
 
     /**
-     * This method adds items to our array and turns the array into 
-     * an arraylist. 
+     * Getter for the name atrribute
+     * @return name of the room
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * This method adds items to our array and turns the array into
+     * an arraylist.
      * @param items
      */
     public void addItems(Item[] items) {
-       this.items = new ArrayList<>(Arrays.asList(items));
+       for (Item item : items) {
+           this.inventory.add(item);
+       }
     }
-    
+
     /**
      * This method adds items (used for dummy items).
-     * @param items 
+     * @param item
      */
-    public void addItem(Item items) {
-        this.items.add(items);
+    public void addItem(Item item) {
+        this.inventory.add(item);
     }
 
     /**
@@ -159,14 +166,14 @@ public class Room {
      * Prints the items in the room
      */
     public void printItems(){
-        if (items.isEmpty()) {
+        if (this.inventory.isEmpty()) {
             System.out.println("The room is empty");
         }
         else{
             System.out.println("The room contains: ");
-            for(Item item : items){
+            for(Item item : this.inventory){
                 System.out.println(item.getName());
             }
         }
-    }    
+    }
 }
