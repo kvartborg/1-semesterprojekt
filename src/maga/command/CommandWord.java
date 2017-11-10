@@ -21,7 +21,8 @@ public enum CommandWord {
     CALLTRUMP("call"),
     TALK("talk"),
     WAIT("wait"),
-    SAVE("save");
+    SAVE("save"),
+    LOAD("load");
 
     /**
      * The entered command

@@ -7,6 +7,7 @@ import maga.character.Player;
 import maga.command.Parser;
 import maga.command.Command;
 import maga.command.CommandWord;
+import maga.environment.Room;
 import maga.util.Console;
 import maga.util.GameState;
 
@@ -189,10 +190,18 @@ public class Game {
             case WAIT:
                 System.out.println("You wait in the room.");
                 step();
+                System.out.println(player.getCurrentRoom().getLongDescription());
                 break;
 
             case SAVE:
                 this.save();
+                break;
+            
+            case LOAD:
+                GameState.load(this);
+                System.out.println("Trump is currently in " + trump.getCurrentRoom().getShortDescription());
+                System.out.println(steps + " step(s) taken");
+                System.out.println(player.getCurrentRoom().getLongDescription());
                 break;
 
         }
@@ -334,5 +343,69 @@ public class Game {
                 cook,
                 environment
         );
+    }
+    
+    /**
+     * Getter for the player
+     * @return player
+     */
+    public Player getPlayer(){
+        return player;
+    }
+    
+    /**
+     * Getter for trump
+     * @return trump
+     */
+    public Trump getTrump(){
+        return trump;
+    }
+    
+    /**
+     * Getter for cook
+     * @return cook
+     */
+    public Cook getCook(){
+        return cook;
+    }
+    
+    /**
+     * Setter for steps
+     * @param steps
+     */
+    public void setSteps(int steps){
+        this.steps = steps;
+    }
+    
+    /**
+     * Setter for startTime
+     * @param startTime
+     */
+    public void setStartTime(long startTime){
+        this.startTime = startTime;
+    }
+    
+    /**
+     * Setter for bonusTime
+     * @param bonusTime
+     */
+    public void setBonusTime(long bonusTime){
+        this.bonusTime = bonusTime;
+    }
+    
+    /**
+     * Setter for points
+     * @param points
+     */
+    public void setPoints(int points){
+        this.points = points;
+    }
+    
+    /**
+     * Getter for environment
+     * @return environment
+     */
+    public Environment getEnvironment(){
+        return environment;
     }
 }
