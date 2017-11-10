@@ -22,12 +22,6 @@ public class Score {
     private int score; 
     
     /**
-     * No args construtor. 
-     */
-    public Score() {   
-    }
-    
-    /**
      * Constrcutor with name and score. 
      * @param name
      * @param score 
