@@ -7,9 +7,8 @@ import java.util.HashMap;
 import maga.item.Item;
 import maga.item.Key;
 
-
 /**
- * @author  Michael Kolling and David J. Barnes
+ * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
 public class Room {
@@ -20,8 +19,8 @@ public class Room {
     private String name;
 
     /**
-     * The String "description" is used when
-     * describing the room generated with the constructor
+     * The String "description" is used when describing the room generated with
+     * the constructor
      */
     private final String description;
     /**
@@ -41,6 +40,7 @@ public class Room {
 
     /**
      * A constructor for new rooms
+     *
      * @param name is the name of the new room
      * @param description is the description of the new room
      */
@@ -52,6 +52,7 @@ public class Room {
 
     /**
      * The method sets the exits for the current room
+     *
      * @param direction is the direction of the other rooms
      * @param neighbor is the name of the other rooms
      */
@@ -61,6 +62,7 @@ public class Room {
 
     /**
      * The method gets the short description of the room
+     *
      * @return description (only the name returns)
      */
     public String getShortDescription() {
@@ -69,19 +71,22 @@ public class Room {
 
     /**
      * The method gets the long description of the room
+     *
      * @return "You are ", the description and the exits of the current room
      */
     public String getLongDescription() {
         return "You are " + description + ".\n" + getExitString();
     }
+
     /**
      * Gets the exit for the current room
+     *
      * @return the exits from the room
      */
     private String getExitString() {
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
-        for(String exit : keys) {
+        for (String exit : keys) {
             returnString += " " + exit;
         }
         return returnString;
@@ -89,37 +94,41 @@ public class Room {
 
     /**
      * The method gets the room in the direction described
+     *
      * @param direction is the decider of what exit is used
      * @return the room in the decided direction
      */
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-    
+
     public String getName() {
         return this.name;
     }
-    
+
     /**
      * This method is a getter method for the items
+     *
      * @return returns the item
      */
     public ArrayList<Item> getItems() {
-       return this.items;
+        return this.items;
     }
 
     /**
-     * This method adds items to our array and turns the array into 
-     * an arraylist. 
+     * This method adds items to our array and turns the array into an
+     * arraylist.
+     *
      * @param items
      */
     public void addItems(Item[] items) {
-       this.items = new ArrayList<>(Arrays.asList(items));
+        this.items = new ArrayList<>(Arrays.asList(items));
     }
-    
+
     /**
      * This method adds items (used for dummy items).
-     * @param items 
+     *
+     * @param items
      */
     public void addItem(Item items) {
         this.items.add(items);
@@ -127,14 +136,16 @@ public class Room {
 
     /**
      * Check if a room is locked
+     *
      * @return boolean
      */
-    public boolean isLocked () {
+    public boolean isLocked() {
         return this.locked;
     }
 
     /**
      * Lock room
+     *
      * @return
      */
     public void lock() {
@@ -143,6 +154,7 @@ public class Room {
 
     /**
      * This method checks if the room is locked or not
+     *
      * @param key
      * @return returns if the key fits to the room
      */
@@ -156,17 +168,30 @@ public class Room {
     }
 
     /**
+     * This method unlocks room
+     */
+    public void unlock() {
+        this.locked = false;
+    }
+
+    /**
      * Prints the items in the room
      */
-    public void printItems(){
+    public void printItems() {
         if (items.isEmpty()) {
             System.out.println("The room is empty");
-        }
-        else{
+        } else {
             System.out.println("The room contains: ");
-            for(Item item : items){
+            for (Item item : items) {
                 System.out.println(item.getName());
             }
         }
-    }    
+    }
+
+    /**
+     * This method empties the room
+     */
+    public void empty() {
+        this.items = new ArrayList<Item>();
+    }
 }

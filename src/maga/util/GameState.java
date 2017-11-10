@@ -1,6 +1,8 @@
 package maga.util;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -17,11 +19,29 @@ import maga.character.Trump;
 import maga.environment.Environment;
 import maga.environment.Room;
 import maga.Game;
+import maga.item.Steak;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class GameState {
 
+    /**
+     * Creates a list of available items
+     */
+    public static List<Item> items = new ArrayList<Item>();
+
+    /**
+     * Saves the game in an XML file
+     *
+     * @param steps
+     * @param startTime
+     * @param bonusTime
+     * @param points
+     * @param player
+     * @param trump
+     * @param cook
+     * @param environment
+     */
     public static void save(int steps, long startTime, long bonusTime, int points, Player player, Trump trump, Cook cook, Environment environment) {
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -107,52 +127,112 @@ public class GameState {
 
     }
 
+    /**
+     * Loads the game from XML file
+     *
+     * @param game
+     */
     public static void load(Game game) {
-        try{
+        GameState.resetGame(game);
+        try {
             File file = new File("gameState.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(file);  
+            Document doc = dBuilder.parse(file);
             doc.getDocumentElement().normalize();
-//            System.out.println("Root element " + doc.getDocumentElement().getNodeName());
-            
+
             game.setSteps(Integer.parseInt(findElementByName(doc, "steps").getTextContent()));
             game.setPoints(Integer.parseInt(findElementByName(doc, "points").getTextContent()));
             game.setStartTime(Long.parseLong(findElementByName(doc, "startTime").getTextContent()));
             game.setBonusTime(Long.parseLong(findElementByName(doc, "bonusTime").getTextContent()));
-            
+
             NodeList playerList = doc.getElementsByTagName("player");
             Element playerElement = (Element) playerList.item(0);
+            if (playerElement.getAttribute("tweeted").equals("true")) {
+                game.getPlayer().tweeted();
+            }
             game.getPlayer().setCurrentRoom(game.getEnvironment().getRoom(playerElement.getElementsByTagName("room").item(0).getTextContent()));
-            
+            NodeList playerItems = playerElement.getElementsByTagName("item");
+            for (int i = 0; i < playerItems.getLength(); i++) {
+                Element item = (Element) playerItems.item(i);
+                game.getPlayer().addItem(GameState.findItem(item.getAttribute("name")));
+            }
+
             NodeList trumpList = doc.getElementsByTagName("trump");
             Element trumpElement = (Element) trumpList.item(0);
-            game.getTrump().setCurrentRoom(game.getEnvironment().getRoom(trumpElement.getElementsByTagName("room").item(0).getTextContent()));            
+            game.getTrump().setCurrentRoom(game.getEnvironment().getRoom(trumpElement.getElementsByTagName("room").item(0).getTextContent()));
 
             NodeList cookList = doc.getElementsByTagName("cook");
             Element cookElement = (Element) cookList.item(0);
-            game.getCook().setCurrentRoom(game.getEnvironment().getRoom(cookElement.getElementsByTagName("room").item(0).getTextContent()));             
-            
-//            for (int i = 0; i < list.getLength(); i++) {
-//                Node node = list.item(i);
-//                System.out.println(node);
-//                System.out.println("Curent element "+ node.getNodeName());
-//                Element element = (Element) node;
-//                System.out.println(element.getChildNodes().item(0).getTextContent());
-//                
-//            }
-        
-        } catch(Exception e){
-            e.printStackTrace();
+            game.getCook().setCurrentRoom(game.getEnvironment().getRoom(cookElement.getElementsByTagName("room").item(0).getTextContent()));
+
+            NodeList rooms = doc.getElementsByTagName("room");
+            for (int i = 0; i < rooms.getLength(); i++) {
+                Element roomElement = (Element) rooms.item(i);
+                Room room = game.getEnvironment().getRoom(roomElement.getAttribute("name"));
+                if (roomElement.getAttribute("locked").equals("true")) {
+                    room.lock();
+                }
+                NodeList items = roomElement.getElementsByTagName("item");
+                for (int j = 0; j < items.getLength(); j++) {
+                    Element item = (Element) items.item(j);
+                    room.addItem(findItem(item.getAttribute("name")));
+                }
+            }
+
+        } catch (Exception e) {
         }
-        
+
     }
-    
-    public static Node findElementByName(Document doc, String name){
+
+    /**
+     * This method finds an item in items ArrayList
+     *
+     * @param doc
+     * @param name
+     * @return Node
+     */
+    public static Node findElementByName(Document doc, String name) {
         NodeList list = doc.getElementsByTagName(name);
         Element element = (Element) list.item(0);
         return element.getChildNodes().item(0);
     }
-    
-    
+
+    /**
+     * Resets the game
+     *
+     * @param game
+     */
+    public static void resetGame(Game game) {
+        GameState.items.add(new Steak());
+        for (Item item : game.getPlayer().getItems()) {
+            GameState.items.add(item);
+        }
+        game.getPlayer().removeItems();
+
+        for (Room room : game.getEnvironment().getRooms().values()) {
+            for (Item item : room.getItems()) {
+                GameState.items.add(item);
+            }
+            room.empty();
+            room.unlock();
+        }
+    }
+
+    /**
+     * This method makes it possible to search the items arraylist on in
+     * GameState
+     *
+     * @param name
+     * @return item
+     */
+    public static Item findItem(String name) {
+        for (Item item : GameState.items) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
 }
