@@ -12,3 +12,4 @@ nbproject/build-impl.xml
 out/
 *.iml
 gameState.xml
+highScore.xml
