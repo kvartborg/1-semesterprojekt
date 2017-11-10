@@ -1,6 +1,7 @@
 package maga;
 
 import java.util.Arrays;
+import java.util.Scanner;
 import maga.environment.Environment;
 import maga.character.Cook;
 import maga.character.Trump;
@@ -63,11 +64,17 @@ public class Game {
      * Integer that sets the point the player starts with.
      */
     private int points = 5000;
+    
+    /**
+     * Creates an instance of highscore.
+     */
+    private HighScore highScore = new HighScore();
 
     /**
      * Create new instance of game
      */
     public Game() {
+        highScore.loadXml();
         environment = new Environment();
         player = new Player();
         trump = new Trump();
@@ -121,11 +128,6 @@ public class Game {
             trump.whereIsTrump(),
             player.getCurrentRoom().getLongDescription()
         );
-        HighScore highScore = new HighScore(); 
-        highScore.add("Rasmus", 5000);
-        highScore.add("Viktoria", -5000);
-        highScore.add("Anders", 10000); 
-        highScore.toXml();
     }
     /**
     * This method process the different commands and decide what they do.
@@ -294,8 +296,9 @@ public class Game {
     }
     /**
      * This method checks if the player has reached the press briefing room
-     * after tweeting in order to win.
+     * after tweeting in order to win. 
      * If the player wins it prints out the score, steps taken and the time used.
+     * It also asks if you want to save your score.
      * @return true or false.
      */
     private boolean youWin(){
@@ -317,9 +320,22 @@ public class Game {
             bonusTime > 0 ? "You received a time bonus: " + bonusTime + " seconds, for calling Trump!" : null,
             bonusTime > 0 ? "Your time after receiving the bonus is: " + (elapsedTime-bonusTime) + " seconds!" : null,
             "You scored: " + finalScore,
-            "---------------------------------------"
-             
+            "---------------------------------------"  
+                
         );
+        Scanner input = new Scanner(System.in);
+        System.out.println("Do you want to save your score? (Yes or no)");
+        String answer = input.nextLine();
+        if(answer.equalsIgnoreCase("Yes")) {
+            System.out.println("Please enter your name to save your score: ");
+            String playerName = input.nextLine();
+            highScore.add(playerName, (int) finalScore);
+            highScore.toXml();
+        }
+        else{
+            System.out.println("You didn't save your score!");
+        }
+        highScore.printHighScore();
         return true;
     }
 }

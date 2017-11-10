@@ -5,6 +5,7 @@
  */
 package maga.highscore;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilder;
@@ -14,8 +15,11 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import maga.util.Console;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -60,7 +64,6 @@ public class HighScore {
     }
     /**
      * This method makes our highScore into an XML file. 
-     * @return 
      */
     public void toXml() {
         try{
@@ -85,11 +88,41 @@ public class HighScore {
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             DOMSource source = new DOMSource(doc);  
-            StreamResult consoleResult = new StreamResult(System.out);
-            transformer.transform(source, consoleResult); 
+            StreamResult result = new StreamResult(new File("highScore.xml"));
+            transformer.transform(source, result); 
         } catch(Exception e) {
             
         }
     }
-    
+    /**
+     * This method loads our highscores from the xml file.
+     */
+    public void loadXml() {
+        try {
+            File inputFile = new File ("highScore.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder(); 
+            Document doc = dBuilder.parse(inputFile); 
+            doc.getDocumentElement().normalize();
+            NodeList nList = doc.getElementsByTagName("score");
+            for (int i = 0; i <nList.getLength(); i++) {
+                Node nNode = nList.item(i);
+                
+                if(nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    this.add(
+                        eElement.getAttribute("name"), 
+                        Integer.parseInt(eElement.getAttribute("score"))
+                    );
+                }
+            }
+        } catch (Exception e) {}
+    }
+    /**
+     * This method prints the highscores.
+     */
+    public void printHighScore() {
+        System.out.println("\nHighscores:");
+        System.out.println(this.toString());
+    }
 }
