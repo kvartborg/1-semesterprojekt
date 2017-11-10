@@ -10,16 +10,15 @@ import maga.command.Parser;
 import maga.command.Command;
 import maga.command.CommandWord;
 import maga.util.Console;
+import maga.util.GameState;
 import maga.highscore.HighScore;
 
-//TODO
-//Add steak to cook??
-
 /**
- * @author  Michael Kolling and David J. Barnes
+ * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
 public class Game {
+
     /**
      * parser attribute, an instance from the Parser class.
      */
@@ -53,13 +52,13 @@ public class Game {
     /**
      * Start Time
      */
-    private Long startTime = System.currentTimeMillis() / 1000L;
-    
+    private long startTime = System.currentTimeMillis() / 1000L;
+
     /**
      * Bonus time
      */
-    private Long bonusTime = 0L; 
-    
+    private long bonusTime = 0L;
+
     /**
      * Integer that sets the point the player starts with.
      */
@@ -87,59 +86,61 @@ public class Game {
     }
 
     /**
-    * This method called play is what decides when the game is done.
-    *
-    * The method starts with the printWelcome when the game is started, which
-    * is printed in the method after. The code then sets a boolean that sets
-    * the finished to false. After a while loop with the condition not finished
-    * is made that checks what command the user has used. When the game is finished
-    * it jumps out the while loop and prints a string.
-    */
+     * This method called play is what decides when the game is done.
+     *
+     * The method starts with the printWelcome when the game is started, which
+     * is printed in the method after. The code then sets a boolean that sets
+     * the finished to false. After a while loop with the condition not finished
+     * is made that checks what command the user has used. When the game is
+     * finished it jumps out the while loop and prints a string.
+     */
     public void play() {
         printWelcome();
 
         boolean finished = false;
-        while (! finished) {
+        while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
         Console.print("Thank you for playing. Goodbye.");
     }
+
     /**
-    * This method prints strings when the game is started.
-    *
-    * The game first prints several strings with a welcoming message. It also
-    * gives a command that you can use to get help with the game. In the final
-    * line it also prints a description of the room you start in.
-    */
+     * This method prints strings when the game is started.
+     *
+     * The game first prints several strings with a welcoming message. It also
+     * gives a command that you can use to get help with the game. In the final
+     * line it also prints a description of the room you start in.
+     */
     private void printWelcome() {
         Console.print(
-            "",
-            "Welcome and thank you for playing Make America Great Again. 🇺🇸",
-            "The goal is to un-\"fake\" the news as Donald Trump.",
-            "On your mission, you'll be able to carry two items at a time.",
-            "You must lure Trump away, "
+                "",
+                "Welcome and thank you for playing Make America Great Again. 🇺🇸",
+                "The goal is to un-\"fake\" the news as Donald Trump.",
+                "On your mission, you'll be able to carry two items at a time.",
+                "You must lure Trump away, "
                 + "send a tweet of redemption from Trumps PC, "
-                    + "\nand escape to the Press Briefing Room.",
-            "If you encounter Trump, the game is over!",
-            "Enjoy!",
-            "Type '" + CommandWord.HELP + "' if you need help.",
-            "",
-            trump.whereIsTrump(),
-            player.getCurrentRoom().getLongDescription()
+                + "\nand escape to the Press Briefing Room.",
+                "If you encounter Trump, the game is over!",
+                "Enjoy!",
+                "Type '" + CommandWord.HELP + "' if you need help.",
+                "",
+                trump.whereIsTrump(),
+                player.getCurrentRoom().getLongDescription()
         );
     }
+
     /**
-    * This method process the different commands and decide what they do.
-    *
-    * The method is a switch depending on what command the user
-    * has chosen to use. It gives different options on what will happen
-    * if the user uses an unknown command or if the user uses a known command.
-    * If youLose is true then the game is over.
-    *
-    * @param command
-    * @return boolean (wantToQuit, false or true)
-    */
+     * This method process the different commands and decide what they do.
+     *
+     * The method is a switch depending on what command the user has chosen to
+     * use. It gives different options on what will happen if the user uses an
+     * unknown command or if the user uses a known command. If youLose is true
+     * then the game is over.
+     *
+     * @param command
+     * @return boolean (wantToQuit, false or true)
+     */
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
@@ -151,8 +152,8 @@ public class Game {
                 return false;
 
             case HELP:
-                 printHelp();
-                 break;
+                printHelp();
+                break;
 
             case GO:
                 step();
@@ -180,28 +181,40 @@ public class Game {
             case INVENTORY:
                 player.printInventory();
                 break;
-            
+
             case USE:
                 player.useItem(command);
                 break;
-                
+
             case TALK:
                 player.talk(cook);
                 break;
 
             case CALLTRUMP:
                 points += trump.findSteak(environment.getRoom("Cleaning room"), player);
-                bonusTime += points/333;  
+                bonusTime += points / 333;
                 break;
-                
+
             case WAIT:
                 System.out.println("You wait in the room.");
                 step();
+                System.out.println(player.getCurrentRoom().getLongDescription());
                 break;
-            
+
+            case SAVE:
+                this.save();
+                break;
+
+            case LOAD:
+                GameState.load(this);
+                System.out.println("Trump is currently in " + trump.getCurrentRoom().getShortDescription());
+                System.out.println(steps + " step(s) taken");
+                System.out.println(player.getCurrentRoom().getLongDescription());
+                break;
+
         }
         if (youLose()) {
-           return true;
+            return true;
         }
         if (youWin()) {
             return true;
@@ -211,70 +224,72 @@ public class Game {
     }
 
     /**
-     * Every time Player makes a move, the counter "steps" increments, and
-     * Trump moves to a new random location.
+     * Every time Player makes a move, the counter "steps" increments, and Trump
+     * moves to a new random location.
+     *
      * @param command
      */
     private void step() {
 
-         randomizeTrump();
+        randomizeTrump();
 
-         steps++;
-         Console.print(steps + " step(s) taken");
+        steps++;
+        Console.print(steps + " step(s) taken");
     }
-    
+
     /**
-     * This method checks if the player and cook is in the same room
-     * and if they are they will interact with eachother.
+     * This method checks if the player and cook is in the same room and if they
+     * are they will interact with eachother.
      */
     private void interact() {
-        if(player.getCurrentRoom() == cook.getCurrentRoom() && !player.hasItem("Steak")) {
+        if (player.getCurrentRoom() == cook.getCurrentRoom() && !player.hasItem("Steak")) {
             cook.talk(player);
         }
     }
-    
+
     /**
-     * Method to randomize the movement of the "Trump" character. 
-     * The method uses "Math" to choose a random direction.
+     * Method to randomize the movement of the "Trump" character. The method
+     * uses "Math" to choose a random direction.
      */
     private void randomizeTrump() {
 
-         String[] possibleDirections = {"east", "west", "north", "south"};
+        String[] possibleDirections = {"east", "west", "north", "south"};
 
-         String direction = possibleDirections[(int) Math.floor(Math.random()  * 4)];
+        String direction = possibleDirections[(int) Math.floor(Math.random() * 4)];
 
-         trump.goRoom(parser.createCommand("go", direction));
+        trump.goRoom(parser.createCommand("go", direction));
 
     }
+
     /**
-    * This method prints a strings to help the user.
-    *
-    * The method prints strings with what the game is about and prints
-    * what different commands the user has if the user uses the command help.
-    */
+     * This method prints a strings to help the user.
+     *
+     * The method prints strings with what the game is about and prints what
+     * different commands the user has if the user uses the command help.
+     */
     private void printHelp() {
         Console.print(
-            "You are lost. You are alone. You wander",
-            "around at The White House.",
-            "",
-            "Your command words are:"
+                "You are lost. You are alone. You wander",
+                "around at The White House.",
+                "",
+                "Your command words are:"
         );
         parser.showCommands();
     }
 
     /**
-    * This method quits the game.
-    *
-    * The method decides what happens when the user uses the quit command.
-    * It first checks if the user posted a second word when quitting, returns
-    * false if it has. If the user doesnt have a second word after quit, then
-    * its true and therefore quits the game.
-    *
-    * @param command
-    * @return boolean (false if second word, true if not)
-    */
+     * This method quits the game.
+     *
+     * The method decides what happens when the user uses the quit command. It
+     * first checks if the user posted a second word when quitting, returns
+     * false if it has. If the user doesnt have a second word after quit, then
+     * its true and therefore quits the game.
+     *
+     * @param command
+     * @return boolean (false if second word, true if not)
+     */
     private boolean quit(Command command) {
-        if(command.hasSecondWord()) {
+        if (command.hasSecondWord()) {
             Console.print("Quit what?");
             return false;
         } else {
@@ -283,30 +298,30 @@ public class Game {
     }
 
     /**
-     * This method checks if the player is in the same room as Trump.
-     * If you are then the game is lost.
+     * This method checks if the player is in the same room as Trump. If you are
+     * then the game is lost.
+     *
      * @return returns true or false
      */
-    private boolean youLose(){
+    private boolean youLose() {
         if (player.getCurrentRoom() != trump.getCurrentRoom()) {
-           return false;
+            return false;
         }
         Console.print("You entered the same room as Trump, game lost.");
         return true;
     }
+
     /**
      * This method checks if the player has reached the press briefing room
-     * after tweeting in order to win. 
+     * after tweeting in order to win.
      * If the player wins it prints out the score, steps taken and the time used.
      * It also asks if you want to save your score.
      * @return true or false.
      */
-    private boolean youWin(){
-        if(
-            player.getCurrentRoom() != environment.getRoom("Press briefing room") || 
-            !player.hasTweeted()
-        ){
-            return false;    
+    private boolean youWin() {
+        if (player.getCurrentRoom() != environment.getRoom("Press briefing room")
+                || !player.hasTweeted()) {
+            return false;
         }
         long endTime = System.currentTimeMillis() / 1000L;
         long elapsedTime = endTime - startTime;
@@ -321,7 +336,6 @@ public class Game {
             bonusTime > 0 ? "Your time after receiving the bonus is: " + (elapsedTime-bonusTime) + " seconds!" : null,
             "You scored: " + finalScore,
             "---------------------------------------"  
-                
         );
         Scanner input = new Scanner(System.in);
         System.out.println("Do you want to save your score? (Yes or no)");
@@ -337,5 +351,93 @@ public class Game {
         }
         highScore.printHighScore();
         return true;
+    }
+
+    /**
+     * Calls the gamestate save method
+     */
+    public void save() {
+        GameState.save(
+                steps,
+                startTime,
+                bonusTime,
+                points,
+                player,
+                trump,
+                cook,
+                environment
+        );
+    }
+
+    /**
+     * Getter for the player
+     *
+     * @return player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
+     * Getter for trump
+     *
+     * @return trump
+     */
+    public Trump getTrump() {
+        return trump;
+    }
+
+    /**
+     * Getter for cook
+     *
+     * @return cook
+     */
+    public Cook getCook() {
+        return cook;
+    }
+
+    /**
+     * Setter for steps
+     *
+     * @param steps
+     */
+    public void setSteps(int steps) {
+        this.steps = steps;
+    }
+
+    /**
+     * Setter for startTime
+     *
+     * @param startTime
+     */
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     * Setter for bonusTime
+     *
+     * @param bonusTime
+     */
+    public void setBonusTime(long bonusTime) {
+        this.bonusTime = bonusTime;
+    }
+
+    /**
+     * Setter for points
+     *
+     * @param points
+     */
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    /**
+     * Getter for environment
+     *
+     * @return environment
+     */
+    public Environment getEnvironment() {
+        return environment;
     }
 }

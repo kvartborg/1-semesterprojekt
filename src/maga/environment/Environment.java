@@ -149,4 +149,8 @@ public final class Environment {
            rooms.get(randomRoom).addItem(dummyItem);
        }
     }
+    
+    public HashMap<String, Room> getRooms(){
+        return rooms;
+    }
 }
