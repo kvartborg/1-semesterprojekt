@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import maga.command.Command;
 import maga.item.Item;
 import maga.item.Steak;
+import maga.inventory.Inventory;
 import maga.command.CommandWord;
 
 /**
@@ -19,11 +20,8 @@ public class Player extends Character{
     /**
      * The arraylist stores the items, that the player picks up.
      */
-    private ArrayList<Item> items = new ArrayList<Item>();
-    /**
-     * Creating an attribute that sets the maximum items a player can carry.
-     */
-    private final int MAX_ITEMS = 2;
+    private Inventory inventory = new Inventory(2);
+
     /**
      * Creating an attribute to check if the player has tweeted.
      */
@@ -37,105 +35,98 @@ public class Player extends Character{
 
     /**
      * The method adds items to the arraylist.
-     * 
-     * The method checks if the item that you want to add is in the 
+     *
+     * The method checks if the item that you want to add is in the
      * room that the player is in. If it is and you write it correct
      * then it adds an item to the ArrayList.
-     * 
-     * @param command 
+     *
+     * @param command
      * @return returns either false or true if the item is added.
      */
     @Override
     public boolean pickupItems(Command command){
-        if (isInventoryFull()) {
+        if (this.inventory.isFull()) {
             System.out.println("Your inventory is full. ");
             return false;
         }
-        
+
         if(!command.hasSecondWord()) {
             System.out.println("Pickup what?");
             return false;
         }
-        for (Item item : getCurrentRoom().getItems()) {
-            if(
-                item.getName().equalsIgnoreCase(command.getSecondWord())
-            ) { 
-                if(!item.isMoveable()) {
-                    System.out.println("This item can not be picked up");
-                    return false; 
-                }
-                System.out.println("You picked up: " + item.getName());
-                getCurrentRoom().getItems().remove(item); 
-                return items.add(item); 
-    
-            }
-        } 
-        System.out.println("There is no item in this room with that name.");
-        return false; 
-            
+
+        if (!getCurrentRoom().getInventory().contains(command.getSecondWord())) {
+            System.out.println("There is no item in this room with that name.");
+            return false;
+        }
+
+        Item item = getCurrentRoom().getInventory().get(command.getSecondWord());
+
+        if (!item.isMoveable()) {
+            System.out.println("This item can not be picked up");
+            return false;
+        }
+
+        System.out.println("You picked up: " + item.getName());
+        getCurrentRoom().getInventory().remove(item);
+        return this.inventory.add(item);
+
     }
     /**
-     * This method drops items from the arraylist. 
-     * 
+     * This method drops items from the arraylist.
+     *
      * The method checks if the item you want to drop is in the ArrayList
      * if it is then it addxs the item into the rooms ArrayList and removes
-     * it from the players ArrayList. 
-     * 
+     * it from the players ArrayList.
+     *
      * @param command
-     * @return returns either false or true if the item is dropped. 
+     * @return returns either false or true if the item is dropped.
      */
     public boolean dropItems(Command command) {
         if(!command.hasSecondWord()) {
             System.out.println("Drop what?");
             return false;
-        }   
-        for (Item item : getItems()) {
-            if (item.getName().equalsIgnoreCase(command.getSecondWord())) {
-                System.out.println("You dropped: " + item.getName());
-                getCurrentRoom().getItems().add(item); 
-                return items.remove(item);
-            } 
-            
         }
-        System.out.println("You have no item with that name.");
-        return false; 
-      
-    }
-    /**
-     * The method displays the items currently held.
-     * @return
-     */
-    public ArrayList<Item> getItems() {
-        return items;
+
+        if (!this.inventory.contains(command.getSecondWord())) {
+            System.out.println("You have no item with that name.");
+            return false;
+        }
+
+        Item item = this.inventory.get(command.getSecondWord());
+
+        System.out.println("You dropped: " + item.getName());
+        getCurrentRoom().getInventory().add(item);
+        return this.inventory.remove(item);
     }
 
     /**
-     * The method checks if the inventory is full.
-     * @return returns a "true" or "false" value depending on how many items held.
+     * Getter for the inventory
+     * @return the instance of the inventory
      */
-    public boolean isInventoryFull() {
-        return (this.items.size() >= MAX_ITEMS);
+    public Inventory getInventory () {
+        return this.inventory;
     }
-    
+
     /**
      * Prints the items in the players inventory
      */
     public void printInventory(){
-        if (getItems().isEmpty()) {
+        if (this.inventory.isEmpty()) {
             System.out.println("Your inventory is empty.");
-        } else{
+        } else {
             System.out.println("Your inventory contains: ");
-            for(Item item : getItems()){
+            for(Item item : this.inventory){
                 System.out.println(item.getName());
             }
-            System.out.println("");   
+            System.out.println("");
         }
     }
-    
+
     /**
-     * Creates a "use" method that requires a second word, and 
-     * looks for the item to be used in the inventory. 
-     * @param command 
+     * Creates a "use" method that requires a second word, and
+     * looks for the item to be used in the inventory.
+     * @param command
      */
     public void useItem(Command command) {
         if(!command.hasSecondWord()) {
@@ -143,21 +134,22 @@ public class Player extends Character{
             return;
         }
         String itemName = command.getSecondWord();
-        
-        for(Item item : this.items) {
+
+        for(Item item : this.inventory) {
             if(item.getName().equalsIgnoreCase(itemName)){
                 item.use(this);
                 break;
             }
         }
-        for(Item item : this.getCurrentRoom().getItems()) {
+
+        for(Item item : this.getCurrentRoom().getInventory()) {
             if(item.getName().equalsIgnoreCase(itemName)){
                 item.use(this);
                 break;
             }
         }
     }
-    
+
     /**
      * Interaction between the player and the cook
      * @param character the cook the player interacts with
@@ -185,28 +177,23 @@ public class Player extends Character{
     public void tweeted() {
         this.tweeted = true;
     }
-    
+
     /**
      * This method checks if the player has the item.
      * @param name
-     * @return 
+     * @return
      */
     public boolean hasItem(String name) {
-        return getItem(name) != null; 
+        return getItem(name) != null;
     }
-    
+
     /**
      * This method is a getter method for our items.
      * @param name
      * @return return item or null
      */
     public Item getItem(String name) {
-        for (Item item : getItems()) {
-            if (item.getName().equalsIgnoreCase(name)) {
-                return item;
-            }
-        }
-        return null;
+        return this.inventory.get(name);
     }
 
 }

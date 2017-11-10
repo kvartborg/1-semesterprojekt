@@ -28,21 +28,21 @@ public class Steak extends Item {
     public boolean hasKetchup(){
         return this.ketchup;
     }
-    
+
     /**
      * Creates a "use" method for the "Steak" item. The method searches for
      * a "Ketchup" item, and cant be used if there isn't one in the inventory.
-     * @param player 
+     * @param player
      */
     @Override
     public void use(Player player) {
-        for(Item item : player.getItems()) {
+        for(Item item : player.getInventory()) {
             if(item.getName().equals("Ketchup")){
                 this.ketchup = true;
                 this.setName("Steak-with-ketchup");
                 System.out.println("The steak now has ketchup on it.");
                 return;
-            } 
+            }
         }
         System.out.println("You need ketchup to use the steak.");
     }

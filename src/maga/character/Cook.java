@@ -30,7 +30,7 @@ public class Cook extends Character {
    @Override
    public void talk(Character character) {
         Player player = (Player)character;
-        if(player.isInventoryFull()) {
+        if(player.getInventory().isFull()) {
            System.out.println("Sorry mate, your inventory is full");
            return;
         }
