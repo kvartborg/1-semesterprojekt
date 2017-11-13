@@ -68,7 +68,7 @@ public class Game {
      * Creates an instance of highscore.
      */
     private HighScore highScore = new HighScore();
-
+    
     /**
      * Create new instance of game
      */
@@ -98,10 +98,10 @@ public class Game {
         printWelcome();
 
         boolean finished = false;
-        while (!finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
+//        while (!finished) {
+          //  Command command = parser.getCommand();
+            //finished = processCommand(command);
+        //}
         Console.print("Thank you for playing. Goodbye.");
     }
 
@@ -439,5 +439,9 @@ public class Game {
      */
     public Environment getEnvironment() {
         return environment;
+    }
+    
+    public void run(String command, String argument) {
+        this.processCommand(this.parser.createCommand(command, argument));
     }
 }
