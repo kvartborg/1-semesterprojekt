@@ -38,8 +38,14 @@ public class Room {
      */
     private Boolean locked = false;
     
+    /**
+     * Attribute for the collum index related to a room.
+     */
     private int x;
     
+    /**
+     * Attribute for the row index related to a room.
+     */
     private int y;
 
     /**
@@ -56,10 +62,18 @@ public class Room {
         this.y = y;
     }
     
+    /**
+     * Accessor method for x.
+     * @return x
+     */
     public int getX() {
         return x;
     }
     
+    /**
+     * Accessor method for y.
+     * @return y
+     */
     public int getY() {
         return y;
     }
@@ -159,8 +173,6 @@ public class Room {
 
     /**
      * Lock room
-     *
-     * @return
      */
     public void lock() {
         this.locked = true;
