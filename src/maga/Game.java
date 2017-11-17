@@ -441,6 +441,11 @@ public class Game {
         return environment;
     }
     
+    /**
+     * Method to make the player 
+     * @param command
+     * @param argument 
+     */
     public void run(String command, String argument) {
         this.processCommand(this.parser.createCommand(command, argument));
     }
