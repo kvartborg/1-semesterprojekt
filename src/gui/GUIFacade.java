@@ -9,8 +9,8 @@ import acq.IGUI;
 import acq.IGame;
 
 /**
+ * Gui facade which implements the inferface for GUI
  *
- * @author mikkellarsen
  */
 public class GUIFacade implements IGUI {
 

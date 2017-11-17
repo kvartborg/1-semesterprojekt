@@ -6,12 +6,9 @@
 package acq;
 
 /**
- *
- * @author mikkellarsen
+ * Interface for GUI
  */
 public interface IGUI {
-
-    public void printHello();
 
     public void injectGame(IGame game);
 }

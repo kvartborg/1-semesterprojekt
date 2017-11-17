@@ -6,8 +6,7 @@
 package acq;
 
 /**
- *
- * @author mikkellarsen
+ * Interface for Data
  */
 public interface IData {
 

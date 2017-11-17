@@ -6,8 +6,7 @@
 package acq;
 
 /**
- *
- * @author mikkellarsen
+ * Interface for game
  */
 public interface IGame {
 
