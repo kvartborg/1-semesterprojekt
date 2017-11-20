@@ -19,6 +19,7 @@ import maga.character.Trump;
 import maga.environment.Environment;
 import maga.environment.Room;
 import maga.Game;
+import maga.highscore.HighScore;
 import maga.item.Steak;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -182,6 +183,27 @@ public class GameState {
             doc.getDocumentElement().normalize();
             highscore.load(doc.getElementsByTagName("score"), null);
         } catch (Exception e) {}
+    }
+
+    public static void saveHighScore (HighScore highScore) {
+        try{
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.newDocument();
+
+            doc.appendChild(highScore.serialize(doc));
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("highScore.xml"));
+            transformer.transform(source, result);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

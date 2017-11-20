@@ -22,85 +22,69 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import maga.util.Serializable;
 
 
 /**
  *
  * @author ander
  */
-public class HighScore implements Loadable{
-    
+public class HighScore implements Serializable, Loadable {
+  
     /**
-     * An ArrayList to store the players highScore. 
+     * An ArrayList to store the players highScore.
      */
-     ArrayList<Score> highScore = new ArrayList(); 
-     
+     ArrayList<Score> highScore = new ArrayList();
+
     /**
-     * An add method to add a name and a score to the ArrayList. 
+     * An add method to add a name and a score to the ArrayList.
      * @param name
-     * @param score 
+     * @param score
      */
-    public void add(String name, int score) {        
+    public void add(String name, int score) {
         highScore.add(new Score(name, score));
-        this.sort();  
+        this.sort();
     }
-    
+
     /**
-     * A method to sort the highScore so the one with the highest score is first. 
+     * A method to sort the highScore so the one with the highest score is first.
      */
     private void sort() {
         ScoreComparator comparator = new ScoreComparator();
-        Collections.sort(highScore, comparator); 
+        Collections.sort(highScore, comparator);
     }
-    
+
     /**
-     * A method to return our highScore as an string.  
+     * A method to return our highScore as an string.
      * @return string
      */
     @Override
     public String toString() {
-        String text = ""; 
+        String text = "";
         for (Score score : highScore) {
             text += score.getName() + ": " + score.getScore() + "\n";
         }
-        return text; 
+        return text;
     }
     /**
-     * This method makes our highScore into an XML file. 
+     *  Serialize highscore to xml
      */
-    public void toXml() {
-        try{
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder(); 
-            Document doc = dBuilder.newDocument(); 
-            
-            Element highscore = doc.createElement("highscore");
-            doc.appendChild(highscore); 
-            
-            for (Score score : highScore) {
-                Element scoreNode = doc.createElement("score"); 
-                scoreNode.setAttribute("name", score.getName());
-                scoreNode.setAttribute("score", Integer.toString(score.getScore()));
-                highscore.appendChild(scoreNode);
-                
-            }
-            
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer(); 
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-            DOMSource source = new DOMSource(doc);  
-            StreamResult result = new StreamResult(new File("highScore.xml"));
-            transformer.transform(source, result); 
-        } catch(Exception e) {
-            
+    public Element serialize(Document doc) {
+        Element root = doc.createElement("highscore");
+
+        for (Score score : highScore) {
+            Element scoreNode = doc.createElement("score");
+            scoreNode.setAttribute("name", score.getName());
+            scoreNode.setAttribute("score", Integer.toString(score.getScore()));
+            root.appendChild(scoreNode);
+
         }
+
+        return root;
     }
     /**
      * This method loads our highscores from the xml file.
      */
-    
     @Override
     public void load(NodeList list, Environment environment) {
         for (int i = 0; i < list.getLength(); i++) {
@@ -115,6 +99,7 @@ public class HighScore implements Loadable{
             }
         }
     }
+  
     /**
      * This method prints the highscores.
      */
