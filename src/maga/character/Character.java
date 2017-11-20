@@ -138,9 +138,9 @@ public abstract class Character implements Serializable, Loadable {
     public void load(NodeList list, Environment environment) {
         Element character = (Element) list.item(0);
         this.setCurrentRoom(
-                environment.getRoom(
-                        character.getElementsByTagName("room").item(0).getTextContent()
-                )
+            environment.getRoom(
+                character.getElementsByTagName("room").item(0).getTextContent()
+            )
         );
 
     }
