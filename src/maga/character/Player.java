@@ -233,5 +233,17 @@ public class Player extends Character {
     public void removeItems() {
         this.items.clear();
     }
+    
+    /**
+     * Gets the name of the items in the player's inventory
+     * @return ArrayList of the itemnames as a string
+     */
+    public ArrayList<String> getNameOfItems(){
+        ArrayList<String> list = new ArrayList<>();
+        for (Item item : items) {
+            list.add(item.getName());
+        }
+        return list;
+    }
 
 }
