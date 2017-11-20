@@ -7,11 +7,13 @@ package maga.character;
 
 import java.util.ArrayList;
 import maga.command.Command;
+import maga.environment.Environment;
 import maga.item.Item;
+import maga.util.GameState;
 import maga.util.Serializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
-
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -240,7 +242,8 @@ public class Player extends Character implements Serializable {
 
     /**
      * Serialize the player object to xml
-     * @param  Document doc
+     *
+     * @param Document doc
      * @return xml element
      */
     @Override
@@ -257,6 +260,26 @@ public class Player extends Character implements Serializable {
         }
 
         return player;
+    }
+
+    /**
+     * This method loads the player
+     *
+     * @param list
+     * @param environment
+     */
+    @Override
+    public void load(NodeList list, Environment environment) {
+        super.load(list, environment);
+        Element player = (Element) list.item(0);
+        if (player.getAttribute("tweeted").equals("true")) {
+            this.tweeted();
+        }
+        NodeList items = player.getElementsByTagName("item");
+        for (int i = 0; i < items.getLength(); i++) {
+            Element item = (Element) items.item(i);
+            this.addItem(GameState.findItem(item.getAttribute("name")));
+        }
     }
 
 }

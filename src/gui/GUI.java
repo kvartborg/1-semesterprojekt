@@ -22,9 +22,10 @@ import maga.GameFacade;
  * @author Rasmus
  */
 public class GUI extends Application {
+
     private IGame game = new GameFacade();
     GameController gameController;
-    
+
     /**
      * Method to start the game with gui
      */
@@ -32,10 +33,10 @@ public class GUI extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
         Parent root = (Parent) loader.load();
-        
+
         this.gameController = loader.getController();
-        this.gameController.injectGame(this.game);        
-        
+        this.gameController.injectGame(this.game);
+
         Scene scene = new Scene(root);
         scene.setOnKeyPressed(event -> this.onKeyPressed(event));
         stage.setMinWidth(600);
@@ -43,28 +44,30 @@ public class GUI extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
     /**
      * Method to make the player move when using the keyboard
+     *
      * @param event
      */
     public void onKeyPressed(KeyEvent event) {
-       switch (event.getCode()) {
-           case UP:
+        switch (event.getCode()) {
+            case UP:
                 game.command("go", "north");
-           break;
+                break;
 
-           case LEFT:
-               game.command("go", "west");
-           break;
+            case LEFT:
+                game.command("go", "west");
+                break;
 
-           case RIGHT:
-               game.command("go", "east");
-           break;
+            case RIGHT:
+                game.command("go", "east");
+                break;
 
-           case DOWN:
-               game.command("go", "south");
-           break;
-       }
+            case DOWN:
+                game.command("go", "south");
+                break;
+        }
         this.gameController.updateGameState();
     }
 
