@@ -1,6 +1,5 @@
 package maga;
 
-import java.util.Arrays;
 import java.util.Scanner;
 import maga.environment.Environment;
 import maga.character.Cook;
@@ -63,7 +62,7 @@ public class Game {
      * Integer that sets the point the player starts with.
      */
     private int points = 5000;
-    
+
     /**
      * Creates an instance of highscore.
      */
@@ -96,13 +95,6 @@ public class Game {
      */
     public void play() {
         printWelcome();
-
-        boolean finished = false;
-//        while (!finished) {
-          //  Command command = parser.getCommand();
-            //finished = processCommand(command);
-        //}
-        Console.print("Thank you for playing. Goodbye.");
     }
 
     /**
@@ -141,7 +133,7 @@ public class Game {
      * @param command
      * @return boolean (wantToQuit, false or true)
      */
-    private boolean processCommand(Command command) {
+    boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
@@ -313,9 +305,10 @@ public class Game {
 
     /**
      * This method checks if the player has reached the press briefing room
-     * after tweeting in order to win.
-     * If the player wins it prints out the score, steps taken and the time used.
-     * It also asks if you want to save your score.
+     * after tweeting in order to win. If the player wins it prints out the
+     * score, steps taken and the time used. It also asks if you want to save
+     * your score.
+     *
      * @return true or false.
      */
     private boolean youWin() {
@@ -327,26 +320,25 @@ public class Game {
         long elapsedTime = endTime - startTime;
         long finalScore = points - ((elapsedTime - bonusTime) * steps);
         Console.print(
-            "",
-            "Congratulations, you won the game!",
-            "",
-            "---------------------------------------",
-            "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
-            bonusTime > 0 ? "You received a time bonus: " + bonusTime + " seconds, for calling Trump!" : null,
-            bonusTime > 0 ? "Your time after receiving the bonus is: " + (elapsedTime-bonusTime) + " seconds!" : null,
-            "You scored: " + finalScore,
-            "---------------------------------------"  
+                "",
+                "Congratulations, you won the game!",
+                "",
+                "---------------------------------------",
+                "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
+                bonusTime > 0 ? "You received a time bonus: " + bonusTime + " seconds, for calling Trump!" : null,
+                bonusTime > 0 ? "Your time after receiving the bonus is: " + (elapsedTime - bonusTime) + " seconds!" : null,
+                "You scored: " + finalScore,
+                "---------------------------------------"
         );
         Scanner input = new Scanner(System.in);
         System.out.println("Do you want to save your score? (Yes or no)");
         String answer = input.nextLine();
-        if(answer.equalsIgnoreCase("Yes")) {
+        if (answer.equalsIgnoreCase("Yes")) {
             System.out.println("Please enter your name to save your score: ");
             String playerName = input.nextLine();
             highScore.add(playerName, (int) finalScore);
             highScore.toXml();
-        }
-        else{
+        } else {
             System.out.println("You didn't save your score!");
         }
         highScore.printHighScore();
@@ -440,13 +432,8 @@ public class Game {
     public Environment getEnvironment() {
         return environment;
     }
-    
-    /**
-     * Method to make the player 
-     * @param command
-     * @param argument 
-     */
-    public void run(String command, String argument) {
-        this.processCommand(this.parser.createCommand(command, argument));
+
+    public Parser getParser() {
+        return parser;
     }
 }
