@@ -16,8 +16,14 @@ import maga.character.Trump;
  *
  */
 public class GameFacade implements IGame {
-
+    /**
+     * Instance of IData
+     */
     private IData data;
+    
+    /**
+     * Instance of Game
+     */
     private final Game game = new Game();
 
     /**
@@ -71,5 +77,14 @@ public class GameFacade implements IGame {
     @Override
     public Cook getCook() {
         return game.getCook();
+    }
+    
+    /**
+     * This method returns the steps 
+     * @return steps
+     */
+    @Override
+    public int getSteps() {
+        return game.getSteps(); 
     }
 }
