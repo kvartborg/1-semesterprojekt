@@ -19,7 +19,6 @@ import maga.character.Trump;
 import maga.environment.Environment;
 import maga.environment.Room;
 import maga.Game;
-import maga.highscore.HighScore;
 import maga.item.Steak;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -119,7 +118,6 @@ public class GameState {
             game.getEnvironment().load(doc.getElementsByTagName("room"), game.getEnvironment());
 
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }
@@ -202,7 +200,6 @@ public class GameState {
             StreamResult result = new StreamResult(new File("highScore.xml"));
             transformer.transform(source, result);
         } catch(Exception e) {
-            e.printStackTrace();
         }
     }
 
