@@ -5,6 +5,7 @@
  */
 package gui;
 
+import acq.IGame;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,18 +15,20 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import maga.GameFacade;
 
 /**
  *
  * @author Rasmus
  */
-public class Game extends Application {
-    maga.Game game = new maga.Game();
+public class GUI extends Application {
+    private IGame game = new GameFacade();
     GameController gameController;
-    @Override
+    
     /**
      * Method to start the game with gui
      */
+    @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
         Parent root = (Parent) loader.load();
@@ -47,29 +50,25 @@ public class Game extends Application {
     public void onKeyPressed(KeyEvent event) {
        switch (event.getCode()) {   
            case UP:                 
-                game.run("go", "north");
+                game.command("go", "north");
            break;
             
            case LEFT:
-               game.run("go", "west");
+               game.command("go", "west");
            break;
            
            case RIGHT:  
-               game.run("go", "east");
+               game.command("go", "east");
            break;
                
            case DOWN:
-               game.run("go", "south");
+               game.command("go", "south");
            break;  
        }
         this.gameController.updateGameState();
     }
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

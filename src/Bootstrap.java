@@ -22,8 +22,5 @@ public class Bootstrap {
         IGUI gui = new GUIFacade();
         game.injectData(data);
         gui.injectGame(game);
-        game.play();
-
     }
-
 }

@@ -7,6 +7,9 @@ package maga;
 
 import acq.IGame;
 import acq.IData;
+import maga.character.Cook;
+import maga.character.Player;
+import maga.character.Trump;
 
 /**
  * Facade for Game which implements the interface for game
@@ -44,5 +47,29 @@ public class GameFacade implements IGame {
     @Override
     public void play() {
         game.play();
+    }
+    /**
+     * This method returns the player
+     * @return player
+     */
+    @Override
+    public Player getPlayer() {
+        return game.getPlayer();
+    }
+    /**
+     * This method returns Trump
+     * @return trump
+     */
+    @Override
+    public Trump getTrump() {
+        return game.getTrump();
+    }
+    /**
+     * This method returns the Cook
+     * @return cook
+     */
+    @Override
+    public Cook getCook() {
+        return game.getCook();
     }
 }
