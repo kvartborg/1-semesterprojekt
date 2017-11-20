@@ -15,19 +15,22 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import maga.environment.Environment;
 import maga.util.Console;
+import maga.util.Loadable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import maga.util.Serializable;
 
+
 /**
  *
  * @author ander
  */
-public class HighScore implements Serializable {
-
+public class HighScore implements Serializable, Loadable {
+  
     /**
      * An ArrayList to store the players highScore.
      */
@@ -82,27 +85,21 @@ public class HighScore implements Serializable {
     /**
      * This method loads our highscores from the xml file.
      */
-    public void loadXml() {
-        try {
-            File inputFile = new File ("highScore.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(inputFile);
-            doc.getDocumentElement().normalize();
-            NodeList nList = doc.getElementsByTagName("score");
-            for (int i = 0; i <nList.getLength(); i++) {
-                Node nNode = nList.item(i);
+    @Override
+    public void load(NodeList list, Environment environment) {
+        for (int i = 0; i < list.getLength(); i++) {
+            Node nNode = list.item(i);
 
-                if(nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    this.add(
-                        eElement.getAttribute("name"),
-                        Integer.parseInt(eElement.getAttribute("score"))
-                    );
-                }
+            if(nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                this.add(
+                    eElement.getAttribute("name"), 
+                    Integer.parseInt(eElement.getAttribute("score"))
+                );
             }
-        } catch (Exception e) {}
+        }
     }
+  
     /**
      * This method prints the highscores.
      */

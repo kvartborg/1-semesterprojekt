@@ -23,6 +23,7 @@ import maga.highscore.HighScore;
 import maga.item.Steak;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import maga.highscore.HighScore;
 
 public class GameState {
 
@@ -171,6 +172,17 @@ public class GameState {
             }
         }
         return null;
+    }
+    
+    public static void loadHighscore(HighScore highscore) {
+        try {
+            File inputFile = new File ("highScore.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder(); 
+            Document doc = dBuilder.parse(inputFile); 
+            doc.getDocumentElement().normalize();
+            highscore.load(doc.getElementsByTagName("score"), null);
+        } catch (Exception e) {}
     }
 
     public static void saveHighScore (HighScore highScore) {
