@@ -5,6 +5,7 @@
  */
 package gui;
 
+import acq.IGame;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -22,7 +23,7 @@ import maga.Game;
  * @author Rasmus
  */
 public class GameController implements Initializable {
-    Game game = new Game();
+    private IGame game;
     /**
      * Label to count steps
      */
@@ -84,7 +85,7 @@ public class GameController implements Initializable {
      * Method to inject the game into the gui 
      * @param game 
      */
-    public void injectGame(Game game) {
+    public void injectGame(IGame game) {
         this.game = game; 
     }
     
