@@ -61,14 +61,14 @@ public final class Environment {
     private void createRooms() {
         Room ovalOffice, lobby1, lobby2, kitchen, diningRoom, cleaningRoom, pressBriefingRoom, secretServiceRoom;
 
-        ovalOffice = new Room("Oval office", "in the oval office");
-        lobby1 = new Room("Lobby1", "in the first lobby");
-        lobby2 = new Room("Lobby2", "in the second lobby");
-        kitchen = new Room("Kitchen", "in the kitchen");
-        diningRoom = new Room("Dining room", "in the dining room");
-        cleaningRoom = new Room("Cleaning room", "in the cleaning room");
-        pressBriefingRoom = new Room("Press briefing room", "in the press briefing room");
-        secretServiceRoom = new Room("Secret service room", "in the secret service room");
+        ovalOffice = new Room("Oval office", "in the oval office", 1, 3);
+        lobby1 = new Room("Lobby1", "in the first lobby", 1, 2);
+        lobby2 = new Room("Lobby2", "in the second lobby", 1, 1);
+        kitchen = new Room("Kitchen", "in the kitchen", 0, 1);
+        diningRoom = new Room("Dining room", "in the dining room", 0, 2);
+        cleaningRoom = new Room("Cleaning room", "in the cleaning room", 1, 0);
+        pressBriefingRoom = new Room("Press briefing room", "in the press briefing room", 2, 1);
+        secretServiceRoom = new Room("Secret service room", "in the secret service room", 2, 2);
 
         ovalOffice.setExit("north", lobby1);
         ovalOffice.lock();

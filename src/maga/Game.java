@@ -67,7 +67,7 @@ public class Game {
      * Creates an instance of highscore.
      */
     private HighScore highScore = new HighScore();
-
+    
     /**
      * Create new instance of game
      */
@@ -436,5 +436,4 @@ public class Game {
     public Parser getParser() {
         return parser;
     }
-
 }

@@ -37,6 +37,16 @@ public class Room {
      * Boolean for if the room is locked or not
      */
     private Boolean locked = false;
+    
+    /**
+     * Attribute for the collum index related to a room.
+     */
+    private int x;
+    
+    /**
+     * Attribute for the row index related to a room.
+     */
+    private int y;
 
     /**
      * A constructor for new rooms
@@ -44,12 +54,30 @@ public class Room {
      * @param name is the name of the new room
      * @param description is the description of the new room
      */
-    public Room(String name, String description) {
+    public Room(String name, String description, int x, int y) {
         this.name = name;
         this.description = description;
         exits = new HashMap<>();
+        this.x = x;
+        this.y = y;
     }
-
+    
+    /**
+     * Accessor method for x.
+     * @return x
+     */
+    public int getX() {
+        return x;
+    }
+    
+    /**
+     * Accessor method for y.
+     * @return y
+     */
+    public int getY() {
+        return y;
+    }
+    
     /**
      * The method sets the exits for the current room
      *
@@ -145,8 +173,6 @@ public class Room {
 
     /**
      * Lock room
-     *
-     * @return
      */
     public void lock() {
         this.locked = true;
