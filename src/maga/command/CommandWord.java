@@ -11,7 +11,6 @@ public enum CommandWord {
 
     GO("go"),
     QUIT("quit"),
-    HELP("help"),
     SEARCH("search"),
     PICKUP("pickup"),
     DROP("drop"),

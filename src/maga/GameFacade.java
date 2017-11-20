@@ -46,14 +46,7 @@ public class GameFacade implements IGame {
     public void command(String command, String argument) {
         game.processCommand(game.getParser().createCommand(command, argument));
     }
-
-    /**
-     * A method for starting the game
-     */
-    @Override
-    public void play() {
-        game.play();
-    }
+    
     /**
      * This method returns the player
      * @return player
