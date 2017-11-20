@@ -72,7 +72,7 @@ public class Game {
      * Create new instance of game
      */
     public Game() {
-        highScore.loadXml();
+        GameState.loadHighscore(highScore);
         environment = new Environment();
         player = new Player();
         trump = new Trump();
