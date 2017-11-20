@@ -53,19 +53,19 @@ public class GameState {
             doc.appendChild(game);
 
             game.appendChild(
-                GameState.createTextNode(doc, "steps", Integer.toString(steps))
+                    GameState.createTextNode(doc, "steps", Integer.toString(steps))
             );
 
             game.appendChild(
-                GameState.createTextNode(doc, "startTime", Long.toString(startTime))
+                    GameState.createTextNode(doc, "startTime", Long.toString(startTime))
             );
 
             game.appendChild(
-                GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
+                    GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
             );
 
             game.appendChild(
-                GameState.createTextNode(doc, "points", Long.toString(points))
+                    GameState.createTextNode(doc, "points", Long.toString(points))
             );
 
             game.appendChild(player.serialize(doc));
@@ -81,7 +81,8 @@ public class GameState {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(System.getProperty("user.dir") + "/gameState.xml"));
             transformer.transform(source, result);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
 
     public static Element createTextNode(Document doc, String nodeName, String value) {
@@ -109,41 +110,14 @@ public class GameState {
             game.setStartTime(Long.parseLong(findElementByName(doc, "startTime").getTextContent()));
             game.setBonusTime(Long.parseLong(findElementByName(doc, "bonusTime").getTextContent()));
 
-            NodeList playerList = doc.getElementsByTagName("player");
-            Element playerElement = (Element) playerList.item(0);
-            if (playerElement.getAttribute("tweeted").equals("true")) {
-                game.getPlayer().tweeted();
-            }
-            game.getPlayer().setCurrentRoom(game.getEnvironment().getRoom(playerElement.getElementsByTagName("room").item(0).getTextContent()));
-            NodeList playerItems = playerElement.getElementsByTagName("item");
-            for (int i = 0; i < playerItems.getLength(); i++) {
-                Element item = (Element) playerItems.item(i);
-                game.getPlayer().addItem(GameState.findItem(item.getAttribute("name")));
-            }
+            game.getPlayer().load(doc.getElementsByTagName("player"), game.getEnvironment());
+            game.getTrump().load(doc.getElementsByTagName("trump"), game.getEnvironment());
+            game.getCook().load(doc.getElementsByTagName("cook"), game.getEnvironment());
 
-            NodeList trumpList = doc.getElementsByTagName("trump");
-            Element trumpElement = (Element) trumpList.item(0);
-            game.getTrump().setCurrentRoom(game.getEnvironment().getRoom(trumpElement.getElementsByTagName("room").item(0).getTextContent()));
-
-            NodeList cookList = doc.getElementsByTagName("cook");
-            Element cookElement = (Element) cookList.item(0);
-            game.getCook().setCurrentRoom(game.getEnvironment().getRoom(cookElement.getElementsByTagName("room").item(0).getTextContent()));
-
-            NodeList rooms = doc.getElementsByTagName("room");
-            for (int i = 0; i < rooms.getLength(); i++) {
-                Element roomElement = (Element) rooms.item(i);
-                Room room = game.getEnvironment().getRoom(roomElement.getAttribute("name"));
-                if (roomElement.getAttribute("locked").equals("true")) {
-                    room.lock();
-                }
-                NodeList items = roomElement.getElementsByTagName("item");
-                for (int j = 0; j < items.getLength(); j++) {
-                    Element item = (Element) items.item(j);
-                    room.addItem(findItem(item.getAttribute("name")));
-                }
-            }
+            game.getEnvironment().load(doc.getElementsByTagName("room"), game.getEnvironment());
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

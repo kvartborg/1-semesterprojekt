@@ -15,15 +15,19 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import maga.item.NuclearFootball;
+import static maga.util.GameState.findItem;
+import maga.util.Loadable;
 import maga.util.Serializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 /**
  *
  * @author ViktoriaNadarajah
  */
-public final class Environment implements Serializable {
+public final class Environment implements Serializable, Loadable {
+
     /**
      * HashMap attribute for rooms and their names
      */
@@ -36,6 +40,7 @@ public final class Environment implements Serializable {
 
     /**
      * This method is a getter method
+     *
      * @param name
      * @return returns name of room
      */
@@ -57,9 +62,8 @@ public final class Environment implements Serializable {
     /**
      * This method create the different rooms in our game.
      *
-     * We create the rooms in our game and sets an exit for each room.
-     * We put our room into a HashMap. The method returns the rooms
-     * into our HashMap.
+     * We create the rooms in our game and sets an exit for each room. We put
+     * our room into a HashMap. The method returns the rooms into our HashMap.
      */
     private void createRooms() {
         Room ovalOffice, lobby1, lobby2, kitchen, diningRoom, cleaningRoom, pressBriefingRoom, secretServiceRoom;
@@ -111,8 +115,8 @@ public final class Environment implements Serializable {
     /**
      * Places the computer in the oval office
      */
-    private void placeItemsInOvalOffice(){
-        rooms.get("Oval office").addItems(new Item[] {
+    private void placeItemsInOvalOffice() {
+        rooms.get("Oval office").addItems(new Item[]{
             new Computer(),
             new NuclearFootball()
         });
@@ -121,8 +125,8 @@ public final class Environment implements Serializable {
     /**
      * Places the ketchup in the dining room
      */
-    private void placeItemsInDiningRoom(){
-        rooms.get("Dining room").addItems(new Item[] {
+    private void placeItemsInDiningRoom() {
+        rooms.get("Dining room").addItems(new Item[]{
             new Ketchup()
         });
     }
@@ -130,8 +134,8 @@ public final class Environment implements Serializable {
     /**
      * Places the key in the Secret service room
      */
-    private void placeItemsInSecretServiceRoom(){
-        rooms.get("Secret service room").addItems(new Item[] {
+    private void placeItemsInSecretServiceRoom() {
+        rooms.get("Secret service room").addItems(new Item[]{
             new Key(rooms.get("Oval office"))
         });
     }
@@ -140,30 +144,31 @@ public final class Environment implements Serializable {
      * This method creates dummy items and places them into random rooms.
      */
     private void createDummyItems() {
-       dummyItems.add(new DummyItem("Egg"));
-       dummyItems.add(new DummyItem("Putin-picture-book"));
-       dummyItems.add(new DummyItem("Hillary-Clintons-phone"));
-       dummyItems.add(new DummyItem("Wig"));
-       dummyItems.add(new DummyItem("Mayo"));
-       dummyItems.add(new DummyItem("Ivanka-Trumps-sunglasses"));
-       for (DummyItem dummyItem : dummyItems ) {
-           String[] availableRooms = this.rooms.keySet().toArray(new String[this.rooms.size()]);
-           String randomRoom = availableRooms[(int) Math.floor(Math.random() * 7)];
-           rooms.get(randomRoom).addItem(dummyItem);
-       }
+        dummyItems.add(new DummyItem("Egg"));
+        dummyItems.add(new DummyItem("Putin-picture-book"));
+        dummyItems.add(new DummyItem("Hillary-Clintons-phone"));
+        dummyItems.add(new DummyItem("Wig"));
+        dummyItems.add(new DummyItem("Mayo"));
+        dummyItems.add(new DummyItem("Ivanka-Trumps-sunglasses"));
+        for (DummyItem dummyItem : dummyItems) {
+            String[] availableRooms = this.rooms.keySet().toArray(new String[this.rooms.size()]);
+            String randomRoom = availableRooms[(int) Math.floor(Math.random() * 7)];
+            rooms.get(randomRoom).addItem(dummyItem);
+        }
     }
 
-    public HashMap<String, Room> getRooms(){
+    public HashMap<String, Room> getRooms() {
         return rooms;
     }
 
     /**
      * Serialize the environment object to xml
-     * @param  Document doc
+     *
+     * @param Document doc
      * @return xml element
      */
     @Override
-    public Element serialize(Document doc ) {
+    public Element serialize(Document doc) {
         Element rooms = doc.createElement("rooms");
 
         for (Room room : this.getRooms().values()) {
@@ -171,5 +176,27 @@ public final class Environment implements Serializable {
         }
 
         return rooms;
+    }
+
+    /**
+     * This method loads environment
+     *
+     * @param list
+     * @param environment
+     */
+    @Override
+    public void load(NodeList list, Environment environment) {
+        for (int i = 0; i < list.getLength(); i++) {
+            Element roomElement = (Element) list.item(i);
+            Room room = environment.getRoom(roomElement.getAttribute("name"));
+            if (roomElement.getAttribute("locked").equals("true")) {
+                room.lock();
+            }
+            NodeList items = roomElement.getElementsByTagName("item");
+            for (int j = 0; j < items.getLength(); j++) {
+                Element item = (Element) items.item(j);
+                room.addItem(findItem(item.getAttribute("name")));
+            }
+        }
     }
 }
