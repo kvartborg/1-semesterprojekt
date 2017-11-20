@@ -17,8 +17,6 @@ public interface IGame {
     public void injectData(IData data);
 
     public void command(String command, String argument);
-
-    public void play();
     
     public Player getPlayer();
     

@@ -85,44 +85,6 @@ public class Game {
     }
 
     /**
-     * This method called play is what decides when the game is done.
-     *
-     * The method starts with the printWelcome when the game is started, which
-     * is printed in the method after. The code then sets a boolean that sets
-     * the finished to false. After a while loop with the condition not finished
-     * is made that checks what command the user has used. When the game is
-     * finished it jumps out the while loop and prints a string.
-     */
-    public void play() {
-        printWelcome();
-    }
-
-    /**
-     * This method prints strings when the game is started.
-     *
-     * The game first prints several strings with a welcoming message. It also
-     * gives a command that you can use to get help with the game. In the final
-     * line it also prints a description of the room you start in.
-     */
-    private void printWelcome() {
-        Console.print(
-                "",
-                "Welcome and thank you for playing Make America Great Again. 🇺🇸",
-                "The goal is to un-\"fake\" the news as Donald Trump.",
-                "On your mission, you'll be able to carry two items at a time.",
-                "You must lure Trump away, "
-                + "send a tweet of redemption from Trumps PC, "
-                + "\nand escape to the Press Briefing Room.",
-                "If you encounter Trump, the game is over!",
-                "Enjoy!",
-                "Type '" + CommandWord.HELP + "' if you need help.",
-                "",
-                trump.whereIsTrump(),
-                player.getCurrentRoom().getLongDescription()
-        );
-    }
-
-    /**
      * This method process the different commands and decide what they do.
      *
      * The method is a switch depending on what command the user has chosen to
@@ -142,10 +104,6 @@ public class Game {
             case UNKNOWN:
                 Console.print("I don't know what you mean...");
                 return false;
-
-            case HELP:
-                printHelp();
-                break;
 
             case GO:
                 step();
@@ -254,22 +212,6 @@ public class Game {
     }
 
     /**
-     * This method prints a strings to help the user.
-     *
-     * The method prints strings with what the game is about and prints what
-     * different commands the user has if the user uses the command help.
-     */
-    private void printHelp() {
-        Console.print(
-                "You are lost. You are alone. You wander",
-                "around at The White House.",
-                "",
-                "Your command words are:"
-        );
-        parser.showCommands();
-    }
-
-    /**
      * This method quits the game.
      *
      * The method decides what happens when the user uses the quit command. It
@@ -299,7 +241,6 @@ public class Game {
         if (player.getCurrentRoom() != trump.getCurrentRoom()) {
             return false;
         }
-        Console.print("You entered the same room as Trump, game lost.");
         return true;
     }
 
