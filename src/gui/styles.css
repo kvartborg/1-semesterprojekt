@@ -15,7 +15,7 @@
 }
 
 .kitchen {
-    -fx-background-image: url("resources/Kitchen.PNG");
+    -fx-background-image: url("resources/Kitchen.png");
     -fx-background-size: 100% 100%;
 }
 
