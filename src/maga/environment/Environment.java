@@ -15,12 +15,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import maga.item.NuclearFootball;
+import maga.util.Serializable;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
 
 /**
  *
  * @author ViktoriaNadarajah
  */
-public final class Environment {
+public final class Environment implements Serializable {
     /**
      * HashMap attribute for rooms and their names
      */
@@ -149,8 +152,24 @@ public final class Environment {
            rooms.get(randomRoom).addItem(dummyItem);
        }
     }
-    
+
     public HashMap<String, Room> getRooms(){
+        return rooms;
+    }
+
+    /**
+     * Serialize the environment object to xml
+     * @param  Document doc
+     * @return xml element
+     */
+    @Override
+    public Element serialize(Document doc ) {
+        Element rooms = doc.createElement("rooms");
+
+        for (Room room : this.getRooms().values()) {
+            rooms.appendChild(room.serialize(doc));
+        }
+
         return rooms;
     }
 }

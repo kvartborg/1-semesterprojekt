@@ -44,6 +44,7 @@ public class GameState {
      */
     public static void save(int steps, long startTime, long bonusTime, int points, Player player, Trump trump, Cook cook, Environment environment) {
         try {
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.newDocument();
@@ -51,66 +52,26 @@ public class GameState {
             Element game = doc.createElement("game");
             doc.appendChild(game);
 
-            Element stepsE = doc.createElement("steps");
-            stepsE.appendChild(doc.createTextNode(Integer.toString(steps)));
-            game.appendChild(stepsE);
+            game.appendChild(
+                GameState.createTextNode(doc, "steps", Integer.toString(steps))
+            );
 
-            Element startTimeE = doc.createElement("startTime");
-            startTimeE.appendChild(doc.createTextNode(Long.toString(startTime)));
-            game.appendChild(startTimeE);
+            game.appendChild(
+                GameState.createTextNode(doc, "startTime", Long.toString(startTime))
+            );
 
-            Element bonusTimeE = doc.createElement("bonusTime");
-            bonusTimeE.appendChild(doc.createTextNode(Long.toString(bonusTime)));
-            game.appendChild(bonusTimeE);
+            game.appendChild(
+                GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
+            );
 
-            Element pointsE = doc.createElement("points");
-            pointsE.appendChild(doc.createTextNode(Integer.toString(points)));
-            game.appendChild(pointsE);
+            game.appendChild(
+                GameState.createTextNode(doc, "points", Long.toString(points))
+            );
 
-            Element playerE = doc.createElement("player");
-            Element roomE = doc.createElement("room");
-            roomE.appendChild(doc.createTextNode(player.getCurrentRoom().getName()));
-            playerE.appendChild(roomE);
-            game.appendChild(playerE);
-            playerE.setAttribute("tweeted", Boolean.toString(player.hasTweeted()));
-
-            Element itemsE = doc.createElement("items");
-            playerE.appendChild(itemsE);
-            for (Item item : player.getItems()) {
-                Element itemNode = doc.createElement("item");
-                itemNode.setAttribute("name", item.getName());
-                itemsE.appendChild(itemNode);
-            }
-
-            Element trumpE = doc.createElement("trump");
-            Element trumpRoomE = doc.createElement("room");
-            trumpRoomE.appendChild(doc.createTextNode(trump.getCurrentRoom().getName()));
-            trumpE.appendChild(trumpRoomE);
-            game.appendChild(trumpE);
-
-            Element cookE = doc.createElement("cook");
-            Element cookRoomE = doc.createElement("room");
-            cookRoomE.appendChild(doc.createTextNode(cook.getCurrentRoom().getName()));
-            cookE.appendChild(cookRoomE);
-            game.appendChild(cookE);
-
-            Element rooms = doc.createElement("rooms");
-            game.appendChild(rooms);
-
-            for (Room room : environment.getRooms().values()) {
-                Element roomNode = doc.createElement("room");
-                roomNode.setAttribute("name", room.getName());
-                roomNode.setAttribute("locked", Boolean.toString(room.isLocked()));
-                rooms.appendChild(roomNode);
-
-                Element itemsRoom = doc.createElement("items");
-                roomNode.appendChild(itemsRoom);
-                for (Item item : room.getItems()) {
-                    Element itemNode = doc.createElement("item");
-                    itemNode.setAttribute("name", item.getName());
-                    itemsRoom.appendChild(itemNode);
-                }
-            }
+            game.appendChild(player.serialize(doc));
+            game.appendChild(trump.serialize(doc));
+            game.appendChild(cook.serialize(doc));
+            game.appendChild(environment.serialize(doc));
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -120,11 +81,13 @@ public class GameState {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(System.getProperty("user.dir") + "/gameState.xml"));
             transformer.transform(source, result);
+        } catch (Exception e) {}
+    }
 
-        } catch (Exception e) {
-
-        }
-
+    public static Element createTextNode(Document doc, String nodeName, String value) {
+        Element node = doc.createElement(nodeName);
+        node.appendChild(doc.createTextNode(value));
+        return node;
     }
 
     /**

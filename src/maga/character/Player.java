@@ -8,12 +8,16 @@ package maga.character;
 import java.util.ArrayList;
 import maga.command.Command;
 import maga.item.Item;
+import maga.util.Serializable;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
 
 /**
  *
  * @author Kasper
  */
-public class Player extends Character {
+public class Player extends Character implements Serializable {
 
     /**
      * The arraylist stores the items, that the player picks up.
@@ -232,6 +236,27 @@ public class Player extends Character {
      */
     public void removeItems() {
         this.items.clear();
+    }
+
+    /**
+     * Serialize the player object to xml
+     * @param  Document doc
+     * @return xml element
+     */
+    @Override
+    public Element serialize(Document doc) {
+        Element player = super.serialize(doc);
+        player.setAttribute("tweeted", Boolean.toString(this.hasTweeted()));
+
+        Element items = doc.createElement("items");
+        player.appendChild(items);
+        for (Item item : this.getItems()) {
+            Element i = doc.createElement("item");
+            i.setAttribute("name", item.getName());
+            items.appendChild(i);
+        }
+
+        return player;
     }
 
 }

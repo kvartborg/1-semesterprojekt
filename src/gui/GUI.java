@@ -45,29 +45,29 @@ public class GUI extends Application {
     }
     /**
      * Method to make the player move when using the keyboard
-     * @param event 
+     * @param event
      */
     public void onKeyPressed(KeyEvent event) {
-       switch (event.getCode()) {   
-           case UP:                 
+       switch (event.getCode()) {
+           case UP:
                 game.command("go", "north");
            break;
-            
+
            case LEFT:
                game.command("go", "west");
            break;
-           
-           case RIGHT:  
+
+           case RIGHT:
                game.command("go", "east");
            break;
-               
+
            case DOWN:
                game.command("go", "south");
-           break;  
+           break;
        }
         this.gameController.updateGameState();
     }
-    
+
     public static void main(String[] args) {
         launch(args);
     }

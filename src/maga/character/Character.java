@@ -7,12 +7,15 @@ package maga.character;
 
 import maga.command.Command;
 import maga.environment.Room;
+import maga.util.Serializable;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
 
 /**
  *
  * @author Kasper
  */
-public abstract class Character {
+public abstract class Character implements Serializable {
 
     /**
      * currentRoom attribute, an instance from the Room class.
@@ -69,10 +72,10 @@ public abstract class Character {
             System.out.println(currentRoom.getLongDescription());
         }
     }
-    
+
     /**
      * Sets the current room
-     * @param room 
+     * @param room
      */
     public void setCurrentRoom(Room room) {
         this.currentRoom = room;
@@ -85,20 +88,39 @@ public abstract class Character {
     public Room getCurrentRoom () {
         return this.currentRoom;
     }
-    
+
     /**
      * Standard method for talking with other characters, that isn't the cook
      */
     public void talk(Character character){
         System.out.println("I don't want to talk with you.");
     }
-    
+
     /**
      * Default pickupItems method
-     * @param command 
+     * @param command
      * @return
      */
     public boolean pickupItems(Command command){
         return false;
     }
+
+    /**
+     * Serialize the character object to xml
+     * @param  Document doc
+     * @return xml element
+     */
+    @Override
+    public Element serialize(Document doc) {
+        String[] namespace = this.getClass().getName().split("\\.");
+        String name = namespace[namespace.length - 1];
+        Element character = doc.createElement(name);
+
+        Element room = doc.createElement("room");
+        room.appendChild(doc.createTextNode(this.getCurrentRoom().getName()));
+        character.appendChild(room);
+
+        return character;
+    }
+
 }
