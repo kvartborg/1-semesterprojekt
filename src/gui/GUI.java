@@ -84,6 +84,26 @@ public class GUI extends Application {
         
     }
     
+    public void loadInventoryController(){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("InventoryWindow.fxml"));  
+            Parent root = (Parent) loader.load();
+
+            InventoryWindowController iwc = loader.getController();
+            iwc.injectGame(this.game);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Player inventory: ");
+            stage.setMinWidth(600);
+            stage.setMinHeight(500);
+            stage.setScene(scene);
+            iwc.addItemsToViewList();
+            stage.show(); 
+        } catch(Exception e){}
+        
+    }
+    
     /**
      * Method to make the player move when using the keyboard
      * @param event 
@@ -111,7 +131,7 @@ public class GUI extends Application {
             break;
            
             case I:
-               game.getPlayer().printInventory();
+               this.loadInventoryController();
             break;
        }
         this.gameController.updateGameState();
