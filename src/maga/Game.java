@@ -67,12 +67,12 @@ public class Game {
      * Creates an instance of highscore.
      */
     private HighScore highScore = new HighScore();
-    
+
     /**
      * Create new instance of game
      */
     public Game() {
-        highScore.loadXml();
+        GameState.loadHighscore(highScore);
         environment = new Environment();
         player = new Player();
         trump = new Trump();
@@ -278,7 +278,7 @@ public class Game {
             System.out.println("Please enter your name to save your score: ");
             String playerName = input.nextLine();
             highScore.add(playerName, (int) finalScore);
-            highScore.toXml();
+            GameState.saveHighScore(highScore);
         } else {
             System.out.println("You didn't save your score!");
         }

@@ -28,9 +28,10 @@ import maga.GameFacade;
  * @author Rasmus
  */
 public class GUI extends Application {
+
     private IGame game = new GameFacade();
     GameController gameController;
-    
+
     /**
      * Method to start the game with gui
      */
@@ -106,7 +107,8 @@ public class GUI extends Application {
     
     /**
      * Method to make the player move when using the keyboard
-     * @param event 
+     *
+     * @param event
      */
     public void onKeyPressed(KeyEvent event) {
         switch (event.getCode()) {   
@@ -134,9 +136,10 @@ public class GUI extends Application {
                this.loadInventoryController();
             break;
        }
-        this.gameController.updateGameState();
+      
+       this.gameController.updateGameState();
     }
-    
+
     public static void main(String[] args) {
         launch(args);
     }

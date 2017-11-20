@@ -22,7 +22,6 @@ public class Cook extends Character {
    public Cook() {
        super("Cook");
    }
-   
    /**
     * Override method for the talk method
     * This method interacts with the player.
@@ -45,5 +44,4 @@ public class Cook extends Character {
             System.out.println("Well okay. Bye");
         }
    }
-
 }

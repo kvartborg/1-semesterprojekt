@@ -22,6 +22,7 @@ import maga.Game;
 import maga.item.Steak;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import maga.highscore.HighScore;
 
 public class GameState {
 
@@ -44,6 +45,7 @@ public class GameState {
      */
     public static void save(int steps, long startTime, long bonusTime, int points, Player player, Trump trump, Cook cook, Environment environment) {
         try {
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.newDocument();
@@ -51,66 +53,26 @@ public class GameState {
             Element game = doc.createElement("game");
             doc.appendChild(game);
 
-            Element stepsE = doc.createElement("steps");
-            stepsE.appendChild(doc.createTextNode(Integer.toString(steps)));
-            game.appendChild(stepsE);
+            game.appendChild(
+                    GameState.createTextNode(doc, "steps", Integer.toString(steps))
+            );
 
-            Element startTimeE = doc.createElement("startTime");
-            startTimeE.appendChild(doc.createTextNode(Long.toString(startTime)));
-            game.appendChild(startTimeE);
+            game.appendChild(
+                    GameState.createTextNode(doc, "startTime", Long.toString(startTime))
+            );
 
-            Element bonusTimeE = doc.createElement("bonusTime");
-            bonusTimeE.appendChild(doc.createTextNode(Long.toString(bonusTime)));
-            game.appendChild(bonusTimeE);
+            game.appendChild(
+                    GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
+            );
 
-            Element pointsE = doc.createElement("points");
-            pointsE.appendChild(doc.createTextNode(Integer.toString(points)));
-            game.appendChild(pointsE);
+            game.appendChild(
+                    GameState.createTextNode(doc, "points", Long.toString(points))
+            );
 
-            Element playerE = doc.createElement("player");
-            Element roomE = doc.createElement("room");
-            roomE.appendChild(doc.createTextNode(player.getCurrentRoom().getName()));
-            playerE.appendChild(roomE);
-            game.appendChild(playerE);
-            playerE.setAttribute("tweeted", Boolean.toString(player.hasTweeted()));
-
-            Element itemsE = doc.createElement("items");
-            playerE.appendChild(itemsE);
-            for (Item item : player.getItems()) {
-                Element itemNode = doc.createElement("item");
-                itemNode.setAttribute("name", item.getName());
-                itemsE.appendChild(itemNode);
-            }
-
-            Element trumpE = doc.createElement("trump");
-            Element trumpRoomE = doc.createElement("room");
-            trumpRoomE.appendChild(doc.createTextNode(trump.getCurrentRoom().getName()));
-            trumpE.appendChild(trumpRoomE);
-            game.appendChild(trumpE);
-
-            Element cookE = doc.createElement("cook");
-            Element cookRoomE = doc.createElement("room");
-            cookRoomE.appendChild(doc.createTextNode(cook.getCurrentRoom().getName()));
-            cookE.appendChild(cookRoomE);
-            game.appendChild(cookE);
-
-            Element rooms = doc.createElement("rooms");
-            game.appendChild(rooms);
-
-            for (Room room : environment.getRooms().values()) {
-                Element roomNode = doc.createElement("room");
-                roomNode.setAttribute("name", room.getName());
-                roomNode.setAttribute("locked", Boolean.toString(room.isLocked()));
-                rooms.appendChild(roomNode);
-
-                Element itemsRoom = doc.createElement("items");
-                roomNode.appendChild(itemsRoom);
-                for (Item item : room.getItems()) {
-                    Element itemNode = doc.createElement("item");
-                    itemNode.setAttribute("name", item.getName());
-                    itemsRoom.appendChild(itemNode);
-                }
-            }
+            game.appendChild(player.serialize(doc));
+            game.appendChild(trump.serialize(doc));
+            game.appendChild(cook.serialize(doc));
+            game.appendChild(environment.serialize(doc));
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -120,11 +82,14 @@ public class GameState {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(System.getProperty("user.dir") + "/gameState.xml"));
             transformer.transform(source, result);
-
         } catch (Exception e) {
-
         }
+    }
 
+    public static Element createTextNode(Document doc, String nodeName, String value) {
+        Element node = doc.createElement(nodeName);
+        node.appendChild(doc.createTextNode(value));
+        return node;
     }
 
     /**
@@ -146,39 +111,11 @@ public class GameState {
             game.setStartTime(Long.parseLong(findElementByName(doc, "startTime").getTextContent()));
             game.setBonusTime(Long.parseLong(findElementByName(doc, "bonusTime").getTextContent()));
 
-            NodeList playerList = doc.getElementsByTagName("player");
-            Element playerElement = (Element) playerList.item(0);
-            if (playerElement.getAttribute("tweeted").equals("true")) {
-                game.getPlayer().tweeted();
-            }
-            game.getPlayer().setCurrentRoom(game.getEnvironment().getRoom(playerElement.getElementsByTagName("room").item(0).getTextContent()));
-            NodeList playerItems = playerElement.getElementsByTagName("item");
-            for (int i = 0; i < playerItems.getLength(); i++) {
-                Element item = (Element) playerItems.item(i);
-                game.getPlayer().addItem(GameState.findItem(item.getAttribute("name")));
-            }
+            game.getPlayer().load(doc.getElementsByTagName("player"), game.getEnvironment());
+            game.getTrump().load(doc.getElementsByTagName("trump"), game.getEnvironment());
+            game.getCook().load(doc.getElementsByTagName("cook"), game.getEnvironment());
 
-            NodeList trumpList = doc.getElementsByTagName("trump");
-            Element trumpElement = (Element) trumpList.item(0);
-            game.getTrump().setCurrentRoom(game.getEnvironment().getRoom(trumpElement.getElementsByTagName("room").item(0).getTextContent()));
-
-            NodeList cookList = doc.getElementsByTagName("cook");
-            Element cookElement = (Element) cookList.item(0);
-            game.getCook().setCurrentRoom(game.getEnvironment().getRoom(cookElement.getElementsByTagName("room").item(0).getTextContent()));
-
-            NodeList rooms = doc.getElementsByTagName("room");
-            for (int i = 0; i < rooms.getLength(); i++) {
-                Element roomElement = (Element) rooms.item(i);
-                Room room = game.getEnvironment().getRoom(roomElement.getAttribute("name"));
-                if (roomElement.getAttribute("locked").equals("true")) {
-                    room.lock();
-                }
-                NodeList items = roomElement.getElementsByTagName("item");
-                for (int j = 0; j < items.getLength(); j++) {
-                    Element item = (Element) items.item(j);
-                    room.addItem(findItem(item.getAttribute("name")));
-                }
-            }
+            game.getEnvironment().load(doc.getElementsByTagName("room"), game.getEnvironment());
 
         } catch (Exception e) {
         }
@@ -233,6 +170,37 @@ public class GameState {
             }
         }
         return null;
+    }
+    
+    public static void loadHighscore(HighScore highscore) {
+        try {
+            File inputFile = new File ("highScore.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder(); 
+            Document doc = dBuilder.parse(inputFile); 
+            doc.getDocumentElement().normalize();
+            highscore.load(doc.getElementsByTagName("score"), null);
+        } catch (Exception e) {}
+    }
+
+    public static void saveHighScore (HighScore highScore) {
+        try{
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.newDocument();
+
+            doc.appendChild(highScore.serialize(doc));
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("highScore.xml"));
+            transformer.transform(source, result);
+        } catch(Exception e) {
+        }
     }
 
 }

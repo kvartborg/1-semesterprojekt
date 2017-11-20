@@ -6,12 +6,15 @@ import java.util.Set;
 import java.util.HashMap;
 import maga.item.Item;
 import maga.item.Key;
+import maga.util.Serializable;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
 
 /**
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room {
+public class Room implements Serializable {
 
     /**
      * The rooms name
@@ -37,12 +40,12 @@ public class Room {
      * Boolean for if the room is locked or not
      */
     private Boolean locked = false;
-    
+
     /**
      * Attribute for the collum index related to a room.
      */
     private int x;
-    
+
     /**
      * Attribute for the row index related to a room.
      */
@@ -61,7 +64,7 @@ public class Room {
         this.x = x;
         this.y = y;
     }
-    
+
     /**
      * Accessor method for x.
      * @return x
@@ -69,7 +72,7 @@ public class Room {
     public int getX() {
         return x;
     }
-    
+
     /**
      * Accessor method for y.
      * @return y
@@ -77,7 +80,7 @@ public class Room {
     public int getY() {
         return y;
     }
-    
+
     /**
      * The method sets the exits for the current room
      *
@@ -231,5 +234,27 @@ public class Room {
      */
     public void empty() {
         this.items = new ArrayList<Item>();
+    }
+
+    /**
+     * Serialize the room object to xml
+     * @param  Document doc
+     * @return xml element
+     */
+    @Override
+    public Element serialize(Document doc) {
+        Element room = doc.createElement("room");
+        room.setAttribute("name", this.getName());
+        room.setAttribute("locked", Boolean.toString(this.isLocked()));
+
+        Element items = doc.createElement("items");
+        room.appendChild(items);
+        for (Item item : this.getItems()) {
+            Element i = doc.createElement("item");
+            i.setAttribute("name", item.getName());
+            items.appendChild(i);
+        }
+
+        return room;
     }
 }
