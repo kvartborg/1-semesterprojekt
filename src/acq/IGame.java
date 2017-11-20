@@ -25,4 +25,6 @@ public interface IGame {
     public Trump getTrump();
     
     public Cook getCook();
+    
+    public int getSteps();
 }

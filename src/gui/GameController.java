@@ -14,26 +14,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import maga.Game;
 
 /**
  *
  * @author Rasmus
  */
 public class GameController implements Initializable {
+    /**
+     * Making an instance of IGame
+     */
     private IGame game;
     /**
      * Label to count steps
      */
     @FXML
     private Label stepsLabel;
-    /**
-     * Label to see score 
-     */
-    @FXML
-    private Label scoreLabel;
     /**
      * Label to see what items player has in left hand
      */
@@ -93,9 +89,9 @@ public class GameController implements Initializable {
      * Method to update the current state of the game 
      */
     public void updateGameState() {
-    GridPane.setConstraints(player, game.getPlayer().getCurrentRoom().getX(), game.getPlayer().getCurrentRoom().getY());
-   
-    GridPane.setConstraints(trump, game.getTrump().getCurrentRoom().getX(), game.getTrump().getCurrentRoom().getY());
+        GridPane.setConstraints(player, game.getPlayer().getCurrentRoom().getX(), game.getPlayer().getCurrentRoom().getY());
+        GridPane.setConstraints(trump, game.getTrump().getCurrentRoom().getX(), game.getTrump().getCurrentRoom().getY());
+        stepsLabel.setText(Integer.toString(game.getSteps()));
     }
     
 }
