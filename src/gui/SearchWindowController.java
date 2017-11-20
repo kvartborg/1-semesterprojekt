@@ -14,7 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import maga.GameFacade;
 
 /**
  * FXML Controller class
@@ -22,7 +21,7 @@ import maga.GameFacade;
  * @author Kasper
  */
 public class SearchWindowController implements Initializable {
-    private IGame game = new GameFacade();
+    private IGame game;
 
     @FXML
     private ListView<String> listView;
@@ -48,7 +47,7 @@ public class SearchWindowController implements Initializable {
      * @param game
      */
     public void injectGame(IGame game) {
-    this.game = game; 
+        this.game = game; 
     }
         
     /**
