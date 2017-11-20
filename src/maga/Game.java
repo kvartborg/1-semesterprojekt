@@ -432,8 +432,22 @@ public class Game {
     public Environment getEnvironment() {
         return environment;
     }
-
+    
+    /**
+     * Getter for parser
+     * 
+     * @return parser 
+     */
     public Parser getParser() {
         return parser;
+    }
+    
+    /**
+     * Getter for steps
+     * 
+     * @return steps
+     */
+    public int getSteps() {
+        return steps; 
     }
 }

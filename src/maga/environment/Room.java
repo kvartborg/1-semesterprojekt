@@ -216,6 +216,18 @@ public class Room implements Serializable {
             }
         }
     }
+    
+    /**
+     * Gets the name of the items in the room
+     * @return ArrayList of the itemnames as a string
+     */
+    public ArrayList<String> getNameOfItems(){
+        ArrayList<String> list = new ArrayList<>();
+        for (Item item : items) {
+            list.add(item.getName());
+        }
+        return list;
+    }
 
     /**
      * This method empties the room
