@@ -91,8 +91,8 @@ public class GUI extends Application {
 
             Stage stage = new Stage();
             Scene scene = new Scene(root);
-            stage.setMinWidth(600);
-            stage.setMinHeight(500);
+            stage.setMinWidth(400);
+            stage.setMinHeight(300);
             stage.setScene(scene);
             stages.put(stageName, stage); 
             return controller;
