@@ -20,9 +20,11 @@ import javafx.scene.control.ListView;
  *
  * @author ViktoriaNadarajah
  */
-public class InventoryWindowController implements Initializable {
-    private IGame game;
-
+public class InventoryWindowController extends Controller implements Initializable {
+    
+    /**
+     * A ListView for the items string-names
+     */
     @FXML
     private ListView<String> listView;
 
@@ -32,39 +34,21 @@ public class InventoryWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }  
 
     @FXML
     private void onUseClicked(ActionEvent event) {
         game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
-        
-        ObservableList<String> data = FXCollections.observableArrayList(game.getPlayer().getNameOfItems());
-        for (int i = 0; i < data.size(); i++) {
-            data.set(i, data.get(i).replace("-", " "));
-        }
-        listView.setItems(data);
+        addItemsToViewList();
     }
 
     @FXML
     private void onDropClicked(ActionEvent event) {
         game.command("drop", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
-        
-        ObservableList<String> data = FXCollections.observableArrayList(game.getPlayer().getNameOfItems());
-        for (int i = 0; i < data.size(); i++) {
-            data.set(i, data.get(i).replace("-", " "));
-        }
-        listView.setItems(data);
+        addItemsToViewList();
     }
     
     /**
-     * Injects the game into the gui
-     * @param game
-     */
-    public void injectGame(IGame game) {
-        this.game = game; 
-    }
-    
-       /**
      * Adds the item from the players currentroom to the viewlist
      */
     public void addItemsToViewList(){

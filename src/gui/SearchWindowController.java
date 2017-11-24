@@ -14,15 +14,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import gui.GUI;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Kasper
  */
-public class SearchWindowController implements Initializable {
-    private IGame game;
-
+public class SearchWindowController extends Controller implements Initializable {
+    
+    /**
+     * A ListView for the items string-names
+     */
     @FXML
     private ListView<String> listView;
 
@@ -32,22 +39,28 @@ public class SearchWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
+    } 
+    
+    /**
+     * Method for the "Pick up"-button.
+     * @param event 
+     */
     @FXML
     private void onPickupClicked(ActionEvent event) {
         game.command("pickup", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
         
-        ObservableList<String> data = FXCollections.observableArrayList(game.getPlayer().getCurrentRoom().getNameOfItems());
-        listView.setItems(data);
+        addItemsToViewList();
     }
-    
-    /**
-     * Injects the game into the gui
-     * @param game
-     */
-    public void injectGame(IGame game) {
-        this.game = game; 
+
+    @FXML
+    private void onUsePressed(ActionEvent event) {
+        if(listView.getSelectionModel().getSelectedItem().replace(" ", "-") != "Computer"){
+            game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
+        } else {
+            gui.getStages().get("Computer").show();
+        }
+        
+        addItemsToViewList();
     }
         
     /**
@@ -59,6 +72,5 @@ public class SearchWindowController implements Initializable {
             data.set(i, data.get(i).replace("-", " "));
         }
         listView.setItems(data);
-    }   
-    
+    }
 }

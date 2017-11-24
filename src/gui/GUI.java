@@ -7,19 +7,12 @@ package gui;
 
 import acq.IGame;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import maga.GameFacade;
 
@@ -28,16 +21,83 @@ import maga.GameFacade;
  * @author Rasmus
  */
 public class GUI extends Application {
-
+    
+    /**
+     * Instace of IGame
+     */
     private IGame game = new GameFacade();
-    GameController gameController;
-
+    
+    /**
+     * Instance of GameController
+     */
+    private GameController gameController;
+    
+    /**
+     *Instance of SearchWindowController 
+     */
+    private SearchWindowController searchWindowController;
+    
+    /**
+     * Instance of InventoryWindowController
+     */
+    private InventoryWindowController inventoryWindowController;
+    
+    /**
+     * Instance of CookInteractionController
+     */
+    private CookInteractionController cookInteractionController;
+    
+    private ComputerWindowController computerWindowController;
+    
+    /**
+     * HashMap with stages
+     */
+    private HashMap<String, Stage> stages = new HashMap<>();
+    
+    /**
+     * Accessor method for HashMap with stages.
+     * @return stages
+     */
+    public HashMap<String, Stage> getStages() {
+        return stages;
+    }
+    
     /**
      * Method to start the game with gui
      */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         this.loadGameController(stage);
+        searchWindowController = (SearchWindowController) this.loadController("SearchWindow.fxml", "Search");
+        inventoryWindowController = (InventoryWindowController) this.loadController("InventoryWindow.fxml", "Inventory");
+        cookInteractionController = (CookInteractionController) this.loadController("CookInteraction.fxml", "CookInteraction");
+        computerWindowController = (ComputerWindowController) this.loadController("ComputerWindow.fxml", "Computer");
+    }
+    
+    /**
+     * Method to load a controller.
+     * @param controllerName
+     * @param stageName
+     * @return Controller or null
+     */
+    public Controller loadController(String controllerName, String stageName) {
+       try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(controllerName));
+            Parent root = (Parent) loader.load();
+            
+            Controller controller = loader.getController();
+            controller.injectGame(this.game);  
+            controller.injectGUI(this);
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setMinWidth(400);
+            stage.setMinHeight(300);
+            stage.setScene(scene);
+            stages.put(stageName, stage); 
+            return controller;
+        } catch(Exception e){} 
+       return null;
     }
     
     /**
@@ -51,7 +111,7 @@ public class GUI extends Application {
 
             this.gameController = loader.getController();
             this.gameController.injectGame(this.game);  
-
+            this.gameController.injectGUI(this);
 
             Scene scene = new Scene(root);
             scene.setOnKeyPressed(event -> this.onKeyPressed(event));
@@ -61,53 +121,10 @@ public class GUI extends Application {
             stage.show(); 
         } catch(Exception e){}
     }
-    
-    /**
-     * Loads the searchcontroller scene
-     */
-    public void loadSearchController(){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchWindow.fxml"));  
-            Parent root = (Parent) loader.load();
-
-            SearchWindowController swc = loader.getController();
-            swc.injectGame(this.game);
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Searching: "+ game.getPlayer().getCurrentRoom().getName());
-            stage.setMinWidth(600);
-            stage.setMinHeight(500);
-            stage.setScene(scene);
-            swc.addItemsToViewList();
-            stage.show(); 
-        } catch(Exception e){}
-        
-    }
-    
-    public void loadInventoryController(){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("InventoryWindow.fxml"));  
-            Parent root = (Parent) loader.load();
-
-            InventoryWindowController iwc = loader.getController();
-            iwc.injectGame(this.game);
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Player inventory: ");
-            stage.setMinWidth(600);
-            stage.setMinHeight(500);
-            stage.setScene(scene);
-            iwc.addItemsToViewList();
-            stage.show(); 
-        } catch(Exception e){}
-        
-    }
+  
     
     /**
      * Method to make the player move when using the keyboard
-     *
      * @param event
      */
     public void onKeyPressed(KeyEvent event) {
@@ -129,11 +146,21 @@ public class GUI extends Application {
             break; 
            
             case S:
-                this.loadSearchController();
+                searchWindowController.addItemsToViewList();
+                stages.get("Search").show();
             break;
            
             case I:
-               this.loadInventoryController();
+                inventoryWindowController.addItemsToViewList();
+                stages.get("Inventory").show();
+            break;
+            
+            case T:
+                stages.get("CookInteraction").show();
+            break;
+            
+            case C:
+                game.command("call","");
             break;
        }
       
@@ -143,4 +170,5 @@ public class GUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

@@ -93,13 +93,6 @@ public abstract class Character implements Serializable, Loadable {
     }
 
     /**
-     * Standard method for talking with other characters, that isn't the cook
-     */
-    public void talk(Character character) {
-        System.out.println("I don't want to talk with you.");
-    }
-
-    /**
      * Default pickupItems method
      *
      * @param command

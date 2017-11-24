@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="twitterBackground" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ComputerWindowController">
+   <children>
+      <TextArea fx:id="writeTweetArea" layoutX="200.0" layoutY="28.0" prefHeight="152.0" prefWidth="323.0" />
+      <Button layoutX="82.0" layoutY="96.0" mnemonicParsing="false" onAction="#onTweetClicked" text="Tweet" />
+      <Button layoutX="59.0" layoutY="188.0" mnemonicParsing="false" onAction="#onRandomTweetClicked" text="Random tweet" />
+      <TextArea fx:id="tweetedArea" layoutX="200.0" layoutY="198.0" prefHeight="167.0" prefWidth="323.0" />
+   </children>
+</AnchorPane>
