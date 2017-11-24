@@ -117,4 +117,13 @@ public class GameFacade implements IGame {
     public HighScore getHighscore() {
         return game.getHighscore();
     }
+    
+    /**
+     * A method to get score
+     * @return score
+     */
+    @Override
+    public int getScore() {
+        return game.getScore();
+    }
 }

@@ -221,22 +221,6 @@ public class Game {
                 || !player.hasTweeted()) {
             return false;
         }
-        long endTime = System.currentTimeMillis() / 1000L;
-        long elapsedTime = endTime - startTime;
-        long finalScore = points - ((elapsedTime - bonusTime) * steps);
-        Console.print(
-                "",
-                "Congratulations, you won the game!",
-                "",
-                "---------------------------------------",
-                "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
-                bonusTime > 0 ? "You received a time bonus: " + bonusTime + " seconds, for calling Trump!" : null,
-                bonusTime > 0 ? "Your time after receiving the bonus is: " + (elapsedTime - bonusTime) + " seconds!" : null,
-                "You scored: " + finalScore,
-                "---------------------------------------"
-        );
-        System.out.println("Do you want to save your score? (Yes or no)");
-        highScore.printHighScore();
         return true;
     }
 
@@ -375,5 +359,16 @@ public class Game {
     
     public HighScore getHighscore() {
         return highScore;
+    }
+    
+    /**
+     * A method to get score
+     * @return 
+     */
+    public int getScore() {
+        long endTime = System.currentTimeMillis() / 1000L;
+        long elapsedTime = endTime - startTime;
+        long finalScore = points - ((elapsedTime - bonusTime) * steps);
+        return (int) finalScore;
     }
 }

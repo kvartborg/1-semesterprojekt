@@ -34,4 +34,6 @@ public interface IGame {
     public void restart();
     
     public HighScore getHighscore();
+    
+    public int getScore();
 }

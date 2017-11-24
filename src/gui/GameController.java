@@ -112,7 +112,8 @@ public class GameController implements Initializable {
             showYouLose();
         }
         if(game.youWin()) {
-            
+            showYouWin();
+            showHighScore();
         }
     }
     
@@ -138,6 +139,18 @@ public class GameController implements Initializable {
             game.command("load", "");
         }
         updateGameState();
+    }
+    
+    public void showYouWin() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Winner");
+        dialog.setHeaderText("Congratulations, you managed to unseat Trump!");
+        dialog.setContentText("Please enter your name:");
+        
+        Optional<String> result = dialog.showAndWait();
+        if(result.isPresent()) {
+            game.getHighscore().add(result.get(), game.getScore());
+        }
     }
     
     /**
@@ -169,6 +182,14 @@ public class GameController implements Initializable {
         Optional<ButtonType> result = savedGame.showAndWait();
         game.command("load", "");
         updateGameState();
+    }
+    
+    public void showHighScore() {
+        ButtonType highscorebtn = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+        Alert highscore = new Alert(AlertType.INFORMATION, game.getHighscore().toString(), highscorebtn );
+        highscore.setTitle("Highscore");
+        highscore.setHeaderText("Highscore");
+        Optional<ButtonType> result = highscore.showAndWait();
     }
         
     
