@@ -56,6 +56,11 @@ public class Game {
      * Bonus time
      */
     private long bonusTime;
+    
+    /**
+    * Save Time
+    */
+    private long saveTime;
 
     /**
      * Integer that sets the point the player starts with.
@@ -139,9 +144,7 @@ public class Game {
 
             case LOAD:
                 GameState.load(this);
-                System.out.println("Trump is currently in " + trump.getCurrentRoom().getShortDescription());
-                System.out.println(steps + " step(s) taken");
-                System.out.println(player.getCurrentRoom().getLongDescription());
+                fixTime();
                 break;
 
         }
@@ -177,8 +180,6 @@ public class Game {
 
     }
 
-  
-
     /**
      * This method checks if the player is in the same room as Trump. If you are
      * then the game is lost.
@@ -212,15 +213,17 @@ public class Game {
      * Calls the gamestate save method
      */
     public void save() {
+        saveTime = System.currentTimeMillis() / 1000L;
         GameState.save(
-                steps,
-                startTime,
-                bonusTime,
-                points,
-                player,
-                trump,
-                cook,
-                environment
+            steps,
+            startTime,
+            bonusTime,
+            saveTime,
+            points,
+            player,
+            trump,
+            cook,
+            environment
         );
     }
 
@@ -277,6 +280,14 @@ public class Game {
     public void setBonusTime(long bonusTime) {
         this.bonusTime = bonusTime;
     }
+    
+    /**
+     * Setter for saveTime
+     * @param saveTime
+     */
+    public void setSaveTime(long saveTime){
+        this.saveTime = saveTime;
+    }
 
     /**
      * Setter for points
@@ -314,6 +325,15 @@ public class Game {
         return steps; 
     }
     
+    /**
+     * Fixes the time after saving and loading
+     * so you dont spend the time not playing in the game
+     */
+    public void fixTime(){
+        long difference = this.saveTime - this.startTime;
+        this.startTime -= difference;
+    }
+  
     /**
      * This method restarts the game when called
      */

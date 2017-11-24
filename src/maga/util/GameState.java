@@ -43,8 +43,9 @@ public class GameState {
      * @param cook
      * @param environment
      */
-    public static void save(int steps, long startTime, long bonusTime, int points, Player player, Trump trump, Cook cook, Environment environment) {
+    public static void save(int steps, long startTime, long bonusTime, long saveTime, int points, Player player, Trump trump, Cook cook, Environment environment) {
         try {
+            
 
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -63,6 +64,10 @@ public class GameState {
 
             game.appendChild(
                     GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
+            );
+            
+            game.appendChild(
+                    GameState.createTextNode(doc, "saveTime", Long.toString(saveTime))
             );
 
             game.appendChild(
@@ -110,6 +115,7 @@ public class GameState {
             game.setPoints(Integer.parseInt(findElementByName(doc, "points").getTextContent()));
             game.setStartTime(Long.parseLong(findElementByName(doc, "startTime").getTextContent()));
             game.setBonusTime(Long.parseLong(findElementByName(doc, "bonusTime").getTextContent()));
+            game.setSaveTime(Long.parseLong(findElementByName(doc, "saveTime").getTextContent()));
 
             game.getPlayer().load(doc.getElementsByTagName("player"), game.getEnvironment());
             game.getTrump().load(doc.getElementsByTagName("trump"), game.getEnvironment());
