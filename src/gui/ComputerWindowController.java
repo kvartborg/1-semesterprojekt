@@ -5,7 +5,6 @@
  */
 package gui;
 
-import acq.IGame;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -20,20 +19,11 @@ import javafx.scene.control.TextArea;
  *
  * @author Kasper
  */
-public class ComputerWindowController implements Initializable {
-    private IGame game;
+public class ComputerWindowController extends Controller implements Initializable {
     @FXML
     private TextArea writeTweetArea;
     @FXML
     private TextArea tweetedArea;
-        
-    /**
-     * Injects the game into the controller
-     * @param game
-     */
-    public void injectGame(IGame game) {
-        this.game = game; 
-    }
 
     /**
      * Initializes the controller class.

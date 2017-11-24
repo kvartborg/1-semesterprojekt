@@ -57,7 +57,7 @@ public class SearchWindowController extends Controller implements Initializable 
         if(listView.getSelectionModel().getSelectedItem().replace(" ", "-") != "Computer"){
             game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
         } else {
-            loadComputerWindowController();
+            gui.getStages().get("Computer").show();
         }
         
         addItemsToViewList();
@@ -72,28 +72,5 @@ public class SearchWindowController extends Controller implements Initializable 
             data.set(i, data.get(i).replace("-", " "));
         }
         listView.setItems(data);
-    }   
-    
-    /**
-     * Loads the computer window
-     */
-    public void loadComputerWindowController(){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ComputerWindow.fxml"));  
-            Parent root = (Parent) loader.load();
-
-            ComputerWindowController cwc = loader.getController();
-            cwc.injectGame(this.game);
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Donald Trump's computer");
-            stage.setMinWidth(600);
-            stage.setMinHeight(500);
-            stage.setScene(scene);
-            stage.showAndWait(); 
-        } catch(Exception e){}        
     }
-
-
 }

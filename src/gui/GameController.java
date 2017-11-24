@@ -183,7 +183,7 @@ public class GameController extends Controller implements Initializable {
     public void showHighScore() {
         ButtonType playAgain = new ButtonType("Play again", ButtonBar.ButtonData.OK_DONE);
         ButtonType close = new ButtonType("Quit", ButtonBar.ButtonData.CANCEL_CLOSE); 
-        Alert highscore = new Alert(AlertType.INFORMATION, game.getHighscore().toString());
+        Alert highscore = new Alert(AlertType.INFORMATION, game.getHighscore().toString(), playAgain, close);
         highscore.setTitle("Highscore");
         highscore.setHeaderText("Highscore");
         Optional<ButtonType> result = highscore.showAndWait();
