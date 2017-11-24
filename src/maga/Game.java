@@ -1,6 +1,5 @@
 package maga;
 
-import java.util.Scanner;
 import maga.environment.Environment;
 import maga.character.Cook;
 import maga.character.Trump;
@@ -46,22 +45,22 @@ public class Game {
     /**
      * Steps
      */
-    private int steps = 0;
+    private int steps;
 
     /**
      * Start Time
      */
-    private long startTime = System.currentTimeMillis() / 1000L;
+    private long startTime;
 
     /**
      * Bonus time
      */
-    private long bonusTime = 0L;
+    private long bonusTime;
 
     /**
      * Integer that sets the point the player starts with.
      */
-    private int points = 5000;
+    private int points;
 
     /**
      * Creates an instance of highscore.
@@ -73,15 +72,7 @@ public class Game {
      */
     public Game() {
         GameState.loadHighscore(highScore);
-        environment = new Environment();
-        player = new Player();
-        trump = new Trump();
-        cook = new Cook();
-        parser = new Parser();
-
-        player.setCurrentRoom(environment.getRoom("Press briefing room"));
-        trump.setCurrentRoom(environment.getRoom("Oval office"));
-        cook.setCurrentRoom(environment.getRoom("Kitchen"));
+        play();
     }
 
     /**
@@ -108,10 +99,6 @@ public class Game {
             case GO:
                 step();
                 player.goRoom(command);
-                break;
-
-            case QUIT:
-                wantToQuit = quit(command);
                 break;
 
             case PICKUP:
@@ -158,12 +145,6 @@ public class Game {
                 break;
 
         }
-        if (youLose()) {
-            return true;
-        }
-        if (youWin()) {
-            return true;
-        }
 
         return wantToQuit;
     }
@@ -196,25 +177,7 @@ public class Game {
 
     }
 
-    /**
-     * This method quits the game.
-     *
-     * The method decides what happens when the user uses the quit command. It
-     * first checks if the user posted a second word when quitting, returns
-     * false if it has. If the user doesnt have a second word after quit, then
-     * its true and therefore quits the game.
-     *
-     * @param command
-     * @return boolean (false if second word, true if not)
-     */
-    private boolean quit(Command command) {
-        if (command.hasSecondWord()) {
-            Console.print("Quit what?");
-            return false;
-        } else {
-            return true;
-        }
-    }
+  
 
     /**
      * This method checks if the player is in the same room as Trump. If you are
@@ -222,7 +185,7 @@ public class Game {
      *
      * @return returns true or false
      */
-    private boolean youLose() {
+    public boolean youLose() {
         if (player.getCurrentRoom() != trump.getCurrentRoom()) {
             return false;
         }
@@ -237,37 +200,11 @@ public class Game {
      *
      * @return true or false.
      */
-    private boolean youWin() {
+    public boolean youWin() {
         if (player.getCurrentRoom() != environment.getRoom("Press briefing room")
                 || !player.hasTweeted()) {
             return false;
         }
-        long endTime = System.currentTimeMillis() / 1000L;
-        long elapsedTime = endTime - startTime;
-        long finalScore = points - ((elapsedTime - bonusTime) * steps);
-        Console.print(
-                "",
-                "Congratulations, you won the game!",
-                "",
-                "---------------------------------------",
-                "You made it in " + steps + " steps, in " + elapsedTime + " seconds!",
-                bonusTime > 0 ? "You received a time bonus: " + bonusTime + " seconds, for calling Trump!" : null,
-                bonusTime > 0 ? "Your time after receiving the bonus is: " + (elapsedTime - bonusTime) + " seconds!" : null,
-                "You scored: " + finalScore,
-                "---------------------------------------"
-        );
-        Scanner input = new Scanner(System.in);
-        System.out.println("Do you want to save your score? (Yes or no)");
-        String answer = input.nextLine();
-        if (answer.equalsIgnoreCase("Yes")) {
-            System.out.println("Please enter your name to save your score: ");
-            String playerName = input.nextLine();
-            highScore.add(playerName, (int) finalScore);
-            GameState.saveHighScore(highScore);
-        } else {
-            System.out.println("You didn't save your score!");
-        }
-        highScore.printHighScore();
         return true;
     }
 
@@ -375,5 +312,50 @@ public class Game {
      */
     public int getSteps() {
         return steps; 
+    }
+    
+    /**
+     * This method restarts the game when called
+     */
+    public void restart() {
+        this.play();
+    }
+    
+    /**
+     * This method starts the game
+     */
+    private void play() {
+        
+        steps = 0;
+        startTime = System.currentTimeMillis() / 1000L;
+        bonusTime = 0L;
+        points = 5000;
+        environment = new Environment();
+        player = new Player();
+        trump = new Trump();
+        cook = new Cook();
+        parser = new Parser();
+
+        player.setCurrentRoom(environment.getRoom("Press briefing room"));
+        trump.setCurrentRoom(environment.getRoom("Oval office"));
+        cook.setCurrentRoom(environment.getRoom("Kitchen"));
+    }
+    /**
+     * Accessor method for highscore
+     * @return highscore
+     */
+    public HighScore getHighscore() {
+        return highScore;
+    }
+    
+    /**
+     * A method to get score
+     * @return 
+     */
+    public int getScore() {
+        long endTime = System.currentTimeMillis() / 1000L;
+        long elapsedTime = endTime - startTime;
+        long finalScore = points - ((elapsedTime - bonusTime) * steps);
+        return (int) finalScore;
     }
 }

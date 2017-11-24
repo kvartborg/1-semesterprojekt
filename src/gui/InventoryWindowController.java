@@ -39,26 +39,16 @@ public class InventoryWindowController extends Controller implements Initializab
     @FXML
     private void onUseClicked(ActionEvent event) {
         game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
-        
-        ObservableList<String> data = FXCollections.observableArrayList(game.getPlayer().getNameOfItems());
-        for (int i = 0; i < data.size(); i++) {
-            data.set(i, data.get(i).replace("-", " "));
-        }
-        listView.setItems(data);
+        addItemsToViewList();
     }
 
     @FXML
     private void onDropClicked(ActionEvent event) {
         game.command("drop", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
-        
-        ObservableList<String> data = FXCollections.observableArrayList(game.getPlayer().getNameOfItems());
-        for (int i = 0; i < data.size(); i++) {
-            data.set(i, data.get(i).replace("-", " "));
-        }
-        listView.setItems(data);
-    }  
+        addItemsToViewList();
+    }
     
-       /**
+    /**
      * Adds the item from the players currentroom to the viewlist
      */
     public void addItemsToViewList(){

@@ -9,18 +9,10 @@ import acq.IGame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import maga.GameFacade;
 
@@ -126,10 +118,10 @@ public class GUI extends Application {
             stage.show(); 
         } catch(Exception e){}
     }
+  
     
     /**
      * Method to make the player move when using the keyboard
-     *
      * @param event
      */
     public void onKeyPressed(KeyEvent event) {
@@ -163,6 +155,10 @@ public class GUI extends Application {
             case T:
                 stages.get("CookInteraction").show();
             break;
+            
+            case C:
+                game.command("call","");
+            break;
        }
       
        this.gameController.updateGameState();
@@ -171,4 +167,5 @@ public class GUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }
