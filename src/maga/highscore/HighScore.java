@@ -5,18 +5,10 @@
  */
 package maga.highscore;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import maga.environment.Environment;
-import maga.util.Console;
+import maga.util.GameState;
 import maga.util.Loadable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -44,6 +36,7 @@ public class HighScore implements Serializable, Loadable {
     public void add(String name, int score) {
         highScore.add(new Score(name, score));
         this.sort();
+        GameState.saveHighScore(this);
     }
 
     /**

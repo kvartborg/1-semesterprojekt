@@ -123,6 +123,13 @@ public class GUI extends Application {
            
             case S:
                 this.loadSearchController();
+//                Alert alert = new Alert(AlertType.CONFIRMATION, "Delete "  + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+//                
+//                alert.showAndWait();
+//
+//                if (alert.getResult() == ButtonType.YES) {
+//                    alert.showAndWait();
+//                }
             break;
            
             case I:
