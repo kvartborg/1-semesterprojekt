@@ -141,6 +141,9 @@ public class GameController implements Initializable {
         updateGameState();
     }
     
+    /**
+     * This method creates an alertbox for when you win
+     */
     public void showYouWin() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Winner");
@@ -176,20 +179,31 @@ public class GameController implements Initializable {
     @FXML
     private void onLoadClicked(ActionEvent event) {
         ButtonType loaded = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
-        Alert savedGame = new Alert(AlertType.CONFIRMATION, "", loaded);
-        savedGame.setTitle("Loaded game");
-        savedGame.setHeaderText("You succesfully loaded the game");
-        Optional<ButtonType> result = savedGame.showAndWait();
+        Alert loadedGame = new Alert(AlertType.CONFIRMATION, "", loaded);
+        loadedGame.setTitle("Loaded game");
+        loadedGame.setHeaderText("You succesfully loaded the game");
+        Optional<ButtonType> result = loadedGame.showAndWait();
         game.command("load", "");
         updateGameState();
     }
     
+    /**
+     * This method shows the highscore when the game is won
+     */
     public void showHighScore() {
-        ButtonType highscorebtn = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
-        Alert highscore = new Alert(AlertType.INFORMATION, game.getHighscore().toString(), highscorebtn );
+        ButtonType playAgain = new ButtonType("Play again", ButtonBar.ButtonData.OK_DONE);
+        ButtonType close = new ButtonType("Quit", ButtonBar.ButtonData.CANCEL_CLOSE); 
+        Alert highscore = new Alert(AlertType.INFORMATION, game.getHighscore().toString());
         highscore.setTitle("Highscore");
         highscore.setHeaderText("Highscore");
         Optional<ButtonType> result = highscore.showAndWait();
+        if(result.get() == playAgain) {
+            game.restart();
+        }
+        if(result.get() == close) {
+            System.exit(0);
+        }
+        updateGameState();
     }
         
     

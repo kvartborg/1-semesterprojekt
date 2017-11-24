@@ -1,6 +1,5 @@
 package maga;
 
-import java.util.Scanner;
 import maga.environment.Environment;
 import maga.character.Cook;
 import maga.character.Trump;
@@ -356,7 +355,10 @@ public class Game {
         trump.setCurrentRoom(environment.getRoom("Oval office"));
         cook.setCurrentRoom(environment.getRoom("Kitchen"));
     }
-    
+    /**
+     * Accessor method for highscore
+     * @return highscore
+     */
     public HighScore getHighscore() {
         return highScore;
     }
