@@ -159,9 +159,6 @@ public class Game {
 
             case LOAD:
                 GameState.load(this);
-                System.out.println("Trump is currently in " + trump.getCurrentRoom().getShortDescription());
-                System.out.println(steps + " step(s) taken");
-                System.out.println(player.getCurrentRoom().getLongDescription());
                 fixTime();
                 break;
 

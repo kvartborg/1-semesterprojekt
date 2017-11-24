@@ -115,7 +115,7 @@ public class GameState {
             game.setPoints(Integer.parseInt(findElementByName(doc, "points").getTextContent()));
             game.setStartTime(Long.parseLong(findElementByName(doc, "startTime").getTextContent()));
             game.setBonusTime(Long.parseLong(findElementByName(doc, "bonusTime").getTextContent()));
-            game.setSaveTime(Long.parseLong(findElementByName(doc, "bonusTime").getTextContent()));
+            game.setSaveTime(Long.parseLong(findElementByName(doc, "saveTime").getTextContent()));
 
             game.getPlayer().load(doc.getElementsByTagName("player"), game.getEnvironment());
             game.getTrump().load(doc.getElementsByTagName("trump"), game.getEnvironment());
