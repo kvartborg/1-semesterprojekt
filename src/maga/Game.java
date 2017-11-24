@@ -330,7 +330,7 @@ public class Game {
      * so you dont spend the time not playing in the game
      */
     public void fixTime(){
-        long difference = this.saveTime - this.startTime;
+        long difference = this.saveTime - System.currentTimeMillis() / 1000L;
         this.startTime -= difference;
     }
   
