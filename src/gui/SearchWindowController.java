@@ -34,18 +34,7 @@ public class SearchWindowController extends Controller implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }   
-    
-    /**
-     * Method for injecting IGame.
-     * @param game 
-     */
-    @Override
-    public void injectGame(IGame game) {
-        super.injectGame(game);
-        this.addItemsToViewList();
-        System.out.println(game.getPlayer().getCurrentRoom().getNameOfItems());
-    }
+    } 
     
     /**
      * Method for the "Pick up"-button.

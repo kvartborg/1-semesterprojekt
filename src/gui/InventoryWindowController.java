@@ -21,7 +21,10 @@ import javafx.scene.control.ListView;
  * @author ViktoriaNadarajah
  */
 public class InventoryWindowController extends Controller implements Initializable {
-
+    
+    /**
+     * A ListView for the items string-names
+     */
     @FXML
     private ListView<String> listView;
 
@@ -32,12 +35,6 @@ public class InventoryWindowController extends Controller implements Initializab
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }  
-    
-    @Override
-    public void injectGame(IGame game) {
-        super.injectGame(game);
-        this.addItemsToViewList();
-    }
 
     @FXML
     private void onUseClicked(ActionEvent event) {

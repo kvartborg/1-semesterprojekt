@@ -21,11 +21,22 @@ import javafx.scene.control.TextArea;
  * @author Rasmus
  */
 public class CookInteractionController extends Controller implements Initializable {
-
+    
+    /**
+     * Button with a "yes" option
+     */
     @FXML
     private Button yesButton;
+    
+    /**
+     * Button with a "no" option
+     */
     @FXML
     private Button noButton;
+    
+    /**
+     * Textarea for the cook interaction
+     */
     @FXML
     private TextArea cookTextField;
 
@@ -36,7 +47,11 @@ public class CookInteractionController extends Controller implements Initializab
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
+    /**
+     * Method for the event when "yes"-button is pressed.
+     * @param event 
+     */
     @FXML
     private void onYesButton(ActionEvent event) {
         if (game.getPlayer().isInventoryFull()) {
@@ -49,7 +64,11 @@ public class CookInteractionController extends Controller implements Initializab
             cookTextField.setText("Here you go, enjoy");
         }
     }
-
+    
+    /**
+     * Method for the event when "no"-button is pressed.
+     * @param event 
+     */
     @FXML
     private void onNoButton(ActionEvent event) {
         cookTextField.setText("Suit yourself.");

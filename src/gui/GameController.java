@@ -84,6 +84,9 @@ public class GameController extends Controller implements Initializable {
         inSameRoom();
     }
     
+    /**
+     * Method to check if Cook and Player are in the same room.
+     */
     public void inSameRoom() {
         if (game.getPlayer().getCurrentRoom() == game.getCook().getCurrentRoom() && !game.getPlayer().hasItem("Steak")) {
             gui.getStages().get("CookInteraction").show();
