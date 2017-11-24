@@ -6,20 +6,11 @@
 package gui;
 
 import acq.IGame;
-import java.util.ArrayList;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import maga.GameFacade;
 
@@ -80,11 +71,14 @@ public class GUI extends Application {
             stage.setMinHeight(500);
             stage.setScene(scene);
             swc.addItemsToViewList();
-            stage.show(); 
+            stage.showAndWait(); 
         } catch(Exception e){}
         
     }
     
+    /**
+     * Loads the inventory window
+     */
     public void loadInventoryController(){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("InventoryWindow.fxml"));  
@@ -100,14 +94,13 @@ public class GUI extends Application {
             stage.setMinHeight(500);
             stage.setScene(scene);
             iwc.addItemsToViewList();
-            stage.show(); 
+            stage.showAndWait(); 
         } catch(Exception e){}
-        
     }
+  
     
     /**
      * Method to make the player move when using the keyboard
-     *
      * @param event
      */
     public void onKeyPressed(KeyEvent event) {
@@ -130,6 +123,13 @@ public class GUI extends Application {
            
             case S:
                 this.loadSearchController();
+//                Alert alert = new Alert(AlertType.CONFIRMATION, "Delete "  + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+//                
+//                alert.showAndWait();
+//
+//                if (alert.getResult() == ButtonType.YES) {
+//                    alert.showAndWait();
+//                }
             break;
            
             case I:
@@ -143,4 +143,5 @@ public class GUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

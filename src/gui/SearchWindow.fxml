@@ -6,10 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gui.SearchWindowController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SearchWindowController">
    <children>
       <Button layoutX="56.0" layoutY="130.0" mnemonicParsing="false" onAction="#onPickupClicked" text="Pickup" />
       <ListView fx:id="listView" layoutX="194.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="56.0" layoutY="188.0" mnemonicParsing="false" onAction="#onUsePressed" text="Use" />
    </children>
 </AnchorPane>
