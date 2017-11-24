@@ -7,10 +7,13 @@ package gui;
 
 import acq.IGame;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -20,6 +23,9 @@ import javafx.scene.layout.GridPane;
  *
  * @author Rasmus
  */
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextInputDialog;
 public class GameController implements Initializable {
     /**
      * Making an instance of IGame
@@ -92,6 +98,44 @@ public class GameController implements Initializable {
         GridPane.setConstraints(player, game.getPlayer().getCurrentRoom().getX(), game.getPlayer().getCurrentRoom().getY());
         GridPane.setConstraints(trump, game.getTrump().getCurrentRoom().getX(), game.getTrump().getCurrentRoom().getY());
         stepsLabel.setText(Integer.toString(game.getSteps()));
+        if(game.youLose()) {
+            showYouLose();
+        }
+        if(game.youWin()) {
+            
+        }
+    }
+    
+    /**
+     * This method creates an alertbox for when you lose
+     * and makes it possible to play again or exit the game
+     */
+    public void showYouLose() {
+        ButtonType playAgain = new ButtonType("Play again", ButtonBar.ButtonData.OK_DONE);
+        ButtonType close = new ButtonType("Quit", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert youLose = new Alert(AlertType.CONFIRMATION, "You got busted by Trump!", playAgain, close);
+        youLose.setTitle("You lost");
+        youLose.setHeaderText("Well that sucks");
+        Optional<ButtonType> result = youLose.showAndWait();
+        if(result.get() == playAgain) {
+            game.restart();
+        }
+        if(result.get() == close) {
+            System.exit(0);
+        }
+        updateGameState();
+    }
+    
+   /* public void showYouWin() {
+        TextInputDialog youWin = new TextInputDialog();
+        youWin.setTitle("Winner");
+        youWin.setHeaderText("Congratulations, you managed to unseat trump!");
+        youWin.setContentText("Please enter your name:");
+        Optional<String> result = youWin.showAndWait();
+        if(result.isPresent()) {
+            System.out.println("Test");
+        }*/
+        
     }
     
 }

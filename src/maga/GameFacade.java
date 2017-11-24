@@ -10,6 +10,7 @@ import acq.IData;
 import maga.character.Cook;
 import maga.character.Player;
 import maga.character.Trump;
+import maga.highscore.HighScore;
 
 /**
  * Facade for Game which implements the interface for game
@@ -79,5 +80,40 @@ public class GameFacade implements IGame {
     @Override
     public int getSteps() {
         return game.getSteps(); 
+    }
+    
+    /**
+     * This method makes it possible to win the game
+     * @return boolean
+     */
+    @Override
+    public boolean youWin() {
+        return game.youWin();
+    }
+    
+    /**
+     * This method makes it possible to lose the game
+     * @return boolean
+     */
+    @Override
+    public boolean youLose() {
+        return game.youLose();
+    }
+    
+    
+    /**
+     * This method restarts the game
+     */
+    @Override
+    public void restart() {
+        game.restart();
+    }
+    
+    /**
+     * This method returns highscore
+     * @return highscore
+     */
+    public HighScore getHighscore() {
+        return game.getHighscore();
     }
 }

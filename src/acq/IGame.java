@@ -25,4 +25,10 @@ public interface IGame {
     public Cook getCook();
     
     public int getSteps();
+    
+    public boolean youLose();
+    
+    public boolean youWin();
+    
+    public void restart();
 }
