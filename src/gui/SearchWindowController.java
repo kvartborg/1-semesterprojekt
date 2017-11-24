@@ -14,6 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import gui.GUI;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,8 +43,18 @@ public class SearchWindowController implements Initializable {
     private void onPickupClicked(ActionEvent event) {
         game.command("pickup", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
         
-        ObservableList<String> data = FXCollections.observableArrayList(game.getPlayer().getCurrentRoom().getNameOfItems());
-        listView.setItems(data);
+        addItemsToViewList();
+    }
+
+    @FXML
+    private void onUsePressed(ActionEvent event) {
+        if(listView.getSelectionModel().getSelectedItem().replace(" ", "-") != "Computer"){
+            game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
+        } else {
+            loadComputerWindowController();
+        }
+        
+        addItemsToViewList();
     }
     
     /**
@@ -61,4 +76,26 @@ public class SearchWindowController implements Initializable {
         listView.setItems(data);
     }   
     
+    /**
+     * Loads the computer window
+     */
+    public void loadComputerWindowController(){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ComputerWindow.fxml"));  
+            Parent root = (Parent) loader.load();
+
+            ComputerWindowController cwc = loader.getController();
+            cwc.injectGame(this.game);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Donald Trump's computer");
+            stage.setMinWidth(600);
+            stage.setMinHeight(500);
+            stage.setScene(scene);
+            stage.showAndWait(); 
+        } catch(Exception e){}        
+    }
+
+
 }
