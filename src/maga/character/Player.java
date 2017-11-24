@@ -169,21 +169,6 @@ public class Player extends Character implements Serializable {
     }
 
     /**
-     * Interaction between the player and the cook
-     *
-     * @param character the cook the player interacts with
-     */
-    @Override
-    public void talk(Character character) {
-        if (this.getCurrentRoom() != character.getCurrentRoom()) {
-            System.out.println("There's no one in the room.");
-            return;
-        }
-        character.talk(this);
-
-    }
-
-    /**
      * Returns the state of tweeted.
      *
      * @return true of false.

@@ -99,7 +99,6 @@ public class Game {
             case GO:
                 step();
                 player.goRoom(command);
-                interact();
                 break;
 
             case PICKUP:
@@ -121,10 +120,6 @@ public class Game {
 
             case USE:
                 player.useItem(command);
-                break;
-
-            case TALK:
-                player.talk(cook);
                 break;
 
             case CALLTRUMP:
@@ -166,16 +161,6 @@ public class Game {
 
         steps++;
         Console.print(steps + " step(s) taken");
-    }
-
-    /**
-     * This method checks if the player and cook is in the same room and if they
-     * are they will interact with eachother.
-     */
-    private void interact() {
-        if (player.getCurrentRoom() == cook.getCurrentRoom() && !player.hasItem("Steak")) {
-            cook.talk(player);
-        }
     }
 
     /**

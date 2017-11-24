@@ -18,19 +18,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextInputDialog;
 
 /**
  *
  * @author Rasmus
  */
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextInputDialog;
-public class GameController implements Initializable {
-    /**
-     * Making an instance of IGame
-     */
-    private IGame game;
+public class GameController extends Controller implements Initializable {
+    
     /**
      * Label to count steps
      */
@@ -82,14 +79,6 @@ public class GameController implements Initializable {
     @FXML
     private void onHelpClicked(ActionEvent event) {
     }
-     
-    /**
-     * Method to inject the game into the gui 
-     * @param game 
-     */
-    public void injectGame(IGame game) {
-        this.game = game; 
-    }
     
     /**
      * Method to update the current state of the game 
@@ -98,12 +87,23 @@ public class GameController implements Initializable {
         GridPane.setConstraints(player, game.getPlayer().getCurrentRoom().getX(), game.getPlayer().getCurrentRoom().getY());
         GridPane.setConstraints(trump, game.getTrump().getCurrentRoom().getX(), game.getTrump().getCurrentRoom().getY());
         stepsLabel.setText(Integer.toString(game.getSteps()));
+        inSameRoom();
+      
         if(game.youLose()) {
             showYouLose();
         }
         if(game.youWin()) {
             showYouWin();
             showHighScore();
+        }
+    }
+    
+    /**
+     * Method to check if Cook and Player are in the same room.
+     */
+    public void inSameRoom() {
+        if (game.getPlayer().getCurrentRoom() == game.getCook().getCurrentRoom() && !game.getPlayer().hasItem("Steak")) {
+            gui.getStages().get("CookInteraction").show();
         }
     }
     

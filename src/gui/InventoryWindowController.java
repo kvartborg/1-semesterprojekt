@@ -20,9 +20,11 @@ import javafx.scene.control.ListView;
  *
  * @author ViktoriaNadarajah
  */
-public class InventoryWindowController implements Initializable {
-    private IGame game;
-
+public class InventoryWindowController extends Controller implements Initializable {
+    
+    /**
+     * A ListView for the items string-names
+     */
     @FXML
     private ListView<String> listView;
 
@@ -32,7 +34,7 @@ public class InventoryWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }  
 
     @FXML
     private void onUseClicked(ActionEvent event) {
@@ -44,14 +46,6 @@ public class InventoryWindowController implements Initializable {
     private void onDropClicked(ActionEvent event) {
         game.command("drop", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
         addItemsToViewList();
-    }
-    
-    /**
-     * Injects the game into the gui
-     * @param game
-     */
-    public void injectGame(IGame game) {
-        this.game = game; 
     }
     
     /**
