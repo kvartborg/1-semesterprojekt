@@ -346,10 +346,16 @@ public class Game {
         return steps; 
     }
     
+    /**
+     * This method restarts the game when called
+     */
     public void restart() {
         this.play();
     }
     
+    /**
+     * This method starts the game
+     */
     private void play() {
         
         steps = 0;
@@ -365,5 +371,9 @@ public class Game {
         player.setCurrentRoom(environment.getRoom("Press briefing room"));
         trump.setCurrentRoom(environment.getRoom("Oval office"));
         cook.setCurrentRoom(environment.getRoom("Kitchen"));
+    }
+    
+    public HighScore getHighscore() {
+        return highScore;
     }
 }

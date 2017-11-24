@@ -8,6 +8,7 @@ package acq;
 import maga.character.Cook;
 import maga.character.Player;
 import maga.character.Trump;
+import maga.highscore.HighScore;
 
 /**
  * Interface for game
@@ -31,4 +32,6 @@ public interface IGame {
     public boolean youWin();
     
     public void restart();
+    
+    public HighScore getHighscore();
 }

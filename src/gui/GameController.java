@@ -67,6 +67,16 @@ public class GameController implements Initializable {
     @FXML
     private ImageView trump;
     /**
+     * Button to save game
+     */
+    @FXML
+    private Button saveButton;
+    /**
+     * Button to load game
+     */
+    @FXML
+    private Button loadButton;
+    /**
      * Method to initialize
      * @param url
      * @param rb 
@@ -113,7 +123,8 @@ public class GameController implements Initializable {
     public void showYouLose() {
         ButtonType playAgain = new ButtonType("Play again", ButtonBar.ButtonData.OK_DONE);
         ButtonType close = new ButtonType("Quit", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert youLose = new Alert(AlertType.CONFIRMATION, "You got busted by Trump!", playAgain, close);
+        ButtonType load = new ButtonType("Load saved game", ButtonBar.ButtonData.OTHER);
+        Alert youLose = new Alert(AlertType.CONFIRMATION, "You got busted by Trump!", playAgain, close, load);
         youLose.setTitle("You lost");
         youLose.setHeaderText("Well that sucks");
         Optional<ButtonType> result = youLose.showAndWait();
@@ -123,19 +134,43 @@ public class GameController implements Initializable {
         if(result.get() == close) {
             System.exit(0);
         }
+        if(result.get() == load) {
+            game.command("load", "");
+        }
         updateGameState();
     }
     
-   /* public void showYouWin() {
-        TextInputDialog youWin = new TextInputDialog();
-        youWin.setTitle("Winner");
-        youWin.setHeaderText("Congratulations, you managed to unseat trump!");
-        youWin.setContentText("Please enter your name:");
-        Optional<String> result = youWin.showAndWait();
-        if(result.isPresent()) {
-            System.out.println("Test");
-        }*/
-        
+    /**
+     * Method to make the save button save the game
+     * and trigger an alert window
+     * @param event 
+     */
+    @FXML
+    private void onSaveClicked(ActionEvent event) {
+        ButtonType saved = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+        Alert savedGame = new Alert(AlertType.CONFIRMATION, "", saved);
+        savedGame.setTitle("Saved game");
+        savedGame.setHeaderText("You succesfully saved the game");
+        Optional<ButtonType> result = savedGame.showAndWait();
+        game.command("save", "");
     }
+    
+    /**
+     * Method to make the load button load the game 
+     * and trigger an alert window 
+     * @param event 
+     */
+    @FXML
+    private void onLoadClicked(ActionEvent event) {
+        ButtonType loaded = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+        Alert savedGame = new Alert(AlertType.CONFIRMATION, "", loaded);
+        savedGame.setTitle("Loaded game");
+        savedGame.setHeaderText("You succesfully loaded the game");
+        Optional<ButtonType> result = savedGame.showAndWait();
+        game.command("load", "");
+        updateGameState();
+    }
+        
+    
     
 }
