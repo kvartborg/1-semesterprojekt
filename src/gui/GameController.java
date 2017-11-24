@@ -31,16 +31,6 @@ public class GameController implements Initializable {
     @FXML
     private Label stepsLabel;
     /**
-     * Label to see what items player has in left hand
-     */
-    @FXML
-    private Label leftHandLabel;
-    /**
-     * Label to see what items player has in right hand
-     */
-    @FXML
-    private Label rightHandLabel;
-    /**
      * Button to call the help command 
      */
     @FXML

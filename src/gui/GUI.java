@@ -133,8 +133,11 @@ public class GUI extends Application {
             break;
            
             case I:
-               this.loadInventoryController();
+                this.loadInventoryController();
             break;
+            
+            case C:
+                game.command("call","");
        }
       
        this.gameController.updateGameState();
