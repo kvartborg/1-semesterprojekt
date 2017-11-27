@@ -85,6 +85,7 @@ public class GameController extends Controller implements Initializable {
      */
     @FXML
     private void onHelpClicked(ActionEvent event) {
+        gui.getStages().get("Help").show();
     }
     
     /**
