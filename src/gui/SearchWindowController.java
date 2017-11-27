@@ -5,7 +5,6 @@
  */
 package gui;
 
-import acq.IGame;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -14,11 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import gui.GUI;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -52,14 +46,17 @@ public class SearchWindowController extends Controller implements Initializable 
         addItemsToViewList();
     }
 
+    /**
+     * Method to use items in the search window with the use button
+     * @param event 
+     */
     @FXML
     private void onUsePressed(ActionEvent event) {
-        if(listView.getSelectionModel().getSelectedItem().replace(" ", "-") != "Computer"){
-            game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
-        } else {
+        if(listView.getSelectionModel().getSelectedItem().replace(" ", "-").equals("Computer")){
             gui.getStages().get("Computer").show();
+        } else {
+            game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
         }
-        
         addItemsToViewList();
     }
         

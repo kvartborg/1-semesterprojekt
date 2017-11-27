@@ -59,6 +59,7 @@ public class HighScore implements Serializable, Loadable {
         }
         return text;
     }
+    
     /**
      *  Serialize highscore to xml
      */
@@ -75,6 +76,7 @@ public class HighScore implements Serializable, Loadable {
 
         return root;
     }
+    
     /**
      * This method loads our highscores from the xml file.
      */

@@ -13,6 +13,7 @@ import maga.environment.Room;
  * @author mikkellarsen
  */
 public class Key extends Item {
+    
     /**
      * Creating a variable room of the type Room
      */
@@ -26,6 +27,7 @@ public class Key extends Item {
         super("Key");
         this.room = room;
     }
+    
     /**
      * Creating a method to get room
      * @return room
@@ -33,6 +35,7 @@ public class Key extends Item {
     public Room getRoom() {
         return room;
     }
+    
     /**
      * Creating a method to set the room
      * @param room
@@ -57,6 +60,4 @@ public class Key extends Item {
             System.out.println("There is no locked door here.");
         }
     }
-
-
 }

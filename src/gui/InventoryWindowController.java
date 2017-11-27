@@ -5,7 +5,6 @@
  */
 package gui;
 
-import acq.IGame;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -35,13 +34,21 @@ public class InventoryWindowController extends Controller implements Initializab
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }  
-
+    
+    /**
+     * Method for the use button 
+     * @param event 
+     */
     @FXML
     private void onUseClicked(ActionEvent event) {
         game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
         addItemsToViewList();
     }
-
+    
+    /**
+     * Method for the drop button
+     * @param event 
+     */
     @FXML
     private void onDropClicked(ActionEvent event) {
         game.command("drop", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
@@ -57,6 +64,5 @@ public class InventoryWindowController extends Controller implements Initializab
             data.set(i, data.get(i).replace("-", " "));
         }
         listView.setItems(data);
-    }   
-    
+    }    
 }

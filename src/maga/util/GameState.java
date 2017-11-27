@@ -90,7 +90,14 @@ public class GameState {
         } catch (Exception e) {
         }
     }
-
+    
+    /**
+     * method to create text node 
+     * @param doc
+     * @param nodeName
+     * @param value
+     * @return 
+     */
     public static Element createTextNode(Document doc, String nodeName, String value) {
         Element node = doc.createElement(nodeName);
         node.appendChild(doc.createTextNode(value));
@@ -99,7 +106,6 @@ public class GameState {
 
     /**
      * Loads the game from XML file
-     *
      * @param game
      */
     public static void load(Game game) {
@@ -123,9 +129,7 @@ public class GameState {
 
             game.getEnvironment().load(doc.getElementsByTagName("room"), game.getEnvironment());
 
-        } catch (Exception e) {
-        }
-
+        } catch (Exception e) { }
     }
 
     /**
@@ -178,6 +182,10 @@ public class GameState {
         return null;
     }
     
+    /**
+     * Method to load the HighScore. 
+     * @param highscore 
+     */
     public static void loadHighscore(HighScore highscore) {
         try {
             File inputFile = new File ("highScore.xml");
@@ -189,6 +197,10 @@ public class GameState {
         } catch (Exception e) {}
     }
 
+    /**
+     * Method to save the HighScore
+     * @param highScore 
+     */
     public static void saveHighScore (HighScore highScore) {
         try{
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -205,8 +217,6 @@ public class GameState {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File("highScore.xml"));
             transformer.transform(source, result);
-        } catch(Exception e) {
-        }
+        } catch(Exception e) { }
     }
-
 }

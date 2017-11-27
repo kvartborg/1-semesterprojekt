@@ -12,6 +12,7 @@ import maga.character.Player;
  * @author mikkellarsen
  */
 public class Ketchup extends Item {
+    
     /**
      * Creating a constructor of the class Ketchup
      * Extending the class Item

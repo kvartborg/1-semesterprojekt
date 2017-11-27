@@ -360,6 +360,7 @@ public class Game {
         trump.setCurrentRoom(environment.getRoom("Oval office"));
         cook.setCurrentRoom(environment.getRoom("Kitchen"));
     }
+    
     /**
      * Accessor method for highscore
      * @return highscore

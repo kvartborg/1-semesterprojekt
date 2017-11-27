@@ -135,7 +135,5 @@ public abstract class Character implements Serializable, Loadable {
                 character.getElementsByTagName("room").item(0).getTextContent()
             )
         );
-
     }
-
 }

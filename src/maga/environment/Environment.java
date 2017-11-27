@@ -156,7 +156,11 @@ public final class Environment implements Serializable, Loadable {
             rooms.get(randomRoom).addItem(dummyItem);
         }
     }
-
+    
+    /**
+     * Accessor method for the Rooms in the hashmap
+     * @return rooms
+     */
     public HashMap<String, Room> getRooms() {
         return rooms;
     }

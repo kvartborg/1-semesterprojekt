@@ -31,8 +31,12 @@ public class ComputerWindowController extends Controller implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
+    }  
+    
+    /**
+     * Method for when you use the computer.  
+     * @param event 
+     */
     @FXML
     private void onTweetClicked(ActionEvent event) {
         game.getPlayer().tweeted();
@@ -40,7 +44,11 @@ public class ComputerWindowController extends Controller implements Initializabl
         writeTweetArea.clear();
         
     }
-
+    
+    /**
+     * Method to generate a random tweet in the computer window.
+     * @param event 
+     */
     @FXML
     private void onRandomTweetClicked(ActionEvent event) {
         game.getPlayer().tweeted();

@@ -25,10 +25,12 @@ public class Player extends Character implements Serializable {
      * The arraylist stores the items, that the player picks up.
      */
     private ArrayList<Item> items = new ArrayList<Item>();
+    
     /**
      * Creating an attribute that sets the maximum items a player can carry.
      */
     private final int MAX_ITEMS = 2;
+    
     /**
      * Creating an attribute to check if the player has tweeted.
      */
@@ -76,7 +78,6 @@ public class Player extends Character implements Serializable {
         }
         System.out.println("There is no item in this room with that name.");
         return false;
-
     }
 
     /**
@@ -100,11 +101,9 @@ public class Player extends Character implements Serializable {
                 getCurrentRoom().getItems().add(item);
                 return items.remove(item);
             }
-
         }
         System.out.println("You have no item with that name.");
         return false;
-
     }
 
     /**
@@ -255,13 +254,11 @@ public class Player extends Character implements Serializable {
             i.setAttribute("name", item.getName());
             items.appendChild(i);
         }
-
         return player;
     }
 
     /**
      * This method loads the player
-     *
      * @param list
      * @param environment
      */
@@ -278,5 +275,4 @@ public class Player extends Character implements Serializable {
             this.addItem(GameState.findItem(item.getAttribute("name")));
         }
     }
-
 }

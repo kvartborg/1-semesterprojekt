@@ -17,6 +17,7 @@ import maga.highscore.HighScore;
  *
  */
 public class GameFacade implements IGame {
+    
     /**
      * Instance of IData
      */
@@ -56,6 +57,7 @@ public class GameFacade implements IGame {
     public Player getPlayer() {
         return game.getPlayer();
     }
+    
     /**
      * This method returns Trump
      * @return trump
@@ -64,6 +66,7 @@ public class GameFacade implements IGame {
     public Trump getTrump() {
         return game.getTrump();
     }
+    
     /**
      * This method returns the Cook
      * @return cook

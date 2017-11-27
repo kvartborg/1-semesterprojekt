@@ -14,16 +14,19 @@ import maga.environment.Room;
  * @author Kasper
  */
 public class Trump extends Character {
+    
     /**
      * Integer that sets how many rounds Trump should wait.
      */
     private int roundsToWait = 0;
+    
     /**
      * The name of the character
      */
     public Trump() {
         super("Donald Trump");
     }
+    
     /**
      * This method is a get method for the rounds to wait.
      * @return 
@@ -62,6 +65,7 @@ public class Trump extends Character {
         System.out.println("You called Trump to the cleaning room.");
         return 5000;
     }
+    
     /**
      * Simplified method for the character Trumps movement.
      * @param command 
@@ -83,9 +87,9 @@ public class Trump extends Character {
         if (nextRoom != null) {
            setCurrentRoom(nextRoom);
         }
-        System.out.println(whereIsTrump()); 
-        
+        System.out.println(whereIsTrump());     
     }
+    
     /**
      * Method shows which room the Trump character is in.
      * @return the current room for Trump character.
