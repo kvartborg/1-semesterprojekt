@@ -49,6 +49,9 @@ public class GUI extends Application {
     
     private ComputerWindowController computerWindowController;
     
+    /**
+     * Instance of HelpWindowController
+     */
     private HelpWindowController helpWindowController;
     
     /**

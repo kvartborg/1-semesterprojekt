@@ -20,7 +20,14 @@ import javafx.stage.Stage;
  */
 public class HelpWindowController extends Controller implements Initializable {
     
+    /**
+     * New instance of stage
+     */
     private Stage stage;
+    
+    /**
+     * Button to close help window
+     */
     @FXML
     private Button closeButton;
 
