@@ -77,28 +77,39 @@
 .window-button:pressed {
     -fx-background-color: #DAF2FA;
 }
-
-blockquote.twitter-tweet {
-  -fx-display: inline-block;
-  -fx-padding: 16px;
-  -fx-margin: 10px 0;
-  -fx-max-width: 468px;
-  -fx-border: #ddd 1px solid;
-  -fx-border-top-color: #eee;
-  -fx-border-bottom-color: #bbb;
-  -fx-border-radius: 5px;
-  -fx-box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-  -fx-font: bold 14px/18px Helvetica, Arial, sans-serif;
-  -fx-color: #000;
+.window-button-computer {
+    -fx-background-color: 
+        #ecebe9,
+        rgba(0,0,0,0.05),
+        linear-gradient(#6ECCE4, #6ECCE4),
+        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #c0deed 80%, #c0deed 100%),
+        linear-gradient(#c0deed, #c0deed);
+    -fx-background-insets: 0,9 9 8 9,7,4,4;
+    -fx-background-radius: 25;
+    -fx-padding: 10 10 10 10;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #311c09;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);
 }
 
-blockquote.twitter-tweet p {
-  -fx-font: normal 18px/24px Georgia, "Times New Roman", Palatino, serif;
-  -fx-margin: 0 5px 10px 0;
+.window-button-computer:hover {
+    -fx-background-color: #6ECCE4;
 }
 
-blockquote.twitter-tweet a[href^="https://twitter.com"] {
-  -fx-font-weight: normal;
-  -fx-color: #666;
-  -fx-font-size: 12px;
+.window-button-computer:pressed {
+    -fx-background-color: #DAF2FA;
+}
+
+.game-window {
+    -fx-background-color: #0B5A9F,
+        linear-gradient(#0B5A9F, #0B5A9F),
+        linear-gradient(#3481C4 0%, #3481C4 20%, #0B5A9F 80%, #0B5A9F 100%),
+        linear-gradient(#3481C4, #0B5A9F);  
+}
+
+.game-label {
+    -fx-text-fill: yellow;
+    -fx-font-style: bold;
 }
