@@ -162,6 +162,10 @@ public class GUI extends Application {
             case C:
                 game.command("call","");
             break;
+            
+            case W:
+                game.command("wait", "");
+            break;
        }
       
        this.gameController.updateGameState();
