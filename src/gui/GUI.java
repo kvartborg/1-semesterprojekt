@@ -49,6 +49,8 @@ public class GUI extends Application {
     
     private ComputerWindowController computerWindowController;
     
+    private HelpWindowController helpWindowController;
+    
     /**
      * HashMap with stages
      */
@@ -72,6 +74,7 @@ public class GUI extends Application {
         inventoryWindowController = (InventoryWindowController) this.loadController("InventoryWindow.fxml", "Inventory");
         cookInteractionController = (CookInteractionController) this.loadController("CookInteraction.fxml", "CookInteraction");
         computerWindowController = (ComputerWindowController) this.loadController("ComputerWindow.fxml", "Computer");
+        helpWindowController = (HelpWindowController) this.loadController("HelpWindow.fxml", "Help"); 
     }
     
     /**
