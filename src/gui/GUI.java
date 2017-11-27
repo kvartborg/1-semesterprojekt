@@ -6,7 +6,6 @@
 package gui;
 
 import acq.IGame;
-import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +46,9 @@ public class GUI extends Application {
      */
     private CookInteractionController cookInteractionController;
     
+    /**
+     * Instance of ComputerWindowController
+     */
     private ComputerWindowController computerWindowController;
     
     /**
@@ -121,7 +123,6 @@ public class GUI extends Application {
             stage.show(); 
         } catch(Exception e){}
     }
-  
     
     /**
      * Method to make the player move when using the keyboard
@@ -156,7 +157,9 @@ public class GUI extends Application {
             break;
             
             case T:
-                stages.get("CookInteraction").show();
+                if (game.getCook().getCurrentRoom() == game.getPlayer().getCurrentRoom()) {
+                    stages.get("CookInteraction").show();
+                }
             break;
             
             case C:
@@ -174,5 +177,4 @@ public class GUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }

@@ -15,5 +15,4 @@ import org.w3c.dom.NodeList;
 public interface Loadable {
 
     public void load(NodeList list, Environment environment);
-
 }

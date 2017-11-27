@@ -5,7 +5,6 @@
  */
 package gui;
 
-import acq.IGame;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -33,36 +32,43 @@ public class GameController extends Controller implements Initializable {
      */
     @FXML
     private Label stepsLabel;
+    
     /**
      * Button to call the help command 
      */
     @FXML
     private Button helpButton;
+    
     /**
      * Image of our player character
      */
     @FXML
     private ImageView player;
+    
     /**
      * Image of our cook 
      */
     @FXML
     private ImageView cook;
+    
     /**
      * Image of trump 
      */
     @FXML
     private ImageView trump;
+    
     /**
      * Button to save game
      */
     @FXML
     private Button saveButton;
+    
     /**
      * Button to load game
      */
     @FXML
     private Button loadButton;
+    
     /**
      * Method to initialize
      * @param url
@@ -72,6 +78,7 @@ public class GameController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
     /**
      * Method to make the button do something 
      * @param event 
@@ -99,10 +106,14 @@ public class GameController extends Controller implements Initializable {
     }
     
     /**
-     * Method to check if Cook and Player are in the same room.
+     * Method to check if Cook and Player are in the same room and if the player has a steak with or without ketchup.
      */
     public void inSameRoom() {
-        if (game.getPlayer().getCurrentRoom() == game.getCook().getCurrentRoom() && !game.getPlayer().hasItem("Steak")) {
+        if (
+            game.getPlayer().getCurrentRoom() == game.getCook().getCurrentRoom() && 
+            !game.getPlayer().hasItem("Steak") && 
+            !game.getPlayer().hasItem("Steak-with-ketchup")
+        ) {
             gui.getStages().get("CookInteraction").show();
         }
     }
@@ -194,8 +205,5 @@ public class GameController extends Controller implements Initializable {
             System.exit(0);
         }
         updateGameState();
-    }
-        
-    
-    
+    }  
 }

@@ -9,6 +9,7 @@ package maga.item;
  * @author mikkellarsen
  */
 public class Computer extends Item {
+    
     /**
      * Constructor creating an instance of the class Computer
      * Extending the class Item

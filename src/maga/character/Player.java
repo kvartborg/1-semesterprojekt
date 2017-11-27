@@ -25,10 +25,12 @@ public class Player extends Character implements Serializable {
      * The arraylist stores the items, that the player picks up.
      */
     private ArrayList<Item> items = new ArrayList<Item>();
+    
     /**
      * Creating an attribute that sets the maximum items a player can carry.
      */
     private final int MAX_ITEMS = 2;
+    
     /**
      * Creating an attribute to check if the player has tweeted.
      */
@@ -54,29 +56,23 @@ public class Player extends Character implements Serializable {
     @Override
     public boolean pickupItems(Command command) {
         if (isInventoryFull()) {
-            System.out.println("Your inventory is full. ");
             return false;
         }
 
         if (!command.hasSecondWord()) {
-            System.out.println("Pickup what?");
             return false;
         }
         for (Item item : getCurrentRoom().getItems()) {
             if (item.getName().equalsIgnoreCase(command.getSecondWord())) {
                 if (!item.isMoveable()) {
-                    System.out.println("This item can not be picked up");
                     return false;
                 }
-                System.out.println("You picked up: " + item.getName());
                 getCurrentRoom().getItems().remove(item);
                 return items.add(item);
 
             }
         }
-        System.out.println("There is no item in this room with that name.");
         return false;
-
     }
 
     /**
@@ -91,20 +87,15 @@ public class Player extends Character implements Serializable {
      */
     public boolean dropItems(Command command) {
         if (!command.hasSecondWord()) {
-            System.out.println("Drop what?");
             return false;
         }
         for (Item item : getItems()) {
             if (item.getName().equalsIgnoreCase(command.getSecondWord())) {
-                System.out.println("You dropped: " + item.getName());
                 getCurrentRoom().getItems().add(item);
                 return items.remove(item);
             }
-
         }
-        System.out.println("You have no item with that name.");
         return false;
-
     }
 
     /**
@@ -127,21 +118,6 @@ public class Player extends Character implements Serializable {
     }
 
     /**
-     * Prints the items in the players inventory
-     */
-    public void printInventory() {
-        if (getItems().isEmpty()) {
-            System.out.println("Your inventory is empty.");
-        } else {
-            System.out.println("Your inventory contains: ");
-            for (Item item : getItems()) {
-                System.out.println(item.getName());
-            }
-            System.out.println("");
-        }
-    }
-
-    /**
      * Creates a "use" method that requires a second word, and looks for the
      * item to be used in the inventory.
      *
@@ -149,7 +125,6 @@ public class Player extends Character implements Serializable {
      */
     public void useItem(Command command) {
         if (!command.hasSecondWord()) {
-            System.out.println("What do you want to use?");
             return;
         }
         String itemName = command.getSecondWord();
@@ -255,13 +230,11 @@ public class Player extends Character implements Serializable {
             i.setAttribute("name", item.getName());
             items.appendChild(i);
         }
-
         return player;
     }
 
     /**
      * This method loads the player
-     *
      * @param list
      * @param environment
      */
@@ -278,5 +251,4 @@ public class Player extends Character implements Serializable {
             this.addItem(GameState.findItem(item.getAttribute("name")));
         }
     }
-
 }

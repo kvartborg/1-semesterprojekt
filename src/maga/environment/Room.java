@@ -26,6 +26,7 @@ public class Room implements Serializable {
      * the constructor
      */
     private final String description;
+    
     /**
      * The HashMap is a list of existing rooms
      */
@@ -132,7 +133,11 @@ public class Room implements Serializable {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-
+    
+    /**
+     * Accesoor method for the name of the room 
+     * @return name
+     */
     public String getName() {
         return this.name;
     }

@@ -10,6 +10,7 @@ import maga.character.Player;
  * @author mikkellarsen
  */
 public class Steak extends Item {
+    
     /**
      * Creating a variable of the type Ketchup
      */
@@ -21,6 +22,7 @@ public class Steak extends Item {
     public Steak(){
         super("Steak");
     }
+    
     /**
      * Creating a method to see if the Steak has ketchup
      * @return null if the Steak does not have ketchup

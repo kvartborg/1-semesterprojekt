@@ -19,6 +19,7 @@ public class NuclearFootball extends Item{
     public NuclearFootball() {
         super("NuclearFootball");
     }
+    
     /**
      * This method uses the NuclearFootball item and exits the game when used.
      * @param player 

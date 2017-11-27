@@ -5,10 +5,10 @@ package maga.command;
  * @version 2006.03.30
  */
 public enum CommandWord {
+    
     /**
      * Available commands
      */
-
     GO("go"),
     QUIT("quit"),
     SEARCH("search"),

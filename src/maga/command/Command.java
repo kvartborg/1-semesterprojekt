@@ -5,6 +5,7 @@ package maga.command;
  * @version 2006.03.30
  */
 public class Command {
+    
     /**
      * The command to execute
      */

@@ -13,7 +13,10 @@ import acq.IGame;
  *
  */
 public class GUIFacade implements IGUI {
-
+    
+    /**
+     * Instance of IGame
+     */
     private IGame game;
 
     /**

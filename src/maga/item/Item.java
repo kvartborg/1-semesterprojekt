@@ -12,10 +12,12 @@ import maga.character.Player;
  * @author mikkellarsen
  */
 public abstract class Item {
+    
     /**
      * String which sets the name
      */
     private String name;
+    
     /**
      * Creating a private boolean expression which by default is true
      */
@@ -28,6 +30,7 @@ public abstract class Item {
     public Item(String name) {
         this.name = name;
     }
+    
     /**
      * Creating a constructor for the class Item with 2 parameteres
      * @param name
@@ -55,19 +58,17 @@ public abstract class Item {
     }
     
     /**
-     * Creates a "use" method for items, and prints a message if
-     * the item can't be used.
+     * Creates a "use" method for dummyItems, has no implementation
      * @param player 
      */
     public void use(Player player) {  
-        System.out.println("There is no way to use this item.");
     }
+    
     /**
      *This method makes it possible to tell if the item is moveable or not
      * @return returns a boolean
      */
     public boolean isMoveable() {
         return moveable;
-    
     }
 }

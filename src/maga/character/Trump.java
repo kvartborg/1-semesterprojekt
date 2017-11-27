@@ -14,16 +14,19 @@ import maga.environment.Room;
  * @author Kasper
  */
 public class Trump extends Character {
+    
     /**
      * Integer that sets how many rounds Trump should wait.
      */
     private int roundsToWait = 0;
+    
     /**
      * The name of the character
      */
     public Trump() {
         super("Donald Trump");
     }
+    
     /**
      * This method is a get method for the rounds to wait.
      * @return 
@@ -48,20 +51,18 @@ public class Trump extends Character {
      */
     public int findSteak(Room cleaningRoom, Player player) { 
         if (player.getCurrentRoom() != cleaningRoom) {
-            System.out.println("You have to be in the cleaning room to use this method.");
             return 0; 
         }
         if (!player.hasItem("steak-with-ketchup")) {
-            System.out.println("You can't call trump without a steak with ketchup");
             return 0;
         }
         this.setCurrentRoom(cleaningRoom);
         roundsToWait = 3; 
         player.dropItems(new Command(CommandWord.DROP, "steak-with-ketchup"));
         player.goRoom(new Command(CommandWord.GO, "south"));
-        System.out.println("You called Trump to the cleaning room.");
         return 5000;
     }
+    
     /**
      * Simplified method for the character Trumps movement.
      * @param command 
@@ -69,7 +70,6 @@ public class Trump extends Character {
     @Override
     public void goRoom(Command command) {
         if (roundsToWait != 0) {
-            System.out.println("Trump is busy eating the steak with ketchup.");
             roundsToWait--;
             return;
         }
@@ -83,14 +83,5 @@ public class Trump extends Character {
         if (nextRoom != null) {
            setCurrentRoom(nextRoom);
         }
-        System.out.println(whereIsTrump()); 
-        
-    }
-    /**
-     * Method shows which room the Trump character is in.
-     * @return the current room for Trump character.
-     */
-    public String whereIsTrump() {
-        return "Trump is currently in the " + getCurrentRoom().getShortDescription();
     }
 }
