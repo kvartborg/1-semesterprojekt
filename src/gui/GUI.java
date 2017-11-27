@@ -123,8 +123,8 @@ public class GUI extends Application {
 
             Scene scene = new Scene(root);
             scene.setOnKeyPressed(event -> this.onKeyPressed(event));
-            stage.setMinWidth(600);
-            stage.setMinHeight(500);
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
             stage.setScene(scene);
             stage.show(); 
         } catch(Exception e){}
