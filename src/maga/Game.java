@@ -7,7 +7,6 @@ import maga.character.Player;
 import maga.command.Parser;
 import maga.command.Command;
 import maga.command.CommandWord;
-import maga.util.Console;
 import maga.util.GameState;
 import maga.highscore.HighScore;
 
@@ -97,10 +96,6 @@ public class Game {
         CommandWord commandWord = command.getCommandWord();
 
         switch (commandWord) {
-            case UNKNOWN:
-                Console.print("I don't know what you mean...");
-                return false;
-
             case GO:
                 step();
                 player.goRoom(command);
@@ -119,10 +114,6 @@ public class Game {
                 player.getCurrentRoom().printItems();
                 break;
 
-            case INVENTORY:
-                player.printInventory();
-                break;
-
             case USE:
                 player.useItem(command);
                 break;
@@ -133,9 +124,7 @@ public class Game {
                 break;
 
             case WAIT:
-                System.out.println("You wait in the room.");
                 step();
-                System.out.println(player.getCurrentRoom().getLongDescription());
                 break;
 
             case SAVE:
@@ -159,11 +148,8 @@ public class Game {
      * @param command
      */
     private void step() {
-
         randomizeTrump();
-
         steps++;
-        Console.print(steps + " step(s) taken");
     }
 
     /**

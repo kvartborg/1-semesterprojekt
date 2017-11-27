@@ -58,12 +58,10 @@ public abstract class Item {
     }
     
     /**
-     * Creates a "use" method for items, and prints a message if
-     * the item can't be used.
+     * Creates a "use" method for dummyItems, has no implementation
      * @param player 
      */
     public void use(Player player) {  
-        System.out.println("There is no way to use this item.");
     }
     
     /**
