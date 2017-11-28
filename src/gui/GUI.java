@@ -77,7 +77,7 @@ public class GUI extends Application {
         this.loadGameController(stage);
         searchWindowController = (SearchWindowController) this.loadController("SearchWindow.fxml", "Search");
         inventoryWindowController = (InventoryWindowController) this.loadController("InventoryWindow.fxml", "Inventory");
-        cookInteractionController = (CookInteractionController) this.loadController("CookInteraction.fxml", "CookInteraction");
+        cookInteractionController = (CookInteractionController) this.loadController("CookInteraction.fxml", "Cook");
         computerWindowController = (ComputerWindowController) this.loadController("ComputerWindow.fxml", "Computer");
         helpWindowController = (HelpWindowController) this.loadController("HelpWindow.fxml", "Help"); 
     }
@@ -102,7 +102,8 @@ public class GUI extends Application {
             stage.setMinWidth(400);
             stage.setMinHeight(300);
             stage.setScene(scene);
-            stages.put(stageName, stage); 
+            stages.put(stageName, stage);
+            stage.setTitle(stageName);
             return controller;
         } catch(Exception e){} 
        return null;
@@ -123,8 +124,8 @@ public class GUI extends Application {
 
             Scene scene = new Scene(root);
             scene.setOnKeyPressed(event -> this.onKeyPressed(event));
-            stage.setMinWidth(600);
-            stage.setMinHeight(500);
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
             stage.setScene(scene);
             stage.show(); 
         } catch(Exception e){}
@@ -164,7 +165,7 @@ public class GUI extends Application {
             
             case T:
                 if (game.getCook().getCurrentRoom() == game.getPlayer().getCurrentRoom()) {
-                    stages.get("CookInteraction").show();
+                    stages.get("Cook").show();
                 }
             break;
             

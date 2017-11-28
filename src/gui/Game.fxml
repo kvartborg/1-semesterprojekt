@@ -3,15 +3,21 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="presidentialSeal" stylesheets="@styles.css" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
+
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="game-window" stylesheets="@styles.css" vgap="10.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -29,98 +35,154 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="cleaningRoom" GridPane.columnIndex="1">
          <children>
-            <Label text="Cleaning Room">
+            <Label styleClass="game-label" stylesheets="@styles.css" text="Cleaning Room">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Label>
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="kitchen" GridPane.rowIndex="1">
          <children>
-            <Label text="Kitchen">
+            <Label nodeOrientation="RIGHT_TO_LEFT" style="-fx-text-fill: yellow;" stylesheets="@styles.css" text="Kitchen">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="110.0" right="10.0" top="110.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Label>
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="secondLobby" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label text="Second Lobby">
+            <Label nodeOrientation="RIGHT_TO_LEFT" styleClass="game-label" stylesheets="@styles.css" text="Second Lobby">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="110.0" right="10.0" top="110.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Label>
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pressBriefingRoom" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <Label text="Press Briefing Room">
+            <Label nodeOrientation="RIGHT_TO_LEFT" styleClass="game-label" stylesheets="@styles.css" text="Press Briefing Room">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="110.0" right="10.0" top="110.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Label>
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="diningRoom" GridPane.rowIndex="2">
          <children>
-            <Label text="Dining Room">
+            <Label styleClass="game-label" stylesheets="@styles.css" text="Dining Room">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="110.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Label>
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="firstLobby" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Label text="First Lobby">
+            <Label styleClass="game-label" stylesheets="@styles.css" text="First Lobby">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="110.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Label>
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="secretServiceRoom" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
-            <Label text="Secret Service Room">
+            <Label style="-fx-text-fill: black;" stylesheets="@styles.css" text="Secret Service Room">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="110.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Label>
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="ovalOffice" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
-            <Label text="The Oval Office">
+            <Label styleClass="game-label" stylesheets="@styles.css" text="The Oval Office">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="110.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Label>
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0">
+      <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@styles.css">
          <children>
-            <Label layoutX="14.0" layoutY="33.0" text="Steps: ">
+            <Label layoutX="14.0" layoutY="33.0" prefHeight="62.0" prefWidth="170.0" style="-fx-border-color: skyblue;" styleClass="game-label" stylesheets="@styles.css" text="Steps: ">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
-               <font>
-                  <Font size="20.0" />
-               </font>
             </Label>
-            <Label fx:id="stepsLabel" layoutX="82.0" layoutY="47.0" text="0">
+            <Label fx:id="stepsLabel" layoutX="97.0" layoutY="33.0" prefHeight="60.0" prefWidth="89.0" styleClass="game-label" stylesheets="@styles.css" text="0">
                <font>
-                  <Font size="14.0" />
+                  <Font size="28.0" />
                </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
             </Label>
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
          <children>
-            <Button fx:id="highScoreButton" layoutX="71.0" layoutY="28.0" mnemonicParsing="false" onAction="#loadHighScore" text="HighScore" />
+            <ImageView fitHeight="62.0" fitWidth="120.0" layoutX="142.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/America-Flag.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="9.0" layoutY="43.0" rotate="-4.1" text="MAGA" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="System Italic" size="42.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ff0000b5" />
+                        <Stop color="#ffcbcb" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Label>
          </children></Pane>
-      <Button fx:id="helpButton" mnemonicParsing="false" onAction="#onHelpClicked" text="Help" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+      <Button fx:id="helpButton" mnemonicParsing="false" onAction="#onHelpClicked" styleClass="game-window-button" stylesheets="@styles.css" text="Help" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <font>
             <Font size="14.0" />
          </font>
@@ -143,15 +205,30 @@
             <Image url="@resources/trump.png" />
          </image>
       </ImageView>
-      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveClicked" text="Save" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveClicked" styleClass="game-window-button" text="Save" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="loadButton" mnemonicParsing="false" onAction="#onLoadClicked" text="Load" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+      <Button fx:id="loadButton" mnemonicParsing="false" onAction="#onLoadClicked" styleClass="game-window-button" stylesheets="@styles.css" text="Load" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Button>
+      <ImageView fitHeight="120.0" fitWidth="129.0" opacity="0.89" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <image>
+            <Image url="@resources/presedentialsealGame.png" />
+         </image>
+         <GridPane.margin>
+            <Insets bottom="50.0" left="100.0" right="100.0" top="40.0" />
+         </GridPane.margin>
+         <effect>
+            <DropShadow height="99.59" radius="50.900000000000006" spread="0.33" width="106.01">
+               <input>
+                  <Blend mode="MULTIPLY" />
+               </input>
+            </DropShadow>
+         </effect>
+      </ImageView>
    </children>
 </GridPane>

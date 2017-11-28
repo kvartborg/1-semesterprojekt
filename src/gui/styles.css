@@ -48,3 +48,94 @@
     -fx-background-image: url("resources/PresidentialSealBlue.png");
     -fx-background-size: 100% 100%;
 }
+
+.window-background {
+    -fx-background-color: #2E81CA;
+}
+
+.window-button {
+    -fx-background-color: 
+        #ecebe9,
+        rgba(0,0,0,0.05),
+        linear-gradient(#6ECCE4, #6ECCE4),
+        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #6ECCE4 100%),
+        linear-gradient(#5BC6E1, #4AAAC1);
+    -fx-background-insets: 0,9 9 8 9,7,4,4;
+    -fx-background-radius: 25;
+    -fx-padding: 10 10 10 10;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #311c09;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);
+}
+
+.window-button:hover {
+    -fx-background-color: #6ECCE4;
+}
+
+.window-button:pressed {
+    -fx-background-color: #DAF2FA;
+}
+
+.window-button-computer {
+    -fx-background-color: 
+        #ecebe9,
+        rgba(0,0,0,0.05),
+        linear-gradient(#6ECCE4, #6ECCE4),
+        linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #c0deed 80%, #c0deed 100%),
+        linear-gradient(#c0deed, #c0deed);
+    -fx-background-insets: 0,9 9 8 9,7,4,4;
+    -fx-background-radius: 25;
+    -fx-padding: 10 10 10 10;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #311c09;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);
+}
+
+.window-button-computer:hover {
+    -fx-background-color: #6ECCE4;
+}
+
+.window-button-computer:pressed {
+    -fx-background-color: #DAF2FA;
+}
+
+.game-window {
+    -fx-background-color: #0B5A9F,
+        linear-gradient(#0B5A9F, #0B5A9F),
+        linear-gradient(#3481C4 0%, #3481C4 20%, #0B5A9F 80%, #0B5A9F 100%),
+        linear-gradient(#3481C4, #0B5A9F);  
+}
+
+.game-label {
+    -fx-text-fill: yellow;
+    -fx-font-style: bold;
+}
+
+.game-window-button {
+    -fx-background-color: 
+        black,
+        rgba(0,0,0,0.05),
+        linear-gradient(yellow, yellow),
+        linear-gradient(black 0%, black 20%, black 80%, black 100%),
+        linear-gradient(yellow, yellow);
+    -fx-background-insets: 0,9 9 8 9,7,4,4;
+    -fx-background-radius: 25;
+    -fx-padding: 10 10 10 10;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #311c09;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.1) , 2, 0.0 , 0 , 1);
+}
+
+.game-window-button:hover {
+    -fx-background-color: #F575C2;
+}
+
+.game-window-button:pressed {
+    -fx-background-color: #DAF2FA;
+}

@@ -20,6 +20,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 /**
  *
@@ -121,7 +123,7 @@ public class GameController extends Controller implements Initializable {
             !game.getPlayer().hasItem("Steak") && 
             !game.getPlayer().hasItem("Steak-with-ketchup")
         ) {
-            gui.getStages().get("CookInteraction").show();
+            gui.getStages().get("Cook").show();
         }
     }
     
@@ -136,6 +138,8 @@ public class GameController extends Controller implements Initializable {
         Alert youLose = new Alert(AlertType.CONFIRMATION, "You got busted by Trump!", playAgain, close, load);
         youLose.setTitle("You lost");
         youLose.setHeaderText("Well that sucks");
+        Stage stage = (Stage) youLose.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResource("/gui/resources/trumpLose.png").toString()));
         Optional<ButtonType> result = youLose.showAndWait();
         if(result.get() == playAgain) {
             game.restart();
@@ -155,7 +159,7 @@ public class GameController extends Controller implements Initializable {
     public void showYouWin() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Winner");
-        dialog.setHeaderText("Congratulations, you managed to unseat Trump!");
+        dialog.setHeaderText("Congratulations, you got your revenge on Trump!");
         dialog.setContentText("Please enter your name:");
         
         Optional<String> result = dialog.showAndWait();
