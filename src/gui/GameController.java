@@ -70,6 +70,12 @@ public class GameController extends Controller implements Initializable {
     private Button loadButton;
     
     /**
+     * Button to see the highScore
+     */
+    @FXML
+    private Button highScoreButton;
+    
+    /**
      * Method to initialize
      * @param url
      * @param rb 
@@ -207,4 +213,17 @@ public class GameController extends Controller implements Initializable {
         }
         updateGameState();
     }  
+    
+    /**
+     * Method to load the highScore without having to finish the game 
+     * @param event 
+     */
+    @FXML
+    private void loadHighScore(ActionEvent event) {
+        Alert highscore = new Alert(AlertType.INFORMATION, game.getHighscore().toString());
+        highscore.setTitle("Highscore");
+        highscore.setHeaderText("Highscore");
+        Optional<ButtonType> result = highscore.showAndWait();
+        updateGameState();
+    }
 }
