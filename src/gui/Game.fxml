@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="game-window" stylesheets="@styles.css" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="game-window" stylesheets="@styles.css" vgap="10.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -159,12 +159,12 @@
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
          <children>
-            <ImageView fitHeight="62.0" fitWidth="120.0" layoutX="134.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="62.0" fitWidth="120.0" layoutX="142.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/America-Flag.png" />
                </image>
             </ImageView>
-            <Label layoutX="16.0" layoutY="38.0" rotate="-4.1" text="MAGA" textAlignment="CENTER" underline="true">
+            <Label layoutX="9.0" layoutY="43.0" rotate="-4.1" text="MAGA" textAlignment="CENTER" underline="true">
                <font>
                   <Font name="System Italic" size="42.0" />
                </font>
@@ -214,12 +214,12 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Button>
-      <ImageView fitHeight="62.0" fitWidth="61.0" opacity="0.89" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <ImageView fitHeight="120.0" fitWidth="129.0" opacity="0.89" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <image>
             <Image url="@resources/presedentialsealGame.png" />
          </image>
          <GridPane.margin>
-            <Insets bottom="50.0" left="130.0" />
+            <Insets bottom="50.0" left="100.0" right="100.0" top="40.0" />
          </GridPane.margin>
          <effect>
             <DropShadow height="99.59" radius="50.900000000000006" spread="0.33" width="106.01">
@@ -229,35 +229,5 @@
             </DropShadow>
          </effect>
       </ImageView>
-      <Label prefHeight="48.0" prefWidth="151.0" style="-fx-text-fill: yellow;" styleClass="header-text" stylesheets="@styles.css" text="Make America" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
-         <font>
-            <Font name="System Italic" size="24.0" />
-         </font>
-         <GridPane.margin>
-            <Insets bottom="70.0" left="7.0" top="20.0" />
-         </GridPane.margin>
-         <effect>
-            <DropShadow height="12.85" radius="2.7125" spread="0.68" width="0.0">
-               <input>
-                  <Glow level="0.79" />
-               </input>
-            </DropShadow>
-         </effect>
-      </Label>
-      <Label prefHeight="49.0" prefWidth="230.0" style="-fx-text-fill: yellow;" text="Great again!" underline="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
-         <GridPane.margin>
-            <Insets left="7.0" top="60.0" />
-         </GridPane.margin>
-         <font>
-            <Font name="System Bold Italic" size="35.0" />
-         </font>
-         <effect>
-            <DropShadow height="16.57" radius="3.6425" spread="0.7" width="0.0">
-               <input>
-                  <Glow level="0.6" />
-               </input>
-            </DropShadow>
-         </effect>
-      </Label>
    </children>
 </GridPane>
