@@ -149,7 +149,7 @@ public class GameController extends Controller implements Initializable {
     public void showYouWin() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Winner");
-        dialog.setHeaderText("Congratulations, you managed to unseat Trump!");
+        dialog.setHeaderText("Congratulations, you got your revenge on Trump!");
         dialog.setContentText("Please enter your name:");
         
         Optional<String> result = dialog.showAndWait();

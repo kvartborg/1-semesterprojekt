@@ -12,6 +12,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="game-window" stylesheets="@styles.css" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GameController">
@@ -155,8 +157,31 @@
             </Label>
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
-      <Button fx:id="helpButton" mnemonicParsing="false" onAction="#onHelpClicked" text="Help" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+         <children>
+            <ImageView fitHeight="62.0" fitWidth="120.0" layoutX="134.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/America-Flag.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="16.0" layoutY="38.0" rotate="-4.1" text="MAGA" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="System Italic" size="42.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ff0000b5" />
+                        <Stop color="#ffcbcb" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Label>
+         </children></Pane>
+      <Button fx:id="helpButton" mnemonicParsing="false" onAction="#onHelpClicked" styleClass="game-window-button" stylesheets="@styles.css" text="Help" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <font>
             <Font size="14.0" />
          </font>
@@ -179,12 +204,12 @@
             <Image url="@resources/trump.png" />
          </image>
       </ImageView>
-      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveClicked" text="Save" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveClicked" styleClass="game-window-button" text="Save" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="loadButton" mnemonicParsing="false" onAction="#onLoadClicked" text="Load" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+      <Button fx:id="loadButton" mnemonicParsing="false" onAction="#onLoadClicked" styleClass="game-window-button" stylesheets="@styles.css" text="Load" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
@@ -204,12 +229,12 @@
             </DropShadow>
          </effect>
       </ImageView>
-      <Label prefHeight="48.0" prefWidth="151.0" style="-fx-text-fill: yellow;" styleClass="header-text" stylesheets="@styles.css" text="&quot;Fake news&quot;-" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+      <Label prefHeight="48.0" prefWidth="151.0" style="-fx-text-fill: yellow;" styleClass="header-text" stylesheets="@styles.css" text="Make America" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
          <font>
             <Font name="System Italic" size="24.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="70.0" left="5.0" top="20.0" />
+            <Insets bottom="70.0" left="7.0" top="20.0" />
          </GridPane.margin>
          <effect>
             <DropShadow height="12.85" radius="2.7125" spread="0.68" width="0.0">
@@ -219,9 +244,9 @@
             </DropShadow>
          </effect>
       </Label>
-      <Label prefHeight="49.0" prefWidth="230.0" style="-fx-text-fill: yellow;" text="Redemption!" underline="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+      <Label prefHeight="49.0" prefWidth="230.0" style="-fx-text-fill: yellow;" text="Great again!" underline="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="15.0" top="60.0" />
+            <Insets left="7.0" top="60.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold Italic" size="35.0" />
