@@ -6,6 +6,7 @@
 package gui;
 
 import acq.IGame;
+import javafx.scene.control.ListView;
 
 /**
  *
@@ -18,7 +19,7 @@ public abstract class Controller {
     protected IGame game;
     
     /**
-     * Intance of GUI
+     * Instance of GUI
      */
     protected GUI gui;
     
@@ -31,11 +32,23 @@ public abstract class Controller {
     }
     
     /**
-     * Method to inject Igame
+     * Method to inject IGame
      * @param game 
      */
     public void injectGame(IGame game) {
         this.game = game;
     }
     
+    /**
+     * This method checks if the inventory and search window is empty and if
+     * it is not then it replaces the - with a space.
+     * @param listView
+     * @return 
+     */
+    protected String listViewSelection(ListView<String> listView) {
+        if (listView.getSelectionModel().getSelectedItem() == null) {
+            return "";
+        }
+        return listView.getSelectionModel().getSelectedItem().replace(" ", "-");
+    }
 }

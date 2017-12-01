@@ -41,9 +41,8 @@ public class SearchWindowController extends Controller implements Initializable 
      */
     @FXML
     private void onPickupClicked(ActionEvent event) {
-        game.command("pickup", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
-        
-        addItemsToViewList();
+        game.command("pickup", listViewSelection(listView));
+        addItemsToViewList();   
     }
 
     /**
@@ -52,12 +51,12 @@ public class SearchWindowController extends Controller implements Initializable 
      */
     @FXML
     private void onUsePressed(ActionEvent event) {
-        if(listView.getSelectionModel().getSelectedItem().replace(" ", "-").equals("Computer")){
-            gui.getStages().get("Computer").show();
+        if(listViewSelection(listView).equals("Computer")){
+            gui.getStages().get("Computer").show(); 
         } else {
-            game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
+            game.command("use", listViewSelection(listView));
         }
-        addItemsToViewList();
+        addItemsToViewList();  
     }
         
     /**
