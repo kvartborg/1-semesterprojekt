@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package maga;
 
 import acq.IGame;
@@ -14,7 +10,6 @@ import maga.highscore.HighScore;
 
 /**
  * Facade for Game which implements the interface for game
- *
  */
 public class GameFacade implements IGame {
     

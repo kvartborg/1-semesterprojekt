@@ -3,10 +3,7 @@ package maga.command;
 import java.util.Scanner;
 
 
-/**
- *
- * @author ViktoriaNadarajah
- */
+
 public class Parser {
     
     /**

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package maga.character;
 
 import java.util.ArrayList;
@@ -15,10 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-/**
- *
- * @author Kasper
- */
+
 public class Player extends Character implements Serializable {
 
     /**
@@ -45,10 +38,6 @@ public class Player extends Character implements Serializable {
 
     /**
      * The method adds items to the arraylist.
-     *
-     * The method checks if the item that you want to add is in the room that
-     * the player is in. If it is and you write it correct then it adds an item
-     * to the ArrayList.
      *
      * @param command
      * @return returns either false or true if the item is added.
@@ -77,10 +66,6 @@ public class Player extends Character implements Serializable {
 
     /**
      * This method drops items from the arraylist.
-     *
-     * The method checks if the item you want to drop is in the ArrayList if it
-     * is then it addxs the item into the rooms ArrayList and removes it from
-     * the players ArrayList.
      *
      * @param command
      * @return returns either false or true if the item is dropped.

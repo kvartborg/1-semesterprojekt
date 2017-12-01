@@ -10,10 +10,7 @@ import maga.command.CommandWord;
 import maga.util.GameState;
 import maga.highscore.HighScore;
 
-/**
- * @author Michael Kolling and David J. Barnes
- * @version 2006.03.30
- */
+
 public class Game {
 
     /**
@@ -80,12 +77,7 @@ public class Game {
     }
 
     /**
-     * This method process the different commands and decide what they do.
-     *
-     * The method is a switch depending on what command the user has chosen to
-     * use. It gives different options on what will happen if the user uses an
-     * unknown command or if the user uses a known command. If youLose is true
-     * then the game is over.
+     * This method process the different commands and decide what they do
      *
      * @param command
      * @return boolean (wantToQuit, false or true)
@@ -170,7 +162,7 @@ public class Game {
      * This method checks if the player is in the same room as Trump. If you are
      * then the game is lost.
      *
-     * @return returns true or false
+     * @return boolean
      */
     public boolean youLose() {
         if (player.getCurrentRoom() != trump.getCurrentRoom()) {
@@ -181,9 +173,7 @@ public class Game {
 
     /**
      * This method checks if the player has reached the press briefing room
-     * after tweeting in order to win. If the player wins it prints out the
-     * score, steps taken and the time used. It also asks if you want to save
-     * your score.
+     * after tweeting in order to win. 
      *
      * @return true or false.
      */

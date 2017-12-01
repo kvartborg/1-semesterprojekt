@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package maga.character;
 
 import maga.command.Command;
 import maga.command.CommandWord;
 import maga.environment.Room;
 
-/**
- *
- * @author Kasper
- */
+
 public class Trump extends Character {
     
     /**
