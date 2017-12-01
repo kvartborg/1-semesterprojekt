@@ -111,7 +111,6 @@ public class Game {
 
             case SEARCH:
                 step();
-                player.getCurrentRoom().printItems();
                 break;
 
             case USE:

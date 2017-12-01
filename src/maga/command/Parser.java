@@ -59,11 +59,4 @@ public class Parser {
     public Command createCommand(String word1, String word2) {
         return new Command(commands.getCommandWord(word1), word2);
     }
-
-    /**
-    * Shows all the commands
-    */
-    public void showCommands() {
-        commands.showAll();
-    }
 }
