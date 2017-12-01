@@ -167,6 +167,17 @@ public class GameController extends Controller implements Initializable {
             game.getHighscore().add(result.get(), game.getScore());
         }
     }
+        
+    /**
+     * Creates an alert box if you try to open a locked door
+     */
+    public void showLockedRoom(){
+        ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        Alert doorLocked = new Alert(AlertType.INFORMATION, "", ok);
+        doorLocked.setTitle("Door");
+        doorLocked.setHeaderText("Door is locked");
+        Optional<ButtonType> result = doorLocked.showAndWait();
+    }
     
     /**
      * Method to make the save button save the game
@@ -230,4 +241,5 @@ public class GameController extends Controller implements Initializable {
         Optional<ButtonType> result = highscore.showAndWait();
         updateGameState();
     }
+
 }

@@ -138,19 +138,19 @@ public class GUI extends Application {
     public void onKeyPressed(KeyEvent event) {
         switch (event.getCode()) {   
             case UP:                 
-                game.command("go", "north");
+                goNextRoom("north");
             break;
             
             case LEFT:
-                game.command("go", "west");
+                goNextRoom("west");
             break;
            
             case RIGHT:  
-                game.command("go", "east");
+                goNextRoom("east");
             break;
                
             case DOWN:
-                game.command("go", "south");
+                goNextRoom("south");
             break; 
            
             case S:
@@ -183,5 +183,17 @@ public class GUI extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    /**
+     * Method that checks if the next room is locked
+     * @param direction
+     */
+    public void goNextRoom(String direction){
+        if (game.getPlayer().getCurrentRoom().getExit(direction).isLocked()) {
+            gameController.showLockedRoom();
+        } else{
+            game.command("go", direction);
+        }
     }
 }
