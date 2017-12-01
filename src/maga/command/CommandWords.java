@@ -2,10 +2,6 @@ package maga.command;
 
 import java.util.HashMap;
 
-/**
- * @author  Michael Kolling and David J. Barnes
- * @version 2006.03.30
- */
 
 
 public class CommandWords {
