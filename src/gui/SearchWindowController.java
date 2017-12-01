@@ -64,8 +64,7 @@ public class SearchWindowController extends Controller implements Initializable 
         if (
             listViewSelection(listView)=="Key" && 
             game.getPlayer().getCurrentRoom().getName().equalsIgnoreCase("lobby1")
-            ) 
-            {
+        ) {
             showUnlocked();
         }
         

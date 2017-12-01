@@ -45,15 +45,14 @@ public class InventoryWindowController extends Controller implements Initializab
      */
     @FXML
     private void onUseClicked(ActionEvent event) {
-            game.command("use", listViewSelection(listView));
-            if (
-                listViewSelection(listView)=="Key" && 
-                game.getPlayer().getCurrentRoom().getName().equalsIgnoreCase("lobby1")
-                ) 
-            {
+        game.command("use", listViewSelection(listView));
+        if (
+            listViewSelection(listView)=="Key" && 
+            game.getPlayer().getCurrentRoom().getName().equalsIgnoreCase("lobby1")
+        ) {
             showUnlocked();
         }
-            addItemsToViewList();
+        addItemsToViewList();
     }
     
     /**
