@@ -7,10 +7,14 @@ package gui;
 
 import acq.IGame;
 import java.util.HashMap;
+import java.util.Optional;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import maga.GameFacade;
@@ -121,6 +125,7 @@ public class GUI extends Application {
             this.gameController = loader.getController();
             this.gameController.injectGame(this.game);  
             this.gameController.injectGUI(this);
+            this.gameMenu();
 
             Scene scene = new Scene(root);
             scene.setOnKeyPressed(event -> this.onKeyPressed(event));
@@ -179,6 +184,34 @@ public class GUI extends Application {
        }
       
        this.gameController.updateGameState();
+    }
+    
+    /**
+     * Method to load a game menu before entering the actual game. 
+     * @param args 
+     */
+    public void gameMenu() {
+        ButtonType newGame = new ButtonType("New game", ButtonBar.ButtonData.OTHER);
+        ButtonType load = new ButtonType("Load saved game", ButtonBar.ButtonData.OTHER);
+        ButtonType highScore = new ButtonType("HighScore", ButtonBar.ButtonData.OTHER);
+        ButtonType close = new ButtonType("Close game", ButtonBar.ButtonData.OTHER);
+        Alert gameMenu = new Alert(Alert.AlertType.INFORMATION, "", newGame, load, highScore, close);
+        gameMenu.setTitle("Game menu");
+        gameMenu.setHeaderText("Game menu");
+        Optional<ButtonType> result = gameMenu.showAndWait();
+        if (result.get() == load) {
+            game.command("load", "");
+        }
+        if (result.get() == highScore) {
+            this.gameController.highScoreAlert();
+        } 
+        if (result.get() == close) {
+            System.exit(0);
+        }
+        if (result.get() == newGame) {
+            game.restart();
+        }
+        gameController.updateGameState();
     }
 
     public static void main(String[] args) {
