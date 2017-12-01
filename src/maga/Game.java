@@ -55,7 +55,7 @@ public class Game {
      * Bonus time
      */
     private long bonusTime;
-    
+
     /**
     * Save Time
     */
@@ -173,10 +173,7 @@ public class Game {
      * @return returns true or false
      */
     public boolean youLose() {
-        if (player.getCurrentRoom() != trump.getCurrentRoom()) {
-            return false;
-        }
-        return true;
+        return player.getCurrentRoom() == trump.getCurrentRoom();
     }
 
     /**
@@ -188,11 +185,10 @@ public class Game {
      * @return true or false.
      */
     public boolean youWin() {
-        if (player.getCurrentRoom() != environment.getRoom("Press briefing room")
-                || !player.hasTweeted()) {
-            return false;
-        }
-        return true;
+        return (
+            player.getCurrentRoom() == environment.getRoom("Press briefing room") &&
+            player.hasTweeted()
+        );
     }
 
     /**
@@ -266,7 +262,7 @@ public class Game {
     public void setBonusTime(long bonusTime) {
         this.bonusTime = bonusTime;
     }
-    
+
     /**
      * Setter for saveTime
      * @param saveTime
@@ -292,25 +288,25 @@ public class Game {
     public Environment getEnvironment() {
         return environment;
     }
-    
+
     /**
      * Getter for parser
-     * 
-     * @return parser 
+     *
+     * @return parser
      */
     public Parser getParser() {
         return parser;
     }
-    
+
     /**
      * Getter for steps
-     * 
+     *
      * @return steps
      */
     public int getSteps() {
-        return steps; 
+        return steps;
     }
-    
+
     /**
      * Fixes the time after saving and loading
      * so you dont spend the time not playing in the game
@@ -319,19 +315,19 @@ public class Game {
         long difference = this.saveTime - System.currentTimeMillis() / 1000L;
         this.startTime -= difference;
     }
-  
+
     /**
      * This method restarts the game when called
      */
     public void restart() {
         this.play();
     }
-    
+
     /**
      * This method starts the game
      */
     private void play() {
-        
+
         steps = 0;
         startTime = System.currentTimeMillis() / 1000L;
         bonusTime = 0L;
@@ -346,7 +342,7 @@ public class Game {
         trump.setCurrentRoom(environment.getRoom("Oval office"));
         cook.setCurrentRoom(environment.getRoom("Kitchen"));
     }
-    
+
     /**
      * Accessor method for highscore
      * @return highscore
@@ -354,10 +350,10 @@ public class Game {
     public HighScore getHighscore() {
         return highScore;
     }
-    
+
     /**
      * A method to get score
-     * @return 
+     * @return
      */
     public int getScore() {
         long endTime = System.currentTimeMillis() / 1000L;
