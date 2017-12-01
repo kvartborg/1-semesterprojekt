@@ -53,7 +53,6 @@ public abstract class Character implements Serializable, Loadable {
      */
     public void goRoom(Command command) {
         if (!command.hasSecondWord()) {
-            System.out.println("Go where?");
             return;
         }
 
@@ -62,16 +61,14 @@ public abstract class Character implements Serializable, Loadable {
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom != null && nextRoom.isLocked()) {
-            System.out.println("The door is locked!");
             return;
         }
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
-        } else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            return;
         }
+
+        currentRoom = nextRoom;
     }
 
     /**

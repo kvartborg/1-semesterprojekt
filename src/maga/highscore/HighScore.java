@@ -22,7 +22,7 @@ import maga.util.Serializable;
  * @author ander
  */
 public class HighScore implements Serializable, Loadable {
-  
+
     /**
      * An ArrayList to store the players highScore.
      */
@@ -59,7 +59,7 @@ public class HighScore implements Serializable, Loadable {
         }
         return text;
     }
-    
+
     /**
      *  Serialize highscore to xml
      */
@@ -71,12 +71,11 @@ public class HighScore implements Serializable, Loadable {
             scoreNode.setAttribute("name", score.getName());
             scoreNode.setAttribute("score", Integer.toString(score.getScore()));
             root.appendChild(scoreNode);
-
         }
 
         return root;
     }
-    
+
     /**
      * This method loads our highscores from the xml file.
      */
@@ -88,18 +87,18 @@ public class HighScore implements Serializable, Loadable {
             if(nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
                 this.add(
-                    eElement.getAttribute("name"), 
+                    eElement.getAttribute("name"),
                     Integer.parseInt(eElement.getAttribute("score"))
                 );
             }
         }
     }
-  
+
     /**
      * This method prints the highscores.
      */
     public void printHighScore() {
-        System.out.println("\nHighscores:");
-        System.out.println(this.toString());
+
+
     }
 }

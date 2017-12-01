@@ -12,7 +12,7 @@ import maga.character.Player;
  * @author mikkellarsen
  */
 public class Ketchup extends Item {
-    
+
     /**
      * Creating a constructor of the class Ketchup
      * Extending the class Item
@@ -20,11 +20,11 @@ public class Ketchup extends Item {
     public Ketchup() {
         super("Ketchup");
     }
-    
+
     /**
      * Creates a "use" method for the "Ketchup" item. The method searches for
      * a "steak" item in inventory, and can't be used without it.
-     * @param player 
+     * @param player
      */
     @Override
     public void use(Player player) {
@@ -32,8 +32,7 @@ public class Ketchup extends Item {
             if(item.getName().equals("Steak")){
                 item.use(player);
                 return;
-            } 
+            }
         }
-        System.out.println("You need a steak to put ketchup on.");
     }
 }

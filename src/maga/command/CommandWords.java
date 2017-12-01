@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 
 public class CommandWords {
-    
+
     /**
      * A list of valid commands
      */
@@ -51,15 +51,5 @@ public class CommandWords {
      */
     public boolean isCommand(String aString) {
         return validCommands.containsKey(aString);
-    }
-
-    /**
-     * Printing all available commands
-     */
-    public void showAll() {
-        for(String command : validCommands.keySet()) {
-            System.out.print(command + "  ");
-        }
-        System.out.println();
     }
 }
