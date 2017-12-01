@@ -223,7 +223,11 @@ public class GameController extends Controller implements Initializable {
      * @param event 
      */
     @FXML
-    private void loadHighScore(ActionEvent event) {
+    private void onHighScoreClicked(ActionEvent event) {
+        this.highScoreAlert();
+    }
+    
+    public void highScoreAlert() {
         Alert highscore = new Alert(AlertType.INFORMATION, game.getHighscore().toString());
         highscore.setTitle("Highscore");
         highscore.setHeaderText("Highscore");
