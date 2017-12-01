@@ -216,10 +216,12 @@ public class GUI extends Application {
      * @param direction
      */
     public void goNextRoom(String direction){
-        if (game.getPlayer().getCurrentRoom().getExit(direction).isLocked()) {
+        if (
+            game.getPlayer().getCurrentRoom().getExit(direction) != null && 
+            game.getPlayer().getCurrentRoom().getExit(direction).isLocked()
+        ) {
             gameController.showLockedRoom();
-        } else{
-            game.command("go", direction);
         }
+        game.command("go", direction);
     }
 }
