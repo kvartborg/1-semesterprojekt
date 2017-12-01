@@ -10,10 +10,7 @@ import maga.command.CommandWord;
 import maga.util.GameState;
 import maga.highscore.HighScore;
 
-/**
- * @author Michael Kolling and David J. Barnes
- * @version 2006.03.30
- */
+
 public class Game {
 
     /**
@@ -55,7 +52,7 @@ public class Game {
      * Bonus time
      */
     private long bonusTime;
-    
+
     /**
     * Save Time
     */
@@ -80,12 +77,7 @@ public class Game {
     }
 
     /**
-     * This method process the different commands and decide what they do.
-     *
-     * The method is a switch depending on what command the user has chosen to
-     * use. It gives different options on what will happen if the user uses an
-     * unknown command or if the user uses a known command. If youLose is true
-     * then the game is over.
+     * This method process the different commands and decide what they do
      *
      * @param command
      * @return boolean (wantToQuit, false or true)
@@ -111,7 +103,6 @@ public class Game {
 
             case SEARCH:
                 step();
-                player.getCurrentRoom().printItems();
                 break;
 
             case USE:
@@ -170,29 +161,23 @@ public class Game {
      * This method checks if the player is in the same room as Trump. If you are
      * then the game is lost.
      *
-     * @return returns true or false
+     * @return boolean
      */
     public boolean youLose() {
-        if (player.getCurrentRoom() != trump.getCurrentRoom()) {
-            return false;
-        }
-        return true;
+        return player.getCurrentRoom() == trump.getCurrentRoom();
     }
 
     /**
      * This method checks if the player has reached the press briefing room
-     * after tweeting in order to win. If the player wins it prints out the
-     * score, steps taken and the time used. It also asks if you want to save
-     * your score.
+     * after tweeting in order to win. 
      *
      * @return true or false.
      */
     public boolean youWin() {
-        if (player.getCurrentRoom() != environment.getRoom("Press briefing room")
-                || !player.hasTweeted()) {
-            return false;
-        }
-        return true;
+        return (
+            player.getCurrentRoom() == environment.getRoom("Press briefing room") &&
+            player.hasTweeted()
+        );
     }
 
     /**
@@ -266,7 +251,7 @@ public class Game {
     public void setBonusTime(long bonusTime) {
         this.bonusTime = bonusTime;
     }
-    
+
     /**
      * Setter for saveTime
      * @param saveTime
@@ -292,25 +277,25 @@ public class Game {
     public Environment getEnvironment() {
         return environment;
     }
-    
+
     /**
      * Getter for parser
-     * 
-     * @return parser 
+     *
+     * @return parser
      */
     public Parser getParser() {
         return parser;
     }
-    
+
     /**
      * Getter for steps
-     * 
+     *
      * @return steps
      */
     public int getSteps() {
-        return steps; 
+        return steps;
     }
-    
+
     /**
      * Fixes the time after saving and loading
      * so you dont spend the time not playing in the game
@@ -319,19 +304,19 @@ public class Game {
         long difference = this.saveTime - System.currentTimeMillis() / 1000L;
         this.startTime -= difference;
     }
-  
+
     /**
      * This method restarts the game when called
      */
     public void restart() {
         this.play();
     }
-    
+
     /**
      * This method starts the game
      */
     private void play() {
-        
+
         steps = 0;
         startTime = System.currentTimeMillis() / 1000L;
         bonusTime = 0L;
@@ -346,7 +331,7 @@ public class Game {
         trump.setCurrentRoom(environment.getRoom("Oval office"));
         cook.setCurrentRoom(environment.getRoom("Kitchen"));
     }
-    
+
     /**
      * Accessor method for highscore
      * @return highscore
@@ -354,10 +339,10 @@ public class Game {
     public HighScore getHighscore() {
         return highScore;
     }
-    
+
     /**
      * A method to get score
-     * @return 
+     * @return
      */
     public int getScore() {
         long endTime = System.currentTimeMillis() / 1000L;

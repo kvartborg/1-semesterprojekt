@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package maga.character;
 
 import maga.command.Command;
@@ -14,15 +10,11 @@ import org.w3c.dom.Document;
 import maga.util.Loadable;
 import org.w3c.dom.NodeList;
 
-/**
- *
- * @author Kasper
- */
+
 public abstract class Character implements Serializable, Loadable {
 
     /**
      * currentRoom attribute, an instance from the Room class.
-     *
      * The currentRoom variable is what room the player is in at the moment in
      * game.
      */
@@ -43,17 +35,12 @@ public abstract class Character implements Serializable, Loadable {
     }
 
     /**
-     * This method checks if the command has a second word.
-     *
-     * The method firstly checks if the "go" command has a second word or not.
-     * if it doesnt then it tells the user to use a second word. It also changes
-     * the currentroom to the the next room the user wants to access.
+     * This method checks if the command has a second word
      *
      * @param command
      */
     public void goRoom(Command command) {
         if (!command.hasSecondWord()) {
-            System.out.println("Go where?");
             return;
         }
 
@@ -62,16 +49,14 @@ public abstract class Character implements Serializable, Loadable {
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom != null && nextRoom.isLocked()) {
-            System.out.println("The door is locked!");
             return;
         }
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
-        } else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            return;
         }
+
+        currentRoom = nextRoom;
     }
 
     /**

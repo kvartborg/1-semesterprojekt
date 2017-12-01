@@ -21,7 +21,7 @@ public class Room implements Serializable {
      * Description of the room
      */
     private final String description;
-    
+
     /**
      * The HashMap is a list of existing rooms
      */
@@ -124,9 +124,9 @@ public class Room implements Serializable {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-    
+
     /**
-     * Accesoor method for the name of the room 
+     * Accesoor method for the name of the room
      * @return name
      */
     public String getName() {
@@ -194,20 +194,6 @@ public class Room implements Serializable {
         this.locked = false;
     }
 
-    /**
-     * Prints the items in the room
-     */
-    public void printItems() {
-        if (items.isEmpty()) {
-            System.out.println("The room is empty");
-        } else {
-            System.out.println("The room contains: ");
-            for (Item item : items) {
-                System.out.println(item.getName());
-            }
-        }
-    }
-    
     /**
      * Gets the name of the items in the room
      * @return ArrayList of the itemnames as a string

@@ -2,14 +2,10 @@ package maga.command;
 
 import java.util.HashMap;
 
-/**
- * @author  Michael Kolling and David J. Barnes
- * @version 2006.03.30
- */
 
 
 public class CommandWords {
-    
+
     /**
      * A list of valid commands
      */
@@ -51,15 +47,5 @@ public class CommandWords {
      */
     public boolean isCommand(String aString) {
         return validCommands.containsKey(aString);
-    }
-
-    /**
-     * Printing all available commands
-     */
-    public void showAll() {
-        for(String command : validCommands.keySet()) {
-            System.out.print(command + "  ");
-        }
-        System.out.println();
     }
 }

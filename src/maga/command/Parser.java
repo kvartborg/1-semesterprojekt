@@ -3,17 +3,14 @@ package maga.command;
 import java.util.Scanner;
 
 
-/**
- *
- * @author ViktoriaNadarajah
- */
+
 public class Parser {
-    
+
     /**
      * It is a list of CommandWords
      */
     private final CommandWords commands;
-    
+
     /**
      * The Scanner reads the commands
      */
@@ -26,7 +23,7 @@ public class Parser {
         commands = new CommandWords();
         reader = new Scanner(System.in);
     }
-    
+
     /**
     * It reads word1 and makes a new Scanner to make a inputLine.
     * Tokenizer is a instance variable of the type Scanner. It returns new commands
@@ -37,10 +34,7 @@ public class Parser {
         String word1 = null;
         String word2 = null;
 
-        System.out.print("> ");
-
         inputLine = reader.nextLine();
-
 
         Scanner tokenizer = new Scanner(inputLine);
         if(tokenizer.hasNext()) {
@@ -52,7 +46,7 @@ public class Parser {
 
         return new Command(commands.getCommandWord(word1), word2);
     }
-    
+
     /**
      * Creates a command.
      * @param word1 is the command.
@@ -61,12 +55,5 @@ public class Parser {
      */
     public Command createCommand(String word1, String word2) {
         return new Command(commands.getCommandWord(word1), word2);
-    }
-    
-    /**
-    * Shows all the commands
-    */
-    public void showCommands() {
-        commands.showAll();
     }
 }

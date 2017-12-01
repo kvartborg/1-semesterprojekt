@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
 import java.net.URL;
@@ -16,8 +12,6 @@ import javafx.scene.control.ListView;
 
 /**
  * FXML Controller class
- *
- * @author Kasper
  */
 public class SearchWindowController extends Controller implements Initializable {
     
@@ -32,7 +26,7 @@ public class SearchWindowController extends Controller implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+      
     } 
     
     /**
@@ -41,9 +35,8 @@ public class SearchWindowController extends Controller implements Initializable 
      */
     @FXML
     private void onPickupClicked(ActionEvent event) {
-        game.command("pickup", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
-        
-        addItemsToViewList();
+        game.command("pickup", listViewSelection(listView));
+        addItemsToViewList();   
     }
 
     /**
@@ -52,12 +45,12 @@ public class SearchWindowController extends Controller implements Initializable 
      */
     @FXML
     private void onUsePressed(ActionEvent event) {
-        if(listView.getSelectionModel().getSelectedItem().replace(" ", "-").equals("Computer")){
-            gui.getStages().get("Computer").show();
+        if(listViewSelection(listView).equals("Computer")){
+            gui.getStages().get("Computer").show(); 
         } else {
-            game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
+            game.command("use", listViewSelection(listView));
         }
-        addItemsToViewList();
+        addItemsToViewList();  
     }
         
     /**
