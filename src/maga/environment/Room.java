@@ -10,10 +10,6 @@ import maga.util.Serializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 
-/**
- * @author Michael Kolling and David J. Barnes
- * @version 2006.03.30
- */
 public class Room implements Serializable {
 
     /**
@@ -22,8 +18,7 @@ public class Room implements Serializable {
     private String name;
 
     /**
-     * The String "description" is used when describing the room generated with
-     * the constructor
+     * Description of the room
      */
     private final String description;
 
@@ -54,9 +49,10 @@ public class Room implements Serializable {
 
     /**
      * A constructor for new rooms
-     *
      * @param name is the name of the new room
      * @param description is the description of the new room
+     * @param x
+     * @param y
      */
     public Room(String name, String description, int x, int y) {
         this.name = name;
@@ -84,7 +80,6 @@ public class Room implements Serializable {
 
     /**
      * The method sets the exits for the current room
-     *
      * @param direction is the direction of the other rooms
      * @param neighbor is the name of the other rooms
      */
@@ -94,7 +89,6 @@ public class Room implements Serializable {
 
     /**
      * The method gets the short description of the room
-     *
      * @return description (only the name returns)
      */
     public String getShortDescription() {
@@ -103,7 +97,6 @@ public class Room implements Serializable {
 
     /**
      * The method gets the long description of the room
-     *
      * @return "You are ", the description and the exits of the current room
      */
     public String getLongDescription() {
@@ -112,8 +105,7 @@ public class Room implements Serializable {
 
     /**
      * Gets the exit for the current room
-     *
-     * @return the exits from the room
+     * @return String
      */
     private String getExitString() {
         String returnString = "Exits:";
@@ -126,7 +118,6 @@ public class Room implements Serializable {
 
     /**
      * The method gets the room in the direction described
-     *
      * @param direction is the decider of what exit is used
      * @return the room in the decided direction
      */
@@ -143,9 +134,8 @@ public class Room implements Serializable {
     }
 
     /**
-     * This method is a getter method for the items
-     *
-     * @return returns the item
+     * Getter method for the items in the room
+     * @return ArrayList
      */
     public ArrayList<Item> getItems() {
         return this.items;
@@ -154,7 +144,6 @@ public class Room implements Serializable {
     /**
      * This method adds items to our array and turns the array into an
      * arraylist.
-     *
      * @param items
      */
     public void addItems(Item[] items) {
@@ -163,7 +152,6 @@ public class Room implements Serializable {
 
     /**
      * This method adds items (used for dummy items).
-     *
      * @param items
      */
     public void addItem(Item items) {
@@ -171,8 +159,7 @@ public class Room implements Serializable {
     }
 
     /**
-     * Check if a room is locked
-     *
+     * Checks if a room is locked
      * @return boolean
      */
     public boolean isLocked() {
@@ -180,15 +167,14 @@ public class Room implements Serializable {
     }
 
     /**
-     * Lock room
+     * Locks the room
      */
     public void lock() {
         this.locked = true;
     }
 
     /**
-     * This method checks if the room is locked or not
-     *
+     * Unlocks the door if the key fits, and the door is locked
      * @param key
      * @return returns if the key fits to the room
      */
@@ -229,8 +215,8 @@ public class Room implements Serializable {
 
     /**
      * Serialize the room object to xml
-     * @param  Document doc
-     * @return xml element
+     * @param  doc
+     * @return Element
      */
     @Override
     public Element serialize(Document doc) {

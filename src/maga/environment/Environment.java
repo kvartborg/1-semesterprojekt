@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maga.environment;
 
 import maga.item.Item;
 import maga.item.DummyItem;
-import maga.item.Steak;
 import maga.item.Key;
 import maga.item.Ketchup;
 import maga.item.Computer;
@@ -22,10 +16,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-/**
- *
- * @author ViktoriaNadarajah
- */
 public final class Environment implements Serializable, Loadable {
 
     /**
@@ -39,10 +29,9 @@ public final class Environment implements Serializable, Loadable {
     private final Set<DummyItem> dummyItems = new HashSet<>();
 
     /**
-     * This method is a getter method
-     *
+     * Getter method for accessing a room by its name
      * @param name
-     * @return returns name of room
+     * @return Room
      */
     public Room getRoom(String name) {
         return this.rooms.get(name);
@@ -60,8 +49,7 @@ public final class Environment implements Serializable, Loadable {
     }
 
     /**
-     * This method create the different rooms in our game.
-     *
+     * This method creates the different rooms in our game.
      * We create the rooms in our game and sets an exit for each room. We put
      * our room into a HashMap. The method returns the rooms into our HashMap.
      */
@@ -167,8 +155,7 @@ public final class Environment implements Serializable, Loadable {
 
     /**
      * Serialize the environment object to xml
-     *
-     * @param Document doc
+     * @param doc
      * @return xml element
      */
     @Override
@@ -184,7 +171,6 @@ public final class Environment implements Serializable, Loadable {
 
     /**
      * This method loads environment
-     *
      * @param list
      * @param environment
      */

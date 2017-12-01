@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maga.item;
 import maga.character.Player;
-/**
- *
- * @author mikkellarsen
- */
+
 public class Steak extends Item {
 
     /**
@@ -17,15 +9,15 @@ public class Steak extends Item {
     private boolean ketchup = false;
 
     /**
-     * Creating a constructor with only the name
+     * Constructor for the object Steak
      */
     public Steak(){
         super("Steak");
     }
 
     /**
-     * Creating a method to see if the Steak has ketchup
-     * @return null if the Steak does not have ketchup
+     * Method checks if the Steak has ketchup on it
+     * @return boolean
      */
     public boolean hasKetchup(){
         return this.ketchup;
@@ -33,8 +25,8 @@ public class Steak extends Item {
 
     /**
      * Creates a "use" method for the "Steak" item. The method searches for
-     * a "Ketchup" item, and cant be used if there isn't one in the inventory.
-     * @param player
+     * a "Ketchup" item, and can't be used if there isn't one in the inventory.
+     * @param player 
      */
     @Override
     public void use(Player player) {

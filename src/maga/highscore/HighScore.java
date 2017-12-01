@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maga.highscore;
 
 import java.util.ArrayList;
@@ -16,11 +11,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import maga.util.Serializable;
 
-
-/**
- *
- * @author ander
- */
 public class HighScore implements Serializable, Loadable {
 
     /**
@@ -61,8 +51,11 @@ public class HighScore implements Serializable, Loadable {
     }
 
     /**
-     *  Serialize highscore to xml
+     * Serialize highscore to xml
+     * @param doc
+     * @return Element
      */
+    @Override
     public Element serialize(Document doc) {
         Element root = doc.createElement("highscore");
 
@@ -78,6 +71,8 @@ public class HighScore implements Serializable, Loadable {
 
     /**
      * This method loads our highscores from the xml file.
+     * @param list
+     * @param environment
      */
     @Override
     public void load(NodeList list, Environment environment) {

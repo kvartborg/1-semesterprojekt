@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maga.item;
 
 import maga.character.Player;
 import maga.environment.Room;
 
-/**
- *
- * @author mikkellarsen
- */
 public class Key extends Item {
 
     /**
@@ -20,7 +11,7 @@ public class Key extends Item {
     private Room room;
 
     /**
-     * Creating a constructor of the class Key
+     * Constructor of the class Key
      * @param room
      */
     public Key(Room room){
@@ -29,15 +20,15 @@ public class Key extends Item {
     }
 
     /**
-     * Creating a method to get room
-     * @return room
+     * Getter method for Room
+     * @return Room
      */
     public Room getRoom() {
         return room;
     }
 
     /**
-     * Creating a method to set the room
+     * Setter method for room
      * @param room
      */
     public void setRoom(Room room) {
@@ -45,7 +36,7 @@ public class Key extends Item {
     }
 
     /**
-     * Creates a "use" method for the "Key" item. The method check for a locked
+     * Creates a "use" method for the "Key" item. The method checks for a locked
      * door in the current room, and unlocks the door if there is one.
      * @param player
      */
