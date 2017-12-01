@@ -2,12 +2,16 @@
 package gui;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 
 /**
@@ -50,6 +54,14 @@ public class SearchWindowController extends Controller implements Initializable 
         } else {
             game.command("use", listViewSelection(listView));
         }
+        
+        if (
+            listViewSelection(listView)=="Key" && 
+            game.getPlayer().getCurrentRoom().getName().equalsIgnoreCase("lobby1")
+        ) {
+            showUnlocked();
+        }
+        
         addItemsToViewList();  
     }
         
@@ -63,4 +75,15 @@ public class SearchWindowController extends Controller implements Initializable 
         }
         listView.setItems(data);
     }
+    
+        /**
+     * Creates an alert box for when you unlock a door
+     */
+    public void showUnlocked(){
+        ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        Alert doorLocked = new Alert(Alert.AlertType.INFORMATION, "", ok);
+        doorLocked.setTitle("Door");
+        doorLocked.setHeaderText("The door is now unlocked");
+        Optional<ButtonType> result = doorLocked.showAndWait();
+    }  
 }
