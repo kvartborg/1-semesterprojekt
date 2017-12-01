@@ -10,7 +10,7 @@ import maga.character.Player;
  * @author mikkellarsen
  */
 public class Steak extends Item {
-    
+
     /**
      * Creating a variable of the type Ketchup
      */
@@ -22,7 +22,7 @@ public class Steak extends Item {
     public Steak(){
         super("Steak");
     }
-    
+
     /**
      * Creating a method to see if the Steak has ketchup
      * @return null if the Steak does not have ketchup
@@ -30,11 +30,11 @@ public class Steak extends Item {
     public boolean hasKetchup(){
         return this.ketchup;
     }
-    
+
     /**
      * Creates a "use" method for the "Steak" item. The method searches for
      * a "Ketchup" item, and cant be used if there isn't one in the inventory.
-     * @param player 
+     * @param player
      */
     @Override
     public void use(Player player) {
@@ -42,10 +42,9 @@ public class Steak extends Item {
             if(item.getName().equals("Ketchup")){
                 this.ketchup = true;
                 this.setName("Steak-with-ketchup");
-                System.out.println("The steak now has ketchup on it.");
                 return;
-            } 
+            }
         }
-        System.out.println("You need ketchup to use the steak.");
+
     }
 }
