@@ -31,7 +31,7 @@ public final class Environment implements Serializable, Loadable {
     /**
      * Getter method for accessing a room by its name
      * @param name
-     * @return String
+     * @return Room
      */
     public Room getRoom(String name) {
         return this.rooms.get(name);
