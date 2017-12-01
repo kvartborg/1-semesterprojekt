@@ -33,7 +33,6 @@ public class GameState {
 
     /**
      * Saves the game in an XML file
-     *
      * @param steps
      * @param startTime
      * @param bonusTime
@@ -96,7 +95,7 @@ public class GameState {
      * @param doc
      * @param nodeName
      * @param value
-     * @return 
+     * @return Element
      */
     public static Element createTextNode(Document doc, String nodeName, String value) {
         Element node = doc.createElement(nodeName);
@@ -134,7 +133,6 @@ public class GameState {
 
     /**
      * This method finds an item in items ArrayList
-     *
      * @param doc
      * @param name
      * @return Node
@@ -147,7 +145,6 @@ public class GameState {
 
     /**
      * Resets the game
-     *
      * @param game
      */
     public static void resetGame(Game game) {
@@ -169,9 +166,8 @@ public class GameState {
     /**
      * This method makes it possible to search the items arraylist on in
      * GameState
-     *
      * @param name
-     * @return item
+     * @return Item
      */
     public static Item findItem(String name) {
         for (Item item : GameState.items) {

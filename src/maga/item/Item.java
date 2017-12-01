@@ -1,16 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maga.item;
 import maga.character.Player;
 
-
-/**
- *
- * @author mikkellarsen
- */
 public abstract class Item {
     
     /**
@@ -19,12 +9,12 @@ public abstract class Item {
     private String name;
     
     /**
-     * Creating a private boolean expression which by default is true
+     * Boolean expression that describes if the item is moveable
      */
     private boolean moveable = true;
 
     /**
-     * Creating a constructor for the class Item with 1 parameter
+     * Constructor for the class Item with 1 parameter
      * @param name
      */
     public Item(String name) {
@@ -32,7 +22,7 @@ public abstract class Item {
     }
     
     /**
-     * Creating a constructor for the class Item with 2 parameteres
+     * Constructor for the class Item with 2 parameteres
      * @param name
      * @param moveable
      */
@@ -42,7 +32,7 @@ public abstract class Item {
     }
 
     /**
-     * This method returns the Items name.
+     * Getter for the name of the item
      * @return returns the items name. 
      */
     public String getName() {
@@ -66,7 +56,7 @@ public abstract class Item {
     
     /**
      *This method makes it possible to tell if the item is moveable or not
-     * @return returns a boolean
+     * @return boolean
      */
     public boolean isMoveable() {
         return moveable;

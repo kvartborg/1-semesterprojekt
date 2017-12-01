@@ -1,27 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maga.item;
 
 import maga.character.Player;
 
-/**
- *
- * @author ander
- */
 public class NuclearFootball extends Item{
     
     /**
-     * Creating a constructor of the class NuclearFootball extending Item
+     * Constructor for the Item NuclearFootball
      */
     public NuclearFootball() {
         super("NuclearFootball");
     }
     
     /**
-     * This method uses the NuclearFootball item and exits the game when used.
+     * This method overrides the method use in Item, and exits the game when used.
      * @param player 
      */
     @Override

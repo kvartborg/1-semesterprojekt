@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maga.item;
 
 import maga.character.Player;
 
-/**
- *
- * @author mikkellarsen
- */
 public class Ketchup extends Item {
     
     /**
-     * Creating a constructor of the class Ketchup
-     * Extending the class Item
+     * Constructor of the class Ketchup
      */
     public Ketchup() {
         super("Ketchup");
