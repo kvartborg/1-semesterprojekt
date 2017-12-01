@@ -41,10 +41,8 @@ public class InventoryWindowController extends Controller implements Initializab
      */
     @FXML
     private void onUseClicked(ActionEvent event) {
-        try {
-            game.command("use", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
+            game.command("use", listViewSelection(listView));
             addItemsToViewList();
-        } catch (Exception e) {}
     }
     
     /**
@@ -53,10 +51,8 @@ public class InventoryWindowController extends Controller implements Initializab
      */
     @FXML
     private void onDropClicked(ActionEvent event) {
-        try {
-            game.command("drop", listView.getSelectionModel().getSelectedItem().replace(" ", "-"));
+            game.command("drop", listViewSelection(listView));
             addItemsToViewList();
-        } catch (Exception e) {}
     }
     
     /**
