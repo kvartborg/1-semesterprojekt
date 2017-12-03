@@ -6,11 +6,11 @@ import java.util.Set;
 import java.util.HashMap;
 import maga.item.Item;
 import maga.item.Key;
-import maga.util.Serializable;
+import acq.ISerializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 
-public class Room implements Serializable {
+public class Room implements ISerializable {
 
     /**
      * The rooms name

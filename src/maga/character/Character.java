@@ -4,14 +4,14 @@ package maga.character;
 import maga.command.Command;
 import maga.environment.Environment;
 import maga.environment.Room;
-import maga.util.Serializable;
+import acq.ISerializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
-import maga.util.Loadable;
+import acq.ILoadable;
 import org.w3c.dom.NodeList;
 
 
-public abstract class Character implements Serializable, Loadable {
+public abstract class Character implements ISerializable, ILoadable {
 
     /**
      * currentRoom attribute, an instance from the Room class.

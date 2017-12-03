@@ -6,24 +6,25 @@ import maga.command.Command;
 import maga.environment.Environment;
 import maga.item.Item;
 import maga.util.GameState;
-import maga.util.Serializable;
+import acq.ISerializable;
+import acq.ILoadable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 
-public class Player extends Character implements Serializable {
+public class Player extends Character implements ISerializable, ILoadable {
 
     /**
      * The arraylist stores the items, that the player picks up.
      */
     private ArrayList<Item> items = new ArrayList<Item>();
-    
+
     /**
      * Creating an attribute that sets the maximum items a player can carry.
      */
     private final int MAX_ITEMS = 2;
-    
+
     /**
      * Creating an attribute to check if the player has tweeted.
      */
@@ -184,7 +185,7 @@ public class Player extends Character implements Serializable {
     public void removeItems() {
         this.items.clear();
     }
-    
+
     /**
      * Gets the name of the items in the player's inventory
      * @return ArrayList of the itemnames as a string

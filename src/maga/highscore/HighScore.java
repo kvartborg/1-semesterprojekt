@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import maga.environment.Environment;
 import maga.util.GameState;
-import maga.util.Loadable;
+import acq.ILoadable;
+import acq.ISerializable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import maga.util.Serializable;
 
-public class HighScore implements Serializable, Loadable {
+public class HighScore implements ISerializable, ILoadable {
 
     /**
      * An ArrayList to store the players highScore.

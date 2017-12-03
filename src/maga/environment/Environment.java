@@ -10,13 +10,13 @@ import java.util.HashSet;
 import java.util.Set;
 import maga.item.NuclearFootball;
 import static maga.util.GameState.findItem;
-import maga.util.Loadable;
-import maga.util.Serializable;
+import acq.ILoadable;
+import acq.ISerializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-public final class Environment implements Serializable, Loadable {
+public final class Environment implements ISerializable, ILoadable {
 
     /**
      * HashMap attribute for rooms and their names
@@ -144,7 +144,7 @@ public final class Environment implements Serializable, Loadable {
             rooms.get(randomRoom).addItem(dummyItem);
         }
     }
-    
+
     /**
      * Accessor method for the Rooms in the hashmap
      * @return rooms
