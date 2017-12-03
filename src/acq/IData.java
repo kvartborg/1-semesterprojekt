@@ -2,17 +2,16 @@ package acq;
 
 public interface IData {
     /**
-     * Save a serializable object to a file
-     * @param  Serializable object
-     * @return true if the object was successfully save
+     * Serialize and save object to an xml file
+     * @param  object
+     * @return true if the operation was successful
      */
     public boolean save(ISerializable object);
 
     /**
-     * Load a xml file and turn all nodes into the correct object instances
-     * @param  Loadable object
-     * @return true if the xml files was loaded correctly
+     * Load and parse file to the correct object instances
+     * @param  object
+     * @return true if the file was loaded and parsed correctly
      */
     public boolean load(ILoadable object);
-
 }

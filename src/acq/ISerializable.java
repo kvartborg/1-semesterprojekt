@@ -6,8 +6,8 @@ import org.w3c.dom.Document;
 public interface ISerializable {
     /**
      * Serialize object instance to an XML node
-     * @param  Document doc
+     * @param  doc
      * @return an element
      */
-    public Element serialize(Document doc);
+    public Document serialize(Document doc);
 }

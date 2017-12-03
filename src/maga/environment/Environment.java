@@ -159,14 +159,16 @@ public final class Environment implements ISerializable, ILoadable {
      * @return xml element
      */
     @Override
-    public Element serialize(Document doc) {
+    public Document serialize(Document doc) {
         Element rooms = doc.createElement("rooms");
 
         for (Room room : this.getRooms().values()) {
             rooms.appendChild(room.serialize(doc));
         }
 
-        return rooms;
+        doc.getDocumentElement().appendChild(rooms);
+
+        return doc;
     }
 
     /**

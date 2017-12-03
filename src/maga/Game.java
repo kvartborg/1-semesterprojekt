@@ -9,9 +9,12 @@ import maga.command.Command;
 import maga.command.CommandWord;
 import maga.util.GameState;
 import maga.highscore.HighScore;
+import acq.ISerializable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 
-public class Game {
+public class Game implements ISerializable {
 
     /**
      * parser attribute, an instance from the Parser class.
@@ -169,7 +172,7 @@ public class Game {
 
     /**
      * This method checks if the player has reached the press briefing room
-     * after tweeting in order to win. 
+     * after tweeting in order to win.
      *
      * @return true or false.
      */
@@ -185,17 +188,7 @@ public class Game {
      */
     public void save() {
         saveTime = System.currentTimeMillis() / 1000L;
-        GameState.save(
-            steps,
-            startTime,
-            bonusTime,
-            saveTime,
-            points,
-            player,
-            trump,
-            cook,
-            environment
-        );
+        GameState.save(this);
     }
 
     /**
@@ -349,5 +342,42 @@ public class Game {
         long elapsedTime = endTime - startTime;
         long finalScore = points - ((elapsedTime - bonusTime) * steps);
         return (int) finalScore;
+    }
+
+    /**
+     * Serialize state of the game
+     * @param  Document doc
+     * @return xml document
+     */
+    public Document serialize(Document doc) {
+        Element game = doc.createElement("game");
+        doc.appendChild(game);
+
+        game.appendChild(
+            GameState.createTextNode(doc, "steps", Integer.toString(steps))
+        );
+
+        game.appendChild(
+            GameState.createTextNode(doc, "startTime", Long.toString(startTime))
+        );
+
+        game.appendChild(
+            GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
+        );
+
+        game.appendChild(
+            GameState.createTextNode(doc, "saveTime", Long.toString(saveTime))
+        );
+
+        game.appendChild(
+            GameState.createTextNode(doc, "points", Long.toString(points))
+        );
+
+        player.serialize(doc);
+        trump.serialize(doc);
+        cook.serialize(doc);
+        environment.serialize(doc);
+
+        return doc;
     }
 }

@@ -53,10 +53,10 @@ public class HighScore implements ISerializable, ILoadable {
     /**
      * Serialize highscore to xml
      * @param doc
-     * @return Element
+     * @return xml document
      */
     @Override
-    public Element serialize(Document doc) {
+    public Document serialize(Document doc) {
         Element root = doc.createElement("highscore");
 
         for (Score score : highScore) {
@@ -66,7 +66,9 @@ public class HighScore implements ISerializable, ILoadable {
             root.appendChild(scoreNode);
         }
 
-        return root;
+        doc.appendChild(root);
+
+        return doc;
     }
 
     /**

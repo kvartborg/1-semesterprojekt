@@ -202,11 +202,13 @@ public class Player extends Character implements ISerializable, ILoadable {
      * Serialize the player object to xml
      *
      * @param Document doc
-     * @return xml element
+     * @return xml document
      */
     @Override
-    public Element serialize(Document doc) {
-        Element player = super.serialize(doc);
+    public Document serialize(Document doc) {
+        super.serialize(doc);
+
+        Element player = (Element) doc.getElementsByTagName("player").item(0);
         player.setAttribute("tweeted", Boolean.toString(this.hasTweeted()));
 
         Element items = doc.createElement("items");
@@ -216,7 +218,8 @@ public class Player extends Character implements ISerializable, ILoadable {
             i.setAttribute("name", item.getName());
             items.appendChild(i);
         }
-        return player;
+
+        return doc;
     }
 
     /**

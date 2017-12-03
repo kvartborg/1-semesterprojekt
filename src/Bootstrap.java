@@ -2,7 +2,7 @@
 import acq.IData;
 import acq.IGUI;
 import acq.IGame;
-import data.DataFacade;
+import data.DataMediator;
 import maga.GameFacade;
 import gui.GUIFacade;
 
@@ -17,7 +17,7 @@ public class Bootstrap {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IData data = new DataFacade();
+        IData data = new DataMediator();
         IGame game = new GameFacade();
         IGUI gui = new GUIFacade();
         game.injectData(data);

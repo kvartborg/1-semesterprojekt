@@ -42,41 +42,13 @@ public class GameState {
      * @param cook
      * @param environment
      */
-    public static void save(int steps, long startTime, long bonusTime, long saveTime, int points, Player player, Trump trump, Cook cook, Environment environment) {
+    public static void save(Game game) {
         try {
-            
-
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.newDocument();
 
-            Element game = doc.createElement("game");
-            doc.appendChild(game);
-
-            game.appendChild(
-                    GameState.createTextNode(doc, "steps", Integer.toString(steps))
-            );
-
-            game.appendChild(
-                    GameState.createTextNode(doc, "startTime", Long.toString(startTime))
-            );
-
-            game.appendChild(
-                    GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
-            );
-            
-            game.appendChild(
-                    GameState.createTextNode(doc, "saveTime", Long.toString(saveTime))
-            );
-
-            game.appendChild(
-                    GameState.createTextNode(doc, "points", Long.toString(points))
-            );
-
-            game.appendChild(player.serialize(doc));
-            game.appendChild(trump.serialize(doc));
-            game.appendChild(cook.serialize(doc));
-            game.appendChild(environment.serialize(doc));
+            game.serialize(doc);
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -87,11 +59,12 @@ public class GameState {
             StreamResult result = new StreamResult(new File(System.getProperty("user.dir") + "/gameState.xml"));
             transformer.transform(source, result);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    
+
     /**
-     * method to create text node 
+     * method to create text node
      * @param doc
      * @param nodeName
      * @param value
@@ -177,17 +150,17 @@ public class GameState {
         }
         return null;
     }
-    
+
     /**
-     * Method to load the HighScore. 
-     * @param highscore 
+     * Method to load the HighScore.
+     * @param highscore
      */
     public static void loadHighscore(HighScore highscore) {
         try {
             File inputFile = new File ("highScore.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder(); 
-            Document doc = dBuilder.parse(inputFile); 
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
             highscore.load(doc.getElementsByTagName("score"), null);
         } catch (Exception e) {}
@@ -195,7 +168,7 @@ public class GameState {
 
     /**
      * Method to save the HighScore
-     * @param highScore 
+     * @param highScore
      */
     public static void saveHighScore (HighScore highScore) {
         try{
@@ -203,7 +176,7 @@ public class GameState {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.newDocument();
 
-            doc.appendChild(highScore.serialize(doc));
+            highScore.serialize(doc);
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -213,6 +186,8 @@ public class GameState {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File("highScore.xml"));
             transformer.transform(source, result);
-        } catch(Exception e) { }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }

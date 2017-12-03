@@ -91,10 +91,10 @@ public abstract class Character implements ISerializable, ILoadable {
      * Serialize the character object to xml
      *
      * @param Document doc
-     * @return xml element
+     * @return xml document
      */
     @Override
-    public Element serialize(Document doc) {
+    public Document serialize(Document doc) {
         String[] namespace = this.getClass().getName().split("\\.");
         String name = namespace[namespace.length - 1];
         Element character = doc.createElement(name.toLowerCase());
@@ -103,7 +103,10 @@ public abstract class Character implements ISerializable, ILoadable {
         room.appendChild(doc.createTextNode(this.getCurrentRoom().getName()));
         character.appendChild(room);
 
-        return character;
+        Element game = (Element) doc.getDocumentElement();
+        game.appendChild(character);
+
+        return doc;
     }
 
     /**
