@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import maga.environment.Environment;
 import maga.util.GameState;
+import acq.IGame;
 import acq.ILoadable;
 import acq.ISerializable;
 import org.w3c.dom.Document;
@@ -77,7 +78,9 @@ public class HighScore implements ISerializable, ILoadable {
      * @param environment
      */
     @Override
-    public void load(NodeList list, Environment environment) {
+    public void load(Document doc, IGame game) {
+        NodeList list = doc.getElementsByTagName("score");
+
         for (int i = 0; i < list.getLength(); i++) {
             Node nNode = list.item(i);
 
@@ -89,13 +92,5 @@ public class HighScore implements ISerializable, ILoadable {
                 );
             }
         }
-    }
-
-    /**
-     * This method prints the highscores.
-     */
-    public void printHighScore() {
-
-
     }
 }

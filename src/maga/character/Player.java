@@ -6,6 +6,7 @@ import maga.command.Command;
 import maga.environment.Environment;
 import maga.item.Item;
 import maga.util.GameState;
+import acq.IGame;
 import acq.ISerializable;
 import acq.ILoadable;
 import org.w3c.dom.Element;
@@ -201,7 +202,7 @@ public class Player extends Character implements ISerializable, ILoadable {
     /**
      * Serialize the player object to xml
      *
-     * @param Document doc
+     * @param  doc
      * @return xml document
      */
     @Override
@@ -228,12 +229,14 @@ public class Player extends Character implements ISerializable, ILoadable {
      * @param environment
      */
     @Override
-    public void load(NodeList list, Environment environment) {
-        super.load(list, environment);
-        Element player = (Element) list.item(0);
+    public void load(Document doc, IGame game) {
+        super.load(doc, game);
+
+        Element player = (Element) doc.getElementsByTagName("player").item(0);
         if (player.getAttribute("tweeted").equals("true")) {
             this.tweeted();
         }
+
         NodeList items = player.getElementsByTagName("item");
         for (int i = 0; i < items.getLength(); i++) {
             Element item = (Element) items.item(i);

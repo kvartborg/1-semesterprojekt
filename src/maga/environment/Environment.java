@@ -15,6 +15,7 @@ import acq.ISerializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import acq.IGame;
 
 public final class Environment implements ISerializable, ILoadable {
 
@@ -173,14 +174,15 @@ public final class Environment implements ISerializable, ILoadable {
 
     /**
      * This method loads environment
-     * @param list
-     * @param environment
+     * @param doc
      */
     @Override
-    public void load(NodeList list, Environment environment) {
+    public void load(Document doc, IGame game) {
+        NodeList list = doc.getElementsByTagName("rooms");
+
         for (int i = 0; i < list.getLength(); i++) {
             Element roomElement = (Element) list.item(i);
-            Room room = environment.getRoom(roomElement.getAttribute("name"));
+            Room room = game.getEnvironment().getRoom(roomElement.getAttribute("name"));
             if (roomElement.getAttribute("locked").equals("true")) {
                 room.lock();
             }

@@ -1,7 +1,6 @@
 package acq;
 
-import maga.environment.Environment;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.Document;
 
 /*
  * Interface for loadable
@@ -9,8 +8,8 @@ import org.w3c.dom.NodeList;
 public interface ILoadable {
     /**
      * Turn XML into an object intance
-     * @param NodeList    list
-     * @param Environment environment
+     * @param doc
+     * @param game
      */
-    public void load(NodeList list, Environment environment);
+    public void load(Document doc, IGame game);
 }

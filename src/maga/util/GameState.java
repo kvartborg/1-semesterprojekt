@@ -23,6 +23,7 @@ import maga.item.Steak;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import maga.highscore.HighScore;
+import acq.IGame;
 
 public class GameState {
 
@@ -59,7 +60,7 @@ public class GameState {
             StreamResult result = new StreamResult(new File(System.getProperty("user.dir") + "/gameState.xml"));
             transformer.transform(source, result);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -80,28 +81,18 @@ public class GameState {
      * Loads the game from XML file
      * @param game
      */
-    public static void load(Game game) {
-        GameState.resetGame(game);
-        try {
-            File file = new File("gameState.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(file);
-            doc.getDocumentElement().normalize();
-
-            game.setSteps(Integer.parseInt(findElementByName(doc, "steps").getTextContent()));
-            game.setPoints(Integer.parseInt(findElementByName(doc, "points").getTextContent()));
-            game.setStartTime(Long.parseLong(findElementByName(doc, "startTime").getTextContent()));
-            game.setBonusTime(Long.parseLong(findElementByName(doc, "bonusTime").getTextContent()));
-            game.setSaveTime(Long.parseLong(findElementByName(doc, "saveTime").getTextContent()));
-
-            game.getPlayer().load(doc.getElementsByTagName("player"), game.getEnvironment());
-            game.getTrump().load(doc.getElementsByTagName("trump"), game.getEnvironment());
-            game.getCook().load(doc.getElementsByTagName("cook"), game.getEnvironment());
-
-            game.getEnvironment().load(doc.getElementsByTagName("room"), game.getEnvironment());
-
-        } catch (Exception e) { }
+    public static void load(IGame game) {
+        // GameState.resetGame(game);
+        // try {
+        //     File file = new File("gameState.xml");
+        //     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        //     DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        //     Document doc = dBuilder.parse(file);
+        //     doc.getDocumentElement().normalize();
+        //     game.load(doc, game);
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
     }
 
     /**
@@ -120,19 +111,16 @@ public class GameState {
      * Resets the game
      * @param game
      */
-    public static void resetGame(Game game) {
+    public static void resetGame(IGame game) {
         GameState.items.add(new Steak());
         for (Item item : game.getPlayer().getItems()) {
             GameState.items.add(item);
         }
-        game.getPlayer().removeItems();
 
         for (Room room : game.getEnvironment().getRooms().values()) {
             for (Item item : room.getItems()) {
                 GameState.items.add(item);
             }
-            room.empty();
-            room.unlock();
         }
     }
 
@@ -162,7 +150,7 @@ public class GameState {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
-            highscore.load(doc.getElementsByTagName("score"), null);
+            highscore.load(doc, null);
         } catch (Exception e) {}
     }
 
@@ -187,7 +175,7 @@ public class GameState {
             StreamResult result = new StreamResult(new File("highScore.xml"));
             transformer.transform(source, result);
         } catch(Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 }

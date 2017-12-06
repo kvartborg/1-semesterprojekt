@@ -1,5 +1,6 @@
 package maga;
 
+import maga.environment.Room;
 import maga.environment.Environment;
 import maga.character.Cook;
 import maga.character.Trump;
@@ -9,12 +10,20 @@ import maga.command.Command;
 import maga.command.CommandWord;
 import maga.util.GameState;
 import maga.highscore.HighScore;
+import acq.IGame;
+import acq.IData;
+import acq.ILoadable;
 import acq.ISerializable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 
-public class Game implements ISerializable {
+public class Game implements ISerializable, ILoadable {
+
+    /**
+     * Accesser for the data layer
+     */
+    private IData data;
 
     /**
      * parser attribute, an instance from the Parser class.
@@ -80,6 +89,14 @@ public class Game implements ISerializable {
     }
 
     /**
+     * Inject data layer
+     * @param data
+     */
+    public void injectData (IData data) {
+        this.data = data;
+    }
+
+    /**
      * This method process the different commands and decide what they do
      *
      * @param command
@@ -126,7 +143,7 @@ public class Game implements ISerializable {
                 break;
 
             case LOAD:
-                GameState.load(this);
+                data.load("gameState.xml", this);
                 fixTime();
                 break;
 
@@ -188,7 +205,8 @@ public class Game implements ISerializable {
      */
     public void save() {
         saveTime = System.currentTimeMillis() / 1000L;
-        GameState.save(this);
+        System.out.print(data);
+        //data.save("gameState.xml", this);
     }
 
     /**
@@ -349,6 +367,7 @@ public class Game implements ISerializable {
      * @param  Document doc
      * @return xml document
      */
+    @Override
     public Document serialize(Document doc) {
         Element game = doc.createElement("game");
         doc.appendChild(game);
@@ -379,5 +398,31 @@ public class Game implements ISerializable {
         environment.serialize(doc);
 
         return doc;
+    }
+
+    /**
+     * Load and parse xml document
+     * @param doc
+     */
+    @Override
+    public void load(Document doc, IGame game) {
+        this.getPlayer().removeItems();
+
+        for (Room room : this.environment.getRooms().values()) {
+            room.empty();
+            room.unlock();
+        }
+
+        this.setSteps(Integer.parseInt(GameState.findElementByName(doc, "steps").getTextContent()));
+        this.setPoints(Integer.parseInt(GameState.findElementByName(doc, "points").getTextContent()));
+        this.setStartTime(Long.parseLong(GameState.findElementByName(doc, "startTime").getTextContent()));
+        this.setBonusTime(Long.parseLong(GameState.findElementByName(doc, "bonusTime").getTextContent()));
+        this.setSaveTime(Long.parseLong(GameState.findElementByName(doc, "saveTime").getTextContent()));
+
+        this.getPlayer().load(doc, game);
+        this.getTrump().load(doc, game);
+        this.getCook().load(doc, game);
+
+        this.getEnvironment().load(doc, game);
     }
 }

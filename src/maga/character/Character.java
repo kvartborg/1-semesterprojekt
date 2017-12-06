@@ -7,8 +7,9 @@ import maga.environment.Room;
 import acq.ISerializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
+import acq.IGame;
 import acq.ILoadable;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.Document;
 
 
 public abstract class Character implements ISerializable, ILoadable {
@@ -88,6 +89,15 @@ public abstract class Character implements ISerializable, ILoadable {
     }
 
     /**
+     * Get name of the class
+     * @return the instanciated class name
+     */
+    public String getClassName() {
+        String[] namespace = this.getClass().getName().split("\\.");
+        return namespace[namespace.length - 1];
+    }
+
+    /**
      * Serialize the character object to xml
      *
      * @param Document doc
@@ -95,9 +105,7 @@ public abstract class Character implements ISerializable, ILoadable {
      */
     @Override
     public Document serialize(Document doc) {
-        String[] namespace = this.getClass().getName().split("\\.");
-        String name = namespace[namespace.length - 1];
-        Element character = doc.createElement(name.toLowerCase());
+        Element character = doc.createElement(this.getClassName().toLowerCase());
 
         Element room = doc.createElement("room");
         room.appendChild(doc.createTextNode(this.getCurrentRoom().getName()));
@@ -112,14 +120,17 @@ public abstract class Character implements ISerializable, ILoadable {
     /**
      * This method loads the characters
      *
-     * @param list
-     * @param environment
+     * @param doc
+     * @param game
      */
     @Override
-    public void load(NodeList list, Environment environment) {
-        Element character = (Element) list.item(0);
+    public void load(Document doc, IGame game) {
+        Element character = (Element) doc.getElementsByTagName(
+            this.getClassName().toLowerCase()
+        ).item(0);
+
         this.setCurrentRoom(
-            environment.getRoom(
+            game.getEnvironment().getRoom(
                 character.getElementsByTagName("room").item(0).getTextContent()
             )
         );
