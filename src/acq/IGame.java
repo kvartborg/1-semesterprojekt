@@ -84,4 +84,11 @@ public interface IGame {
      * @return environment
      */
     public Environment getEnvironment();
+
+    /**
+     * A getter for the enviroment instance
+     * @param name
+     * @param score
+     */
+    public void addScore(String name, int score);
 }

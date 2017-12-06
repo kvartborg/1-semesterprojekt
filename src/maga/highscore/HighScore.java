@@ -19,6 +19,7 @@ public class HighScore implements ISerializable, ILoadable {
      */
      ArrayList<Score> highScore = new ArrayList();
 
+
     /**
      * An add method to add a name and a score to the ArrayList.
      * @param name
@@ -27,7 +28,6 @@ public class HighScore implements ISerializable, ILoadable {
     public void add(String name, int score) {
         highScore.add(new Score(name, score));
         this.sort();
-        GameState.saveHighScore(this);
     }
 
     /**

@@ -89,44 +89,4 @@ public class GameState {
         }
         return null;
     }
-
-    /**
-     * Method to load the HighScore.
-     * @param highscore
-     */
-    public static void loadHighscore(HighScore highscore) {
-        try {
-            File inputFile = new File ("highScore.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(inputFile);
-            doc.getDocumentElement().normalize();
-            highscore.load(doc, null);
-        } catch (Exception e) {}
-    }
-
-    /**
-     * Method to save the HighScore
-     * @param highScore
-     */
-    public static void saveHighScore (HighScore highScore) {
-        try{
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.newDocument();
-
-            highScore.serialize(doc);
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("highScore.xml"));
-            transformer.transform(source, result);
-        } catch(Exception e) {
-            //e.printStackTrace();
-        }
-    }
 }

@@ -84,7 +84,6 @@ public class Game implements ISerializable, ILoadable {
      * Create new instance of game
      */
     public Game() {
-        GameState.loadHighscore(highScore);
         play();
     }
 
@@ -94,6 +93,7 @@ public class Game implements ISerializable, ILoadable {
      */
     public void injectData (IData data) {
         this.data = data;
+        data.load("highScore.xml", highScore);
     }
 
     /**
@@ -326,7 +326,6 @@ public class Game implements ISerializable, ILoadable {
      * This method starts the game
      */
     private void play() {
-
         steps = 0;
         startTime = System.currentTimeMillis() / 1000L;
         bonusTime = 0L;
@@ -424,5 +423,15 @@ public class Game implements ISerializable, ILoadable {
         this.getCook().load(doc, this);
 
         this.getEnvironment().load(doc, this);
+    }
+
+    /**
+     * Add score to highscore
+     * @param name
+     * @param score
+     */
+    public void addScore(String name, int score) {
+        highScore.add(name, score);
+        data.save("highScore.xml", highScore);
     }
 }

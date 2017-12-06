@@ -135,4 +135,13 @@ public class GameFacade implements IGame {
     public Environment getEnvironment() {
         return game.getEnvironment();
     }
+
+    /**
+     * Add score to highscore
+     * @param name
+     * @param score
+     */
+    public void addScore(String name, int score) {
+        game.addScore(name, score);
+    }
 }
