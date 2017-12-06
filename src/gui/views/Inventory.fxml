@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="300.0" maxWidth="400.0" minHeight="300.0" minWidth="400.0" prefHeight="300.0" prefWidth="400.0" styleClass="presidentialSeal" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.InventoryWindowController">
+<GridPane maxHeight="300.0" maxWidth="400.0" minHeight="300.0" minWidth="400.0" prefHeight="300.0" prefWidth="400.0" styleClass="presidentialSeal" stylesheets="@../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.InventoryWindowController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -16,12 +16,12 @@
     <RowConstraints maxHeight="289.0" minHeight="10.0" prefHeight="242.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" onAction="#onDropClicked" prefHeight="30.0" prefWidth="70.0" styleClass="window-button" stylesheets="@styles.css" text="Drop" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#onDropClicked" prefHeight="30.0" prefWidth="70.0" styleClass="window-button" stylesheets="@../resources/styles.css" text="Drop" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#onUseClicked" prefHeight="30.0" prefWidth="70.0" styleClass="window-button" stylesheets="@styles.css" text="Use" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#onUseClicked" prefHeight="30.0" prefWidth="70.0" styleClass="window-button" stylesheets="@../resources/styles.css" text="Use" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets top="-50.0" />
          </GridPane.margin>

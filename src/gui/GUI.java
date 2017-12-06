@@ -14,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import maga.GameFacade;
+import gui.controllers.*;
 
 
 public class GUI {
@@ -72,11 +73,11 @@ public class GUI {
     public GUI (Stage stage, IGame game) {
         this.game = game;
         this.loadGameController(stage);
-        searchWindowController = (SearchWindowController) this.loadController("SearchWindow.fxml", "Search");
-        inventoryWindowController = (InventoryWindowController) this.loadController("InventoryWindow.fxml", "Inventory");
+        searchWindowController = (SearchWindowController) this.loadController("Search.fxml", "Search");
+        inventoryWindowController = (InventoryWindowController) this.loadController("Inventory.fxml", "Inventory");
         cookInteractionController = (CookInteractionController) this.loadController("CookInteraction.fxml", "Cook");
-        computerWindowController = (ComputerWindowController) this.loadController("ComputerWindow.fxml", "Computer");
-        helpWindowController = (HelpWindowController) this.loadController("HelpWindow.fxml", "Help");
+        computerWindowController = (ComputerWindowController) this.loadController("Computer.fxml", "Computer");
+        helpWindowController = (HelpWindowController) this.loadController("Help.fxml", "Help");
     }
 
     /**
@@ -87,7 +88,9 @@ public class GUI {
      */
     public Controller loadController(String controllerName, String stageName) {
        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(controllerName));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "views/" + controllerName
+            ));
             Parent root = (Parent) loader.load();
 
             Controller controller = loader.getController();
@@ -112,7 +115,7 @@ public class GUI {
      */
     public void loadGameController(Stage stage){
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Game.fxml"));
             Parent root = (Parent) loader.load();
 
             this.gameController = loader.getController();

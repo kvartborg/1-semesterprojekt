@@ -1,5 +1,4 @@
-
-package gui;
+package gui.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,12 +12,12 @@ import javafx.stage.Stage;
  * FXML Controller class
  */
 public class HelpWindowController extends Controller implements Initializable {
-    
+
     /**
      * New instance of stage
      */
     private Stage stage;
-    
+
     /**
      * Button to close help window
      */
@@ -30,15 +29,15 @@ public class HelpWindowController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-    }    
-    
+
+    }
+
     /**
      * This method closes the window
-     * @param event 
+     * @param event
      */
     @FXML
-    private void closeClicked(ActionEvent event) {  
+    private void closeClicked(ActionEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
