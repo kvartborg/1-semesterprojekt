@@ -5,47 +5,47 @@
 }
 
 .cleaningRoom {
-    -fx-background-image: url("resources/CleaningRoom.png");
+    -fx-background-image: url("../resources/CleaningRoom.png");
     -fx-background-size: 100% 100%;
 }
 
 .diningRoom {
-    -fx-background-image: url("resources/DiningRoom.png");
+    -fx-background-image: url("../resources/DiningRoom.png");
     -fx-background-size: 100% 100%;
 }
 
 .kitchen {
-    -fx-background-image: url("resources/Kitchen.png");
+    -fx-background-image: url("../resources/Kitchen.png");
     -fx-background-size: 100% 100%;
 }
 
 .secondLobby {
-    -fx-background-image: url("resources/Lobby2.png");
+    -fx-background-image: url("../resources/Lobby2.png");
     -fx-background-size: 100% 100%;
 }
 
 .firstLobby {
-    -fx-background-image: url("resources/Lobby1.png");
+    -fx-background-image: url("../resources/Lobby1.png");
     -fx-background-size: 100% 100%;
 }
 
 .pressBriefingRoom {
-    -fx-background-image: url("resources/PressBriefingRoom.png");
+    -fx-background-image: url("../resources/PressBriefingRoom.png");
     -fx-background-size: 100% 100%;
 }
 
 .secretServiceRoom {
-    -fx-background-image: url("resources/SecretServiceRoom.png");
+    -fx-background-image: url("../resources/SecretServiceRoom.png");
     -fx-background-size: 100% 100%;
 }
 
 .ovalOffice {
-    -fx-background-image: url("resources/OvalOffice.png");
+    -fx-background-image: url("../resources/OvalOffice.png");
     -fx-background-size: 100% 100%;
 }
 
 .presidentialSeal {
-    -fx-background-image: url("resources/PresidentialSealBlue.png");
+    -fx-background-image: url("../resources/PresidentialSealBlue.png");
     -fx-background-size: 100% 100%;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .window-button {
-    -fx-background-color: 
+    -fx-background-color:
         #ecebe9,
         rgba(0,0,0,0.05),
         linear-gradient(#6ECCE4, #6ECCE4),
@@ -79,7 +79,7 @@
 }
 
 .window-button-computer {
-    -fx-background-color: 
+    -fx-background-color:
         #ecebe9,
         rgba(0,0,0,0.05),
         linear-gradient(#6ECCE4, #6ECCE4),
@@ -107,7 +107,7 @@
     -fx-background-color: #0B5A9F,
         linear-gradient(#0B5A9F, #0B5A9F),
         linear-gradient(#3481C4 0%, #3481C4 20%, #0B5A9F 80%, #0B5A9F 100%),
-        linear-gradient(#3481C4, #0B5A9F);  
+        linear-gradient(#3481C4, #0B5A9F);
 }
 
 .game-label {
@@ -115,7 +115,7 @@
 }
 
 .game-window-button {
-    -fx-background-color: 
+    -fx-background-color:
         black,
         rgba(0,0,0,0.05),
         linear-gradient(yellow, yellow),

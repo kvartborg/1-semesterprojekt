@@ -1,5 +1,4 @@
-
-package gui;
+package gui.controllers;
 
 import java.net.URL;
 import java.util.Optional;
@@ -17,8 +16,8 @@ import javafx.scene.control.ListView;
 /**
  * FXML Controller class
  */
-public class SearchWindowController extends Controller implements Initializable {
-    
+public class SearchController extends Controller implements Initializable {
+
     /**
      * A ListView for the items string-names
      */
@@ -30,41 +29,41 @@ public class SearchWindowController extends Controller implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
-    } 
-    
+
+    }
+
     /**
      * Method for the "Pick up"-button.
-     * @param event 
+     * @param event
      */
     @FXML
     private void onPickupClicked(ActionEvent event) {
         game.command("pickup", listViewSelection(listView));
-        addItemsToViewList();   
+        addItemsToViewList();
     }
 
     /**
      * Method to use items in the search window with the use button
-     * @param event 
+     * @param event
      */
     @FXML
     private void onUsePressed(ActionEvent event) {
         if(listViewSelection(listView).equals("Computer")){
-            gui.getStages().get("Computer").show(); 
+            gui.getStages().get("Computer").show();
         } else {
             game.command("use", listViewSelection(listView));
         }
-        
+
         if (
-            listViewSelection(listView)=="Key" && 
+            listViewSelection(listView)=="Key" &&
             game.getPlayer().getCurrentRoom().getName().equalsIgnoreCase("lobby1")
         ) {
             showUnlocked();
         }
-        
-        addItemsToViewList();  
+
+        addItemsToViewList();
     }
-        
+
     /**
      * Adds the item from the players currentroom to the viewlist
      */
@@ -75,7 +74,7 @@ public class SearchWindowController extends Controller implements Initializable 
         }
         listView.setItems(data);
     }
-    
+
         /**
      * Creates an alert box for when you unlock a door
      */
@@ -85,5 +84,5 @@ public class SearchWindowController extends Controller implements Initializable 
         doorLocked.setTitle("Door");
         doorLocked.setHeaderText("The door is now unlocked");
         Optional<ButtonType> result = doorLocked.showAndWait();
-    }  
+    }
 }

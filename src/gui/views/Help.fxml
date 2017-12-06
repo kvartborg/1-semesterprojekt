@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="game-window" stylesheets="@../resources/styles.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.HelpController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" styleClass="game-window" stylesheets="@../resources/styles.css" text="M.A.G.A&#10;Game help:&#10;You are a reporter, sick of being labeled as “Fake news” by President Trump. &#10;You’ve finally had enough, and you decide to get your revenge by,&#10;using the Presidents own favorite media, only accessed on his personal computer. &#10;Underway you need to dodge Trump, as he is roaming the White House. &#10;As a player you are represented by the picture of a reporter, &#10;starting in the “Press Briefing Room”.  You have to complete your mission while,&#10;avoiding Trump at all costs. &#10;Trump is located in the “Oval Office” from the beginning. &#10;&#10;Controls:&#10;The arrow keys are used to move around the different rooms in the game, &#10;and have the corresponding directions (the arrow key “UP” = player goes up”).&#10;Other possibilities in the game are:&#10;(Button = Function)&#10;&#10;T = Talk&#10;“Talk” allows you to interact with a character.&#10;&#10;S = Search&#10;“Search” searches the current room for items and opens a window,&#10; where you can pick up items.&#10;&#10;I = Inventory&#10;“Inventory” opens the players inventory in a window&#10; and allows the player to use or drop items. &#10;&#10;C = Call&#10;“Call” is a method used to lure Trump in to a position using bait found in the game. &#10;&#10;W = Wait&#10;“Wait” is used to wait out a turn in the current position, whilst Trump takes a new position. &#10;&#10;Stuck?&#10;-&#9;If you’re stuck in the game, try using the different items and find their different uses. &#10;        However, be careful which items you use, as some of them have a less productive &#10;        outcome. &#10;-&#9;Listen to the hints you can find in conversations, and descriptions. " GridPane.columnSpan="2" GridPane.rowSpan="2">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TextArea>
+      <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeClicked" styleClass="window-button" stylesheets="@../resources/styles.css" text="Close" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+   </children>
+</GridPane>

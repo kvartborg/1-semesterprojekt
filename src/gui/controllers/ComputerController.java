@@ -1,5 +1,5 @@
 
-package gui;
+package gui.controllers;
 
 import java.net.URL;
 import java.util.Random;
@@ -13,7 +13,7 @@ import javafx.scene.control.TextArea;
 /**
  * FXML Controller class
  */
-public class ComputerWindowController extends Controller implements Initializable {
+public class ComputerController extends Controller implements Initializable {
     @FXML
     private TextArea writeTweetArea;
     @FXML
@@ -25,23 +25,23 @@ public class ComputerWindowController extends Controller implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }  
-    
+    }
+
     /**
-     * Method for when you use the computer.  
-     * @param event 
+     * Method for when you use the computer.
+     * @param event
      */
     @FXML
     private void onTweetClicked(ActionEvent event) {
         game.getPlayer().tweeted();
         tweetedArea.setText(writeTweetArea.getText());
         writeTweetArea.clear();
-        
+
     }
-    
+
     /**
      * Method to generate a random tweet in the computer window.
-     * @param event 
+     * @param event
      */
     @FXML
     private void onRandomTweetClicked(ActionEvent event) {
@@ -57,6 +57,6 @@ public class ComputerWindowController extends Controller implements Initializabl
         };
         Random random = new Random();
         int randomIndex = random.nextInt(tweets.length - 1);
-        tweetedArea.setText(tweets[randomIndex]);        
+        tweetedArea.setText(tweets[randomIndex]);
     }
 }

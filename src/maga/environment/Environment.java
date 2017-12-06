@@ -10,13 +10,14 @@ import java.util.HashSet;
 import java.util.Set;
 import maga.item.NuclearFootball;
 import static maga.util.GameState.findItem;
-import maga.util.Loadable;
-import maga.util.Serializable;
+import acq.ILoadable;
+import acq.ISerializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import maga.Game;
 
-public final class Environment implements Serializable, Loadable {
+public final class Environment implements ISerializable, ILoadable {
 
     /**
      * HashMap attribute for rooms and their names
@@ -144,7 +145,7 @@ public final class Environment implements Serializable, Loadable {
             rooms.get(randomRoom).addItem(dummyItem);
         }
     }
-    
+
     /**
      * Accessor method for the Rooms in the hashmap
      * @return rooms
@@ -159,29 +160,34 @@ public final class Environment implements Serializable, Loadable {
      * @return xml element
      */
     @Override
-    public Element serialize(Document doc) {
+    public Document serialize(Document doc) {
         Element rooms = doc.createElement("rooms");
 
         for (Room room : this.getRooms().values()) {
             rooms.appendChild(room.serialize(doc));
         }
 
-        return rooms;
+        doc.getDocumentElement().appendChild(rooms);
+
+        return doc;
     }
 
     /**
      * This method loads environment
-     * @param list
-     * @param environment
+     * @param doc
      */
     @Override
-    public void load(NodeList list, Environment environment) {
+    public void load(Document doc, Game game) {
+        NodeList list = doc.getElementsByTagName("room");
+
         for (int i = 0; i < list.getLength(); i++) {
             Element roomElement = (Element) list.item(i);
-            Room room = environment.getRoom(roomElement.getAttribute("name"));
+            Room room = game.getEnvironment().getRoom(roomElement.getAttribute("name"));
+
             if (roomElement.getAttribute("locked").equals("true")) {
                 room.lock();
             }
+
             NodeList items = roomElement.getElementsByTagName("item");
             for (int j = 0; j < items.getLength(); j++) {
                 Element item = (Element) items.item(j);
