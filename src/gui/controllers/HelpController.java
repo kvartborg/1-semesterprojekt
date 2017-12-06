@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  */
-public class HelpWindowController extends Controller implements Initializable {
+public class HelpController extends Controller implements Initializable {
 
     /**
      * New instance of stage

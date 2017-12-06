@@ -30,14 +30,14 @@ public class GUI {
     private GameController gameController;
 
     /**
-     *Instance of SearchWindowController
+     *Instance of SearchController
      */
-    private SearchWindowController searchWindowController;
+    private SearchController searchController;
 
     /**
-     * Instance of InventoryWindowController
+     * Instance of InventoryController
      */
-    private InventoryWindowController inventoryWindowController;
+    private InventoryController inventoryController;
 
     /**
      * Instance of CookInteractionController
@@ -45,14 +45,14 @@ public class GUI {
     private CookInteractionController cookInteractionController;
 
     /**
-     * Instance of ComputerWindowController
+     * Instance of ComputerController
      */
-    private ComputerWindowController computerWindowController;
+    private ComputerController computerController;
 
     /**
-     * Instance of HelpWindowController
+     * Instance of HelpController
      */
-    private HelpWindowController helpWindowController;
+    private HelpController helpController;
 
     /**
      * HashMap with stages
@@ -73,11 +73,11 @@ public class GUI {
     public GUI (Stage stage, IGame game) {
         this.game = game;
         this.loadGameController(stage);
-        searchWindowController = (SearchWindowController) this.loadController("Search.fxml", "Search");
-        inventoryWindowController = (InventoryWindowController) this.loadController("Inventory.fxml", "Inventory");
+        searchController = (SearchController) this.loadController("Search.fxml", "Search");
+        inventoryController = (InventoryController) this.loadController("Inventory.fxml", "Inventory");
         cookInteractionController = (CookInteractionController) this.loadController("CookInteraction.fxml", "Cook");
-        computerWindowController = (ComputerWindowController) this.loadController("Computer.fxml", "Computer");
-        helpWindowController = (HelpWindowController) this.loadController("Help.fxml", "Help");
+        computerController = (ComputerController) this.loadController("Computer.fxml", "Computer");
+        helpController = (HelpController) this.loadController("Help.fxml", "Help");
     }
 
     /**
@@ -140,43 +140,43 @@ public class GUI {
         switch (event.getCode()) {
             case UP:
                 goNextRoom("north");
-            break;
+                break;
 
             case LEFT:
                 goNextRoom("west");
-            break;
+                break;
 
             case RIGHT:
                 goNextRoom("east");
-            break;
+                break;
 
             case DOWN:
                 goNextRoom("south");
-            break;
+                break;
 
             case S:
-                searchWindowController.addItemsToViewList();
+                searchController.addItemsToViewList();
                 stages.get("Search").show();
-            break;
+                break;
 
             case I:
-                inventoryWindowController.addItemsToViewList();
+                inventoryController.addItemsToViewList();
                 stages.get("Inventory").show();
-            break;
+                break;
 
             case T:
                 if (game.getCook().getCurrentRoom() == game.getPlayer().getCurrentRoom()) {
                     stages.get("Cook").show();
                 }
-            break;
+                break;
 
             case C:
                 game.command("call","");
-            break;
+                break;
 
             case W:
                 game.command("wait", "");
-            break;
+                break;
        }
 
        this.gameController.updateGameState();

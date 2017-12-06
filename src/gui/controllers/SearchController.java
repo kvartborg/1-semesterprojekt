@@ -16,7 +16,7 @@ import javafx.scene.control.ListView;
 /**
  * FXML Controller class
  */
-public class SearchWindowController extends Controller implements Initializable {
+public class SearchController extends Controller implements Initializable {
 
     /**
      * A ListView for the items string-names

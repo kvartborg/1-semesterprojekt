@@ -16,7 +16,7 @@ import javafx.scene.control.ListView;
 /**
  * FXML Controller class
  */
-public class InventoryWindowController extends Controller implements Initializable {
+public class InventoryController extends Controller implements Initializable {
 
     /**
      * A ListView for the items string-names

@@ -13,7 +13,7 @@ import javafx.scene.control.TextArea;
 /**
  * FXML Controller class
  */
-public class ComputerWindowController extends Controller implements Initializable {
+public class ComputerController extends Controller implements Initializable {
     @FXML
     private TextArea writeTweetArea;
     @FXML
