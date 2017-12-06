@@ -32,6 +32,6 @@ public class GUIFacade implements IGUI {
      */
     @Override
     public void start(Stage stage) {
-        new GUI(stage);
+        new GUI(stage, game);
     }
 }

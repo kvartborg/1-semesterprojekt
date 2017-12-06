@@ -7,7 +7,7 @@ import maga.environment.Room;
 import acq.ISerializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
-import acq.IGame;
+import maga.Game;
 import acq.ILoadable;
 import org.w3c.dom.Document;
 
@@ -124,7 +124,7 @@ public abstract class Character implements ISerializable, ILoadable {
      * @param game
      */
     @Override
-    public void load(Document doc, IGame game) {
+    public void load(Document doc, Game game) {
         Element character = (Element) doc.getElementsByTagName(
             this.getClassName().toLowerCase()
         ).item(0);

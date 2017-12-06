@@ -2,6 +2,8 @@ package acq;
 
 import org.w3c.dom.Document;
 
+import maga.Game;
+
 /*
  * Interface for loadable
  */
@@ -11,5 +13,5 @@ public interface ILoadable {
      * @param doc
      * @param game
      */
-    public void load(Document doc, IGame game);
+    public void load(Document doc, Game game);
 }

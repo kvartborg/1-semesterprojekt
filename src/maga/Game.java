@@ -205,8 +205,7 @@ public class Game implements ISerializable, ILoadable {
      */
     public void save() {
         saveTime = System.currentTimeMillis() / 1000L;
-        System.out.print(data);
-        //data.save("gameState.xml", this);
+        data.save("gameState.xml", this);
     }
 
     /**
@@ -405,7 +404,8 @@ public class Game implements ISerializable, ILoadable {
      * @param doc
      */
     @Override
-    public void load(Document doc, IGame game) {
+    public void load(Document doc, Game game) {
+        GameState.resetGame(this);
         this.getPlayer().removeItems();
 
         for (Room room : this.environment.getRooms().values()) {
@@ -419,10 +419,10 @@ public class Game implements ISerializable, ILoadable {
         this.setBonusTime(Long.parseLong(GameState.findElementByName(doc, "bonusTime").getTextContent()));
         this.setSaveTime(Long.parseLong(GameState.findElementByName(doc, "saveTime").getTextContent()));
 
-        this.getPlayer().load(doc, game);
-        this.getTrump().load(doc, game);
-        this.getCook().load(doc, game);
+        this.getPlayer().load(doc, this);
+        this.getTrump().load(doc, this);
+        this.getCook().load(doc, this);
 
-        this.getEnvironment().load(doc, game);
+        this.getEnvironment().load(doc, this);
     }
 }

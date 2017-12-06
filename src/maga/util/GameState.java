@@ -23,7 +23,6 @@ import maga.item.Steak;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import maga.highscore.HighScore;
-import acq.IGame;
 
 public class GameState {
 
@@ -32,37 +31,6 @@ public class GameState {
      */
     public static List<Item> items = new ArrayList<Item>();
 
-    /**
-     * Saves the game in an XML file
-     * @param steps
-     * @param startTime
-     * @param bonusTime
-     * @param points
-     * @param player
-     * @param trump
-     * @param cook
-     * @param environment
-     */
-    public static void save(Game game) {
-        try {
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.newDocument();
-
-            game.serialize(doc);
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(System.getProperty("user.dir") + "/gameState.xml"));
-            transformer.transform(source, result);
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
-    }
 
     /**
      * method to create text node
@@ -77,23 +45,6 @@ public class GameState {
         return node;
     }
 
-    /**
-     * Loads the game from XML file
-     * @param game
-     */
-    public static void load(IGame game) {
-        // GameState.resetGame(game);
-        // try {
-        //     File file = new File("gameState.xml");
-        //     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        //     DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        //     Document doc = dBuilder.parse(file);
-        //     doc.getDocumentElement().normalize();
-        //     game.load(doc, game);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-    }
 
     /**
      * This method finds an item in items ArrayList
@@ -111,7 +62,7 @@ public class GameState {
      * Resets the game
      * @param game
      */
-    public static void resetGame(IGame game) {
+    public static void resetGame(Game game) {
         GameState.items.add(new Steak());
         for (Item item : game.getPlayer().getItems()) {
             GameState.items.add(item);

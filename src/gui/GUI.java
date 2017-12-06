@@ -21,7 +21,7 @@ public class GUI {
     /**
      * Instace of IGame
      */
-    private IGame game = new GameFacade();
+    private IGame game;
 
     /**
      * Instance of GameController
@@ -69,7 +69,8 @@ public class GUI {
     /**
      * Method to start the game with gui
      */
-    public GUI (Stage stage) {
+    public GUI (Stage stage, IGame game) {
+        this.game = game;
         this.loadGameController(stage);
         searchWindowController = (SearchWindowController) this.loadController("SearchWindow.fxml", "Search");
         inventoryWindowController = (InventoryWindowController) this.loadController("InventoryWindow.fxml", "Inventory");

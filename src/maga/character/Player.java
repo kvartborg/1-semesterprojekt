@@ -6,7 +6,7 @@ import maga.command.Command;
 import maga.environment.Environment;
 import maga.item.Item;
 import maga.util.GameState;
-import acq.IGame;
+import maga.Game;
 import acq.ISerializable;
 import acq.ILoadable;
 import org.w3c.dom.Element;
@@ -229,7 +229,7 @@ public class Player extends Character implements ISerializable, ILoadable {
      * @param environment
      */
     @Override
-    public void load(Document doc, IGame game) {
+    public void load(Document doc, Game game) {
         super.load(doc, game);
 
         Element player = (Element) doc.getElementsByTagName("player").item(0);
