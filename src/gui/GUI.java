@@ -16,48 +16,48 @@ import javafx.stage.Stage;
 import maga.GameFacade;
 
 
-public class GUI extends Application {
-    
+public class GUI {
+
     /**
      * Instace of IGame
      */
     private IGame game = new GameFacade();
-    
+
     /**
      * Instance of GameController
      */
     private GameController gameController;
-    
+
     /**
-     *Instance of SearchWindowController 
+     *Instance of SearchWindowController
      */
     private SearchWindowController searchWindowController;
-    
+
     /**
      * Instance of InventoryWindowController
      */
     private InventoryWindowController inventoryWindowController;
-    
+
     /**
      * Instance of CookInteractionController
      */
     private CookInteractionController cookInteractionController;
-    
+
     /**
      * Instance of ComputerWindowController
      */
     private ComputerWindowController computerWindowController;
-    
+
     /**
      * Instance of HelpWindowController
      */
     private HelpWindowController helpWindowController;
-    
+
     /**
      * HashMap with stages
      */
     private HashMap<String, Stage> stages = new HashMap<>();
-    
+
     /**
      * Accessor method for HashMap with stages.
      * @return stages
@@ -65,20 +65,19 @@ public class GUI extends Application {
     public HashMap<String, Stage> getStages() {
         return stages;
     }
-    
+
     /**
      * Method to start the game with gui
      */
-    @Override
-    public void start(Stage stage) {
+    public GUI (Stage stage) {
         this.loadGameController(stage);
         searchWindowController = (SearchWindowController) this.loadController("SearchWindow.fxml", "Search");
         inventoryWindowController = (InventoryWindowController) this.loadController("InventoryWindow.fxml", "Inventory");
         cookInteractionController = (CookInteractionController) this.loadController("CookInteraction.fxml", "Cook");
         computerWindowController = (ComputerWindowController) this.loadController("ComputerWindow.fxml", "Computer");
-        helpWindowController = (HelpWindowController) this.loadController("HelpWindow.fxml", "Help"); 
+        helpWindowController = (HelpWindowController) this.loadController("HelpWindow.fxml", "Help");
     }
-    
+
     /**
      * Method to load a controller.
      * @param controllerName
@@ -89,9 +88,9 @@ public class GUI extends Application {
        try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource(controllerName));
             Parent root = (Parent) loader.load();
-            
+
             Controller controller = loader.getController();
-            controller.injectGame(this.game);  
+            controller.injectGame(this.game);
             controller.injectGUI(this);
 
             Stage stage = new Stage();
@@ -102,10 +101,10 @@ public class GUI extends Application {
             stages.put(stageName, stage);
             stage.setTitle(stageName);
             return controller;
-        } catch(Exception e){} 
+        } catch(Exception e){}
        return null;
     }
-    
+
     /**
      * Loads the game controller stage
      * @param stage
@@ -116,7 +115,7 @@ public class GUI extends Application {
             Parent root = (Parent) loader.load();
 
             this.gameController = loader.getController();
-            this.gameController.injectGame(this.game);  
+            this.gameController.injectGame(this.game);
             this.gameController.injectGUI(this);
             this.gameMenu();
 
@@ -125,63 +124,63 @@ public class GUI extends Application {
             stage.setMinWidth(800);
             stage.setMinHeight(600);
             stage.setScene(scene);
-            stage.show(); 
+            stage.show();
         } catch(Exception e){}
     }
-    
+
     /**
      * Method to make the player move when using the keyboard
      * @param event
      */
     public void onKeyPressed(KeyEvent event) {
-        switch (event.getCode()) {   
-            case UP:                 
+        switch (event.getCode()) {
+            case UP:
                 goNextRoom("north");
             break;
-            
+
             case LEFT:
                 goNextRoom("west");
             break;
-           
-            case RIGHT:  
+
+            case RIGHT:
                 goNextRoom("east");
             break;
-               
+
             case DOWN:
                 goNextRoom("south");
-            break; 
-           
+            break;
+
             case S:
                 searchWindowController.addItemsToViewList();
                 stages.get("Search").show();
             break;
-           
+
             case I:
                 inventoryWindowController.addItemsToViewList();
                 stages.get("Inventory").show();
             break;
-            
+
             case T:
                 if (game.getCook().getCurrentRoom() == game.getPlayer().getCurrentRoom()) {
                     stages.get("Cook").show();
                 }
             break;
-            
+
             case C:
                 game.command("call","");
             break;
-            
+
             case W:
                 game.command("wait", "");
             break;
        }
-      
+
        this.gameController.updateGameState();
     }
-    
+
     /**
-     * Method to load a game menu before entering the actual game. 
-     * @param args 
+     * Method to load a game menu before entering the actual game.
+     * @param args
      */
     public void gameMenu() {
         ButtonType newGame = new ButtonType("New game", ButtonBar.ButtonData.OTHER);
@@ -197,7 +196,7 @@ public class GUI extends Application {
         }
         if (result.get() == highScore) {
             this.gameController.highScoreAlert();
-        } 
+        }
         if (result.get() == close) {
             System.exit(0);
         }
@@ -207,17 +206,13 @@ public class GUI extends Application {
         gameController.updateGameState();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
     /**
      * Method that checks if the next room is locked
      * @param direction
      */
     public void goNextRoom(String direction){
         if (
-            game.getPlayer().getCurrentRoom().getExit(direction) != null && 
+            game.getPlayer().getCurrentRoom().getExit(direction) != null &&
             game.getPlayer().getCurrentRoom().getExit(direction).isLocked()
         ) {
             gameController.showLockedRoom();
