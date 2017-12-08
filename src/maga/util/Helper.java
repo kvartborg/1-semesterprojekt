@@ -59,10 +59,10 @@ public class Helper {
     }
 
     /**
-     * Resets the game
+     * collect all existing items within the game
      * @param game
      */
-    public static void resetGame(Game game) {
+    public static void collectItems(Game game) {
         Helper.items.add(new Steak());
         for (Item item : game.getPlayer().getItems()) {
             Helper.items.add(item);

@@ -404,7 +404,7 @@ public class Game implements ISerializable, ILoadable {
      */
     @Override
     public void load(Document doc, Game game) {
-        Helper.resetGame(this);
+        Helper.collectItems(this);
         this.getPlayer().removeItems();
 
         for (Room room : this.environment.getRooms().values()) {
