@@ -102,7 +102,7 @@ public class Game implements ISerializable, ILoadable {
      * @param command
      * @return boolean (wantToQuit, false or true)
      */
-    boolean processCommand(Command command) {
+    public boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
