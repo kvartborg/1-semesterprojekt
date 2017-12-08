@@ -161,7 +161,7 @@ public class GameController extends Controller implements Initializable {
     }
     
     /**
-     * Creates an alert box if you try to open a locked door  
+     * Creates an alert box if you try to call trump 
      */
     public void showCallTrump() {
         if (!callCheck()) {
