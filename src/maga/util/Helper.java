@@ -24,7 +24,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import maga.highscore.HighScore;
 
-public class GameState {
+public class Helper {
 
     /**
      * Creates a list of available items
@@ -63,26 +63,26 @@ public class GameState {
      * @param game
      */
     public static void resetGame(Game game) {
-        GameState.items.add(new Steak());
+        Helper.items.add(new Steak());
         for (Item item : game.getPlayer().getItems()) {
-            GameState.items.add(item);
+            Helper.items.add(item);
         }
 
         for (Room room : game.getEnvironment().getRooms().values()) {
             for (Item item : room.getItems()) {
-                GameState.items.add(item);
+                Helper.items.add(item);
             }
         }
     }
 
     /**
      * This method makes it possible to search the items arraylist on in
-     * GameState
+     * Helper
      * @param name
      * @return Item
      */
     public static Item findItem(String name) {
-        for (Item item : GameState.items) {
+        for (Item item : Helper.items) {
             if (item.getName().equalsIgnoreCase(name)) {
                 return item;
             }

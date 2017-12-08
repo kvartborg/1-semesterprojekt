@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import maga.item.NuclearFootball;
-import static maga.util.GameState.findItem;
+import static maga.util.Helper.findItem;
 import acq.ILoadable;
 import acq.ISerializable;
 import org.w3c.dom.Element;

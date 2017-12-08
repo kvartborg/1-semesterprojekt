@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import maga.command.Command;
 import maga.environment.Environment;
 import maga.item.Item;
-import maga.util.GameState;
+import maga.util.Helper;
 import maga.Game;
 import acq.ISerializable;
 import acq.ILoadable;
@@ -240,7 +240,7 @@ public class Player extends Character implements ISerializable, ILoadable {
         NodeList items = player.getElementsByTagName("item");
         for (int i = 0; i < items.getLength(); i++) {
             Element item = (Element) items.item(i);
-            this.addItem(GameState.findItem(item.getAttribute("name")));
+            this.addItem(Helper.findItem(item.getAttribute("name")));
         }
     }
 }
