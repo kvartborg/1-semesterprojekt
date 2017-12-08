@@ -30,7 +30,7 @@
             <Image url="@../resources/cook.png" />
          </image>
       </ImageView>
-      <Button fx:id="okayButton" layoutX="209.0" layoutY="289.0" mnemonicParsing="false" onAction="#onOkayButtonAction" text="Okay" visible="false" />
+      <Button fx:id="okayButton" layoutX="209.0" layoutY="289.0" mnemonicParsing="false" onAction="#onOkayButtonAction" styleClass="window-button" stylesheets="@../resources/styles.css" text="Okay" visible="false" />
       <Button fx:id="thankYouButton" layoutX="197.0" layoutY="289.0" mnemonicParsing="false" onAction="#onThankYouButtonAction" styleClass="window-button" stylesheets="@../resources/styles.css" text="Thank you" visible="false" />
    </children>
 </AnchorPane>

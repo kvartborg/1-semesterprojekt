@@ -67,6 +67,8 @@ public class CookInteractionController extends Controller implements Initializab
         if (game.getPlayer().isInventoryFull()) {
             cookTextField.setText("Your inventory is full");
             okayButton.setVisible(true);
+            yesButton.setVisible(false);
+            noButton.setVisible(false);
         } else {
             game.getCook().createSteak(game.getPlayer().getCurrentRoom());
             game.command("pickup", "Steak");
