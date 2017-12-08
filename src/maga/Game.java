@@ -8,7 +8,7 @@ import maga.character.Player;
 import maga.command.Parser;
 import maga.command.Command;
 import maga.command.CommandWord;
-import maga.util.GameState;
+import maga.util.Helper;
 import maga.highscore.HighScore;
 import acq.IGame;
 import acq.IData;
@@ -371,23 +371,23 @@ public class Game implements ISerializable, ILoadable {
         doc.appendChild(game);
 
         game.appendChild(
-            GameState.createTextNode(doc, "steps", Integer.toString(steps))
+            Helper.createTextNode(doc, "steps", Integer.toString(steps))
         );
 
         game.appendChild(
-            GameState.createTextNode(doc, "startTime", Long.toString(startTime))
+            Helper.createTextNode(doc, "startTime", Long.toString(startTime))
         );
 
         game.appendChild(
-            GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
+            Helper.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
         );
 
         game.appendChild(
-            GameState.createTextNode(doc, "saveTime", Long.toString(saveTime))
+            Helper.createTextNode(doc, "saveTime", Long.toString(saveTime))
         );
 
         game.appendChild(
-            GameState.createTextNode(doc, "points", Long.toString(points))
+            Helper.createTextNode(doc, "points", Long.toString(points))
         );
 
         player.serialize(doc);
@@ -404,7 +404,7 @@ public class Game implements ISerializable, ILoadable {
      */
     @Override
     public void load(Document doc, Game game) {
-        GameState.resetGame(this);
+        Helper.resetGame(this);
         this.getPlayer().removeItems();
 
         for (Room room : this.environment.getRooms().values()) {
@@ -412,11 +412,11 @@ public class Game implements ISerializable, ILoadable {
             room.unlock();
         }
 
-        this.setSteps(Integer.parseInt(GameState.findElementByName(doc, "steps").getTextContent()));
-        this.setPoints(Integer.parseInt(GameState.findElementByName(doc, "points").getTextContent()));
-        this.setStartTime(Long.parseLong(GameState.findElementByName(doc, "startTime").getTextContent()));
-        this.setBonusTime(Long.parseLong(GameState.findElementByName(doc, "bonusTime").getTextContent()));
-        this.setSaveTime(Long.parseLong(GameState.findElementByName(doc, "saveTime").getTextContent()));
+        this.setSteps(Integer.parseInt(Helper.findElementByName(doc, "steps").getTextContent()));
+        this.setPoints(Integer.parseInt(Helper.findElementByName(doc, "points").getTextContent()));
+        this.setStartTime(Long.parseLong(Helper.findElementByName(doc, "startTime").getTextContent()));
+        this.setBonusTime(Long.parseLong(Helper.findElementByName(doc, "bonusTime").getTextContent()));
+        this.setSaveTime(Long.parseLong(Helper.findElementByName(doc, "saveTime").getTextContent()));
 
         this.getPlayer().load(doc, this);
         this.getTrump().load(doc, this);

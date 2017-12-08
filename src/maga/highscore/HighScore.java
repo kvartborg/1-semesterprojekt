@@ -3,7 +3,7 @@ package maga.highscore;
 import java.util.ArrayList;
 import java.util.Collections;
 import maga.environment.Environment;
-import maga.util.GameState;
+import maga.util.Helper;
 import maga.Game;
 import acq.ILoadable;
 import acq.ISerializable;
