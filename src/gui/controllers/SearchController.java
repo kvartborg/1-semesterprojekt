@@ -38,7 +38,12 @@ public class SearchController extends Controller implements Initializable {
      */
     @FXML
     private void onPickupClicked(ActionEvent event) {
-        game.command("pickup", listViewSelection(listView));
+        if (game.getPlayer().isInventoryFull()){
+            inventoryFull(); 
+        } else {
+            game.command("pickup", listViewSelection(listView));
+        }
+        
         addItemsToViewList();
     }
 
@@ -83,6 +88,17 @@ public class SearchController extends Controller implements Initializable {
         Alert doorLocked = new Alert(Alert.AlertType.INFORMATION, "", ok);
         doorLocked.setTitle("Door");
         doorLocked.setHeaderText("The door is now unlocked");
+        Optional<ButtonType> result = doorLocked.showAndWait();
+    }
+    
+    /**
+     * This method opens an alert box
+     */
+    public void inventoryFull(){
+        ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        Alert doorLocked = new Alert(Alert.AlertType.INFORMATION, "", ok);
+        doorLocked.setTitle("Inventory");
+        doorLocked.setHeaderText("Your inventory is full!");
         Optional<ButtonType> result = doorLocked.showAndWait();
     }
 }

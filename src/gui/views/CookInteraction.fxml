@@ -8,12 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="600.0" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: C1E9FD;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.CookInteractionController">
+<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="600.0" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: C1E9FD;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.CookInteractionController">
    <children>
       <TextArea fx:id="cookTextField" editable="false" layoutX="18.0" layoutY="151.0" prefHeight="123.0" prefWidth="465.0" style="-fx-background-color: #6ECCE4; -fx-background-radius: 50;" text="Hello, don't mind me, i'm just cooking up some Trump steaks over here!&#10;Do you want one ? &#10;President Trump loves his own steaks with some ketchup on!">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
+         <font>
+            <Font size="12.0" />
+         </font>
       </TextArea>
       <Button fx:id="yesButton" layoutX="144.0" layoutY="285.0" mnemonicParsing="false" onAction="#onYesButton" prefHeight="30.0" prefWidth="70.0" styleClass="window-button" stylesheets="@../resources/styles.css" text="Yes">
          <font>
