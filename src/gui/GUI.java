@@ -4,7 +4,6 @@ package gui;
 import acq.IGame;
 import java.util.HashMap;
 import java.util.Optional;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +12,6 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import maga.GameFacade;
 import gui.controllers.*;
 
 
@@ -171,6 +169,7 @@ public class GUI {
                 break;
 
             case C:
+                gameController.showCallTrump();
                 game.command("call","");
                 break;
 
@@ -189,7 +188,7 @@ public class GUI {
     public void gameMenu() {
         ButtonType newGame = new ButtonType("New game", ButtonBar.ButtonData.OTHER);
         ButtonType load = new ButtonType("Load saved game", ButtonBar.ButtonData.OTHER);
-        ButtonType highScore = new ButtonType("HighScore", ButtonBar.ButtonData.OTHER);
+        ButtonType highScore = new ButtonType("Highscore", ButtonBar.ButtonData.OTHER);
         ButtonType close = new ButtonType("Close game", ButtonBar.ButtonData.OTHER);
         Alert gameMenu = new Alert(Alert.AlertType.INFORMATION, "", newGame, load, highScore, close);
         gameMenu.setTitle("Game menu");
