@@ -68,7 +68,7 @@ public class GameController extends Controller implements Initializable {
      */
     @FXML
     private Button highScoreButton;
-
+    
     /**
      * Method to initialize
      * @param url
@@ -159,6 +159,21 @@ public class GameController extends Controller implements Initializable {
             game.addScore(result.get(), game.getScore());
         }
     }
+    
+    /**
+     * Creates an alert box if you try to call trump 
+     */
+    public void showCallTrump() {
+        if (!callCheck()) {
+            return;
+        }
+        ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        Alert calledTrump = new Alert(AlertType.INFORMATION, "", ok);
+        calledTrump.setTitle("Trump baited");
+        calledTrump.setHeaderText("You lured trump into the room, you now have "
+                + "\n3 steps without his interference as he is eating!");
+        Optional<ButtonType> result = calledTrump.showAndWait();
+    }
 
     /**
      * Creates an alert box if you try to open a locked door
@@ -230,6 +245,9 @@ public class GameController extends Controller implements Initializable {
         this.highScoreAlert();
     }
 
+    /**
+     * Method to show the highscore. 
+     */
     public void highScoreAlert() {
         Alert highscore = new Alert(AlertType.INFORMATION, game.getHighscore().toString());
         highscore.setTitle("Highscore");
@@ -237,5 +255,15 @@ public class GameController extends Controller implements Initializable {
         Optional<ButtonType> result = highscore.showAndWait();
         updateGameState();
     }
-
+    
+    /**
+     * Method to check if the player has the right state to call trump
+     * @return true
+     */
+    public boolean callCheck() {
+        return (
+            game.getPlayer().hasItem("Steak-with-ketchup") &&
+            game.getPlayer().getCurrentRoom() == game.getEnvironment().getRoom("Cleaning room")
+        );    
+    }
 }

@@ -86,7 +86,7 @@ public interface IGame {
     public Environment getEnvironment();
 
     /**
-     * A getter for the enviroment instance
+     * A method to add a score
      * @param name
      * @param score
      */
