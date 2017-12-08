@@ -7,17 +7,19 @@ import maga.character.Cook;
 import maga.character.Player;
 import maga.character.Trump;
 import maga.highscore.HighScore;
+import maga.environment.Environment;
+import org.w3c.dom.Document;
 
 /**
  * Facade for Game which implements the interface for game
  */
 public class GameFacade implements IGame {
-    
+
     /**
      * Instance of IData
      */
     private IData data;
-    
+
     /**
      * Instance of Game
      */
@@ -25,12 +27,12 @@ public class GameFacade implements IGame {
 
     /**
      * A method that injects Data
-     *
      * @param data
      */
     @Override
     public void injectData(IData data) {
         this.data = data;
+        game.injectData(data);
     }
 
     /**
@@ -43,7 +45,7 @@ public class GameFacade implements IGame {
     public void command(String command, String argument) {
         game.processCommand(game.getParser().createCommand(command, argument));
     }
-    
+
     /**
      * This method returns the player
      * @return player
@@ -52,7 +54,7 @@ public class GameFacade implements IGame {
     public Player getPlayer() {
         return game.getPlayer();
     }
-    
+
     /**
      * This method returns Trump
      * @return trump
@@ -61,7 +63,7 @@ public class GameFacade implements IGame {
     public Trump getTrump() {
         return game.getTrump();
     }
-    
+
     /**
      * This method returns the Cook
      * @return cook
@@ -70,16 +72,16 @@ public class GameFacade implements IGame {
     public Cook getCook() {
         return game.getCook();
     }
-    
+
     /**
-     * This method returns the steps 
+     * This method returns the steps
      * @return steps
      */
     @Override
     public int getSteps() {
-        return game.getSteps(); 
+        return game.getSteps();
     }
-    
+
     /**
      * This method makes it possible to win the game
      * @return boolean
@@ -88,7 +90,7 @@ public class GameFacade implements IGame {
     public boolean youWin() {
         return game.youWin();
     }
-    
+
     /**
      * This method makes it possible to lose the game
      * @return boolean
@@ -97,8 +99,8 @@ public class GameFacade implements IGame {
     public boolean youLose() {
         return game.youLose();
     }
-    
-    
+
+
     /**
      * This method restarts the game
      */
@@ -106,7 +108,7 @@ public class GameFacade implements IGame {
     public void restart() {
         game.restart();
     }
-    
+
     /**
      * This method returns highscore
      * @return highscore
@@ -115,7 +117,7 @@ public class GameFacade implements IGame {
     public HighScore getHighscore() {
         return game.getHighscore();
     }
-    
+
     /**
      * A method to get score
      * @return score
@@ -123,5 +125,23 @@ public class GameFacade implements IGame {
     @Override
     public int getScore() {
         return game.getScore();
+    }
+
+    /**
+     * A method to get environment
+     * @return instance of environment
+     */
+    @Override
+    public Environment getEnvironment() {
+        return game.getEnvironment();
+    }
+
+    /**
+     * Add score to highscore
+     * @param name
+     * @param score
+     */
+    public void addScore(String name, int score) {
+        game.addScore(name, score);
     }
 }

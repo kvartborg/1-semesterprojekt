@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import maga.environment.Environment;
 import maga.util.GameState;
-import maga.util.Loadable;
+import maga.Game;
+import acq.ILoadable;
+import acq.ISerializable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import maga.util.Serializable;
 
-public class HighScore implements Serializable, Loadable {
+public class HighScore implements ISerializable, ILoadable {
 
     /**
      * An ArrayList to store the players highScore.
      */
      ArrayList<Score> highScore = new ArrayList();
+
 
     /**
      * An add method to add a name and a score to the ArrayList.
@@ -26,7 +28,6 @@ public class HighScore implements Serializable, Loadable {
     public void add(String name, int score) {
         highScore.add(new Score(name, score));
         this.sort();
-        GameState.saveHighScore(this);
     }
 
     /**
@@ -53,10 +54,10 @@ public class HighScore implements Serializable, Loadable {
     /**
      * Serialize highscore to xml
      * @param doc
-     * @return Element
+     * @return xml document
      */
     @Override
-    public Element serialize(Document doc) {
+    public Document serialize(Document doc) {
         Element root = doc.createElement("highscore");
 
         for (Score score : highScore) {
@@ -66,7 +67,9 @@ public class HighScore implements Serializable, Loadable {
             root.appendChild(scoreNode);
         }
 
-        return root;
+        doc.appendChild(root);
+
+        return doc;
     }
 
     /**
@@ -75,7 +78,9 @@ public class HighScore implements Serializable, Loadable {
      * @param environment
      */
     @Override
-    public void load(NodeList list, Environment environment) {
+    public void load(Document doc, Game game) {
+        NodeList list = doc.getElementsByTagName("score");
+
         for (int i = 0; i < list.getLength(); i++) {
             Node nNode = list.item(i);
 
@@ -87,13 +92,5 @@ public class HighScore implements Serializable, Loadable {
                 );
             }
         }
-    }
-
-    /**
-     * This method prints the highscores.
-     */
-    public void printHighScore() {
-
-
     }
 }

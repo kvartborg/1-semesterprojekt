@@ -6,24 +6,26 @@ import maga.command.Command;
 import maga.environment.Environment;
 import maga.item.Item;
 import maga.util.GameState;
-import maga.util.Serializable;
+import maga.Game;
+import acq.ISerializable;
+import acq.ILoadable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 
-public class Player extends Character implements Serializable {
+public class Player extends Character implements ISerializable, ILoadable {
 
     /**
      * The arraylist stores the items, that the player picks up.
      */
     private ArrayList<Item> items = new ArrayList<Item>();
-    
+
     /**
      * Creating an attribute that sets the maximum items a player can carry.
      */
     private final int MAX_ITEMS = 2;
-    
+
     /**
      * Creating an attribute to check if the player has tweeted.
      */
@@ -184,7 +186,7 @@ public class Player extends Character implements Serializable {
     public void removeItems() {
         this.items.clear();
     }
-    
+
     /**
      * Gets the name of the items in the player's inventory
      * @return ArrayList of the itemnames as a string
@@ -200,12 +202,14 @@ public class Player extends Character implements Serializable {
     /**
      * Serialize the player object to xml
      *
-     * @param Document doc
-     * @return xml element
+     * @param  doc
+     * @return xml document
      */
     @Override
-    public Element serialize(Document doc) {
-        Element player = super.serialize(doc);
+    public Document serialize(Document doc) {
+        super.serialize(doc);
+
+        Element player = (Element) doc.getElementsByTagName("player").item(0);
         player.setAttribute("tweeted", Boolean.toString(this.hasTweeted()));
 
         Element items = doc.createElement("items");
@@ -215,7 +219,8 @@ public class Player extends Character implements Serializable {
             i.setAttribute("name", item.getName());
             items.appendChild(i);
         }
-        return player;
+
+        return doc;
     }
 
     /**
@@ -224,12 +229,14 @@ public class Player extends Character implements Serializable {
      * @param environment
      */
     @Override
-    public void load(NodeList list, Environment environment) {
-        super.load(list, environment);
-        Element player = (Element) list.item(0);
+    public void load(Document doc, Game game) {
+        super.load(doc, game);
+
+        Element player = (Element) doc.getElementsByTagName("player").item(0);
         if (player.getAttribute("tweeted").equals("true")) {
             this.tweeted();
         }
+
         NodeList items = player.getElementsByTagName("item");
         for (int i = 0; i < items.getLength(); i++) {
             Element item = (Element) items.item(i);

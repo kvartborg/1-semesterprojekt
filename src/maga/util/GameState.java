@@ -31,67 +31,9 @@ public class GameState {
      */
     public static List<Item> items = new ArrayList<Item>();
 
+
     /**
-     * Saves the game in an XML file
-     * @param steps
-     * @param startTime
-     * @param bonusTime
-     * @param points
-     * @param player
-     * @param trump
-     * @param cook
-     * @param environment
-     */
-    public static void save(int steps, long startTime, long bonusTime, long saveTime, int points, Player player, Trump trump, Cook cook, Environment environment) {
-        try {
-            
-
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.newDocument();
-
-            Element game = doc.createElement("game");
-            doc.appendChild(game);
-
-            game.appendChild(
-                    GameState.createTextNode(doc, "steps", Integer.toString(steps))
-            );
-
-            game.appendChild(
-                    GameState.createTextNode(doc, "startTime", Long.toString(startTime))
-            );
-
-            game.appendChild(
-                    GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
-            );
-            
-            game.appendChild(
-                    GameState.createTextNode(doc, "saveTime", Long.toString(saveTime))
-            );
-
-            game.appendChild(
-                    GameState.createTextNode(doc, "points", Long.toString(points))
-            );
-
-            game.appendChild(player.serialize(doc));
-            game.appendChild(trump.serialize(doc));
-            game.appendChild(cook.serialize(doc));
-            game.appendChild(environment.serialize(doc));
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(System.getProperty("user.dir") + "/gameState.xml"));
-            transformer.transform(source, result);
-        } catch (Exception e) {
-        }
-    }
-    
-    /**
-     * method to create text node 
+     * method to create text node
      * @param doc
      * @param nodeName
      * @param value
@@ -103,33 +45,6 @@ public class GameState {
         return node;
     }
 
-    /**
-     * Loads the game from XML file
-     * @param game
-     */
-    public static void load(Game game) {
-        GameState.resetGame(game);
-        try {
-            File file = new File("gameState.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(file);
-            doc.getDocumentElement().normalize();
-
-            game.setSteps(Integer.parseInt(findElementByName(doc, "steps").getTextContent()));
-            game.setPoints(Integer.parseInt(findElementByName(doc, "points").getTextContent()));
-            game.setStartTime(Long.parseLong(findElementByName(doc, "startTime").getTextContent()));
-            game.setBonusTime(Long.parseLong(findElementByName(doc, "bonusTime").getTextContent()));
-            game.setSaveTime(Long.parseLong(findElementByName(doc, "saveTime").getTextContent()));
-
-            game.getPlayer().load(doc.getElementsByTagName("player"), game.getEnvironment());
-            game.getTrump().load(doc.getElementsByTagName("trump"), game.getEnvironment());
-            game.getCook().load(doc.getElementsByTagName("cook"), game.getEnvironment());
-
-            game.getEnvironment().load(doc.getElementsByTagName("room"), game.getEnvironment());
-
-        } catch (Exception e) { }
-    }
 
     /**
      * This method finds an item in items ArrayList
@@ -152,14 +67,11 @@ public class GameState {
         for (Item item : game.getPlayer().getItems()) {
             GameState.items.add(item);
         }
-        game.getPlayer().removeItems();
 
         for (Room room : game.getEnvironment().getRooms().values()) {
             for (Item item : room.getItems()) {
                 GameState.items.add(item);
             }
-            room.empty();
-            room.unlock();
         }
     }
 
@@ -176,43 +88,5 @@ public class GameState {
             }
         }
         return null;
-    }
-    
-    /**
-     * Method to load the HighScore. 
-     * @param highscore 
-     */
-    public static void loadHighscore(HighScore highscore) {
-        try {
-            File inputFile = new File ("highScore.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder(); 
-            Document doc = dBuilder.parse(inputFile); 
-            doc.getDocumentElement().normalize();
-            highscore.load(doc.getElementsByTagName("score"), null);
-        } catch (Exception e) {}
-    }
-
-    /**
-     * Method to save the HighScore
-     * @param highScore 
-     */
-    public static void saveHighScore (HighScore highScore) {
-        try{
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.newDocument();
-
-            doc.appendChild(highScore.serialize(doc));
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("highScore.xml"));
-            transformer.transform(source, result);
-        } catch(Exception e) { }
     }
 }

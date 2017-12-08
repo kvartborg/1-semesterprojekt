@@ -6,11 +6,10 @@ import java.util.Set;
 import java.util.HashMap;
 import maga.item.Item;
 import maga.item.Key;
-import maga.util.Serializable;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 
-public class Room implements Serializable {
+public class Room{
 
     /**
      * The rooms name
@@ -218,7 +217,6 @@ public class Room implements Serializable {
      * @param  doc
      * @return Element
      */
-    @Override
     public Element serialize(Document doc) {
         Element room = doc.createElement("room");
         room.setAttribute("name", this.getName());

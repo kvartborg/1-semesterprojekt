@@ -1,5 +1,4 @@
-
-package gui;
+package gui.controllers;
 
 import java.net.URL;
 import java.util.Optional;
@@ -17,8 +16,8 @@ import javafx.scene.control.ListView;
 /**
  * FXML Controller class
  */
-public class InventoryWindowController extends Controller implements Initializable {
-    
+public class InventoryController extends Controller implements Initializable {
+
     /**
      * A ListView for the items string-names
      */
@@ -30,35 +29,35 @@ public class InventoryWindowController extends Controller implements Initializab
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }  
-    
+
+    }
+
     /**
-     * Method for the use button 
-     * @param event 
+     * Method for the use button
+     * @param event
      */
     @FXML
     private void onUseClicked(ActionEvent event) {
         game.command("use", listViewSelection(listView));
         if (
-            listViewSelection(listView)=="Key" && 
+            listViewSelection(listView)=="Key" &&
             game.getPlayer().getCurrentRoom().getName().equalsIgnoreCase("lobby1")
         ) {
             showUnlocked();
         }
         addItemsToViewList();
     }
-    
+
     /**
      * Method for the drop button
-     * @param event 
+     * @param event
      */
     @FXML
     private void onDropClicked(ActionEvent event) {
             game.command("drop", listViewSelection(listView));
             addItemsToViewList();
     }
-    
+
     /**
      * Adds the item from the players currentroom to the viewlist
      */
@@ -79,5 +78,5 @@ public class InventoryWindowController extends Controller implements Initializab
         doorLocked.setTitle("Door");
         doorLocked.setHeaderText("The door is now unlocked");
         Optional<ButtonType> result = doorLocked.showAndWait();
-    }    
+    }
 }

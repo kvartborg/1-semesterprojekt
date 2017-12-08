@@ -1,5 +1,6 @@
 package maga;
 
+import maga.environment.Room;
 import maga.environment.Environment;
 import maga.character.Cook;
 import maga.character.Trump;
@@ -9,9 +10,20 @@ import maga.command.Command;
 import maga.command.CommandWord;
 import maga.util.GameState;
 import maga.highscore.HighScore;
+import acq.IGame;
+import acq.IData;
+import acq.ILoadable;
+import acq.ISerializable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 
-public class Game {
+public class Game implements ISerializable, ILoadable {
+
+    /**
+     * Accesser for the data layer
+     */
+    private IData data;
 
     /**
      * parser attribute, an instance from the Parser class.
@@ -72,8 +84,16 @@ public class Game {
      * Create new instance of game
      */
     public Game() {
-        GameState.loadHighscore(highScore);
         play();
+    }
+
+    /**
+     * Inject data layer
+     * @param data
+     */
+    public void injectData (IData data) {
+        this.data = data;
+        data.load("highScore.xml", highScore);
     }
 
     /**
@@ -123,7 +143,7 @@ public class Game {
                 break;
 
             case LOAD:
-                GameState.load(this);
+                data.load("gameState.xml", this);
                 fixTime();
                 break;
 
@@ -169,7 +189,7 @@ public class Game {
 
     /**
      * This method checks if the player has reached the press briefing room
-     * after tweeting in order to win. 
+     * after tweeting in order to win.
      *
      * @return true or false.
      */
@@ -185,17 +205,7 @@ public class Game {
      */
     public void save() {
         saveTime = System.currentTimeMillis() / 1000L;
-        GameState.save(
-            steps,
-            startTime,
-            bonusTime,
-            saveTime,
-            points,
-            player,
-            trump,
-            cook,
-            environment
-        );
+        data.save("gameState.xml", this);
     }
 
     /**
@@ -316,7 +326,6 @@ public class Game {
      * This method starts the game
      */
     private void play() {
-
         steps = 0;
         startTime = System.currentTimeMillis() / 1000L;
         bonusTime = 0L;
@@ -349,5 +358,80 @@ public class Game {
         long elapsedTime = endTime - startTime;
         long finalScore = points - ((elapsedTime - bonusTime) * steps);
         return (int) finalScore;
+    }
+
+    /**
+     * Serialize state of the game
+     * @param  Document doc
+     * @return xml document
+     */
+    @Override
+    public Document serialize(Document doc) {
+        Element game = doc.createElement("game");
+        doc.appendChild(game);
+
+        game.appendChild(
+            GameState.createTextNode(doc, "steps", Integer.toString(steps))
+        );
+
+        game.appendChild(
+            GameState.createTextNode(doc, "startTime", Long.toString(startTime))
+        );
+
+        game.appendChild(
+            GameState.createTextNode(doc, "bonusTime", Long.toString(bonusTime))
+        );
+
+        game.appendChild(
+            GameState.createTextNode(doc, "saveTime", Long.toString(saveTime))
+        );
+
+        game.appendChild(
+            GameState.createTextNode(doc, "points", Long.toString(points))
+        );
+
+        player.serialize(doc);
+        trump.serialize(doc);
+        cook.serialize(doc);
+        environment.serialize(doc);
+
+        return doc;
+    }
+
+    /**
+     * Load and parse xml document
+     * @param doc
+     */
+    @Override
+    public void load(Document doc, Game game) {
+        GameState.resetGame(this);
+        this.getPlayer().removeItems();
+
+        for (Room room : this.environment.getRooms().values()) {
+            room.empty();
+            room.unlock();
+        }
+
+        this.setSteps(Integer.parseInt(GameState.findElementByName(doc, "steps").getTextContent()));
+        this.setPoints(Integer.parseInt(GameState.findElementByName(doc, "points").getTextContent()));
+        this.setStartTime(Long.parseLong(GameState.findElementByName(doc, "startTime").getTextContent()));
+        this.setBonusTime(Long.parseLong(GameState.findElementByName(doc, "bonusTime").getTextContent()));
+        this.setSaveTime(Long.parseLong(GameState.findElementByName(doc, "saveTime").getTextContent()));
+
+        this.getPlayer().load(doc, this);
+        this.getTrump().load(doc, this);
+        this.getCook().load(doc, this);
+
+        this.getEnvironment().load(doc, this);
+    }
+
+    /**
+     * Add score to highscore
+     * @param name
+     * @param score
+     */
+    public void addScore(String name, int score) {
+        highScore.add(name, score);
+        data.save("highScore.xml", highScore);
     }
 }
