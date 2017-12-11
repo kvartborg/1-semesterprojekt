@@ -6,8 +6,6 @@ import acq.ILoadable;
 import acq.ISerializable;
 import java.lang.Exception;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -24,7 +22,8 @@ import org.w3c.dom.Document;
 public class DataMediator implements IData {
     /**
      * Serialize and save object to an xml file
-     * @param  object
+     * @param name
+     * @param object
      * @return true if the operation was successful
      */
     @Override
@@ -54,7 +53,8 @@ public class DataMediator implements IData {
 
     /**
      * Load and parse file to the correct object instances
-     * @param  object
+     * @param name
+     * @param object
      * @return true if the file was loaded and parsed correctly
      */
     @Override

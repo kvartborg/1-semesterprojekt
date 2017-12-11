@@ -8,7 +8,6 @@ import maga.character.Player;
 import maga.character.Trump;
 import maga.highscore.HighScore;
 import maga.environment.Environment;
-import org.w3c.dom.Document;
 
 /**
  * Facade for Game which implements the interface for game

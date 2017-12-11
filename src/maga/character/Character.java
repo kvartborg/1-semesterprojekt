@@ -2,11 +2,9 @@
 package maga.character;
 
 import maga.command.Command;
-import maga.environment.Environment;
 import maga.environment.Room;
 import acq.ISerializable;
 import org.w3c.dom.Element;
-import org.w3c.dom.Document;
 import maga.Game;
 import acq.ILoadable;
 import org.w3c.dom.Document;
@@ -100,7 +98,7 @@ public abstract class Character implements ISerializable, ILoadable {
     /**
      * Serialize the character object to xml
      *
-     * @param Document doc
+     * @param doc
      * @return xml document
      */
     @Override

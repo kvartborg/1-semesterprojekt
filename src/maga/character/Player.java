@@ -3,7 +3,6 @@ package maga.character;
 
 import java.util.ArrayList;
 import maga.command.Command;
-import maga.environment.Environment;
 import maga.item.Item;
 import maga.util.Helper;
 import maga.Game;
@@ -225,8 +224,8 @@ public class Player extends Character implements ISerializable, ILoadable {
 
     /**
      * This method loads the player
-     * @param list
-     * @param environment
+     * @param doc
+     * @param game
      */
     @Override
     public void load(Document doc, Game game) {

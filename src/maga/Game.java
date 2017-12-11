@@ -10,7 +10,6 @@ import maga.command.Command;
 import maga.command.CommandWord;
 import maga.util.Helper;
 import maga.highscore.HighScore;
-import acq.IGame;
 import acq.IData;
 import acq.ILoadable;
 import acq.ISerializable;
@@ -362,7 +361,7 @@ public class Game implements ISerializable, ILoadable {
 
     /**
      * Serialize state of the game
-     * @param  Document doc
+     * @param  doc
      * @return xml document
      */
     @Override
@@ -401,6 +400,7 @@ public class Game implements ISerializable, ILoadable {
     /**
      * Load and parse xml document
      * @param doc
+     * @param game
      */
     @Override
     public void load(Document doc, Game game) {
