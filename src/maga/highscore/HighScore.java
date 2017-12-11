@@ -2,8 +2,6 @@ package maga.highscore;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import maga.environment.Environment;
-import maga.util.Helper;
 import maga.Game;
 import acq.ILoadable;
 import acq.ISerializable;
@@ -74,8 +72,8 @@ public class HighScore implements ISerializable, ILoadable {
 
     /**
      * This method loads our highscores from the xml file.
-     * @param list
-     * @param environment
+     * @param doc
+     * @param game
      */
     @Override
     public void load(Document doc, Game game) {

@@ -1,28 +1,15 @@
 package maga.util;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import maga.item.Item;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import maga.character.Cook;
-import maga.character.Player;
-import maga.character.Trump;
-import maga.environment.Environment;
 import maga.environment.Room;
 import maga.Game;
 import maga.item.Steak;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import maga.highscore.HighScore;
 
 public class Helper {
 

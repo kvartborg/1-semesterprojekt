@@ -67,6 +67,8 @@ public class GUI {
 
     /**
      * Method to start the game with gui
+     * @param stage
+     * @param game
      */
     public GUI (Stage stage, IGame game) {
         this.game = game;
@@ -183,7 +185,6 @@ public class GUI {
 
     /**
      * Method to load a game menu before entering the actual game.
-     * @param args
      */
     public void gameMenu() {
         ButtonType newGame = new ButtonType("New game", ButtonBar.ButtonData.OTHER);
